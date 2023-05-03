@@ -1,0 +1,12 @@
+ISARD
+Usuari: daw-m2-g3
+Pass: sapa98765
+
+VPN: Afegir túnel amb la configuració de l'arxiu VPN_VM_Grup3.conf
+
+VM BD
+IP: 10.2.179.196
+
+MySQL
+Usuari: perepi
+Pass: pastanaga
