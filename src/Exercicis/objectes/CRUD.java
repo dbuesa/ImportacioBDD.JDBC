@@ -1,4 +1,11 @@
 package Exercicis.objectes;
 
-public class CRUD {
+public interface CRUD {
+    boolean create();
+
+    boolean read();
+
+    boolean update();
+
+    boolean delete();
 }
