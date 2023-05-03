@@ -289,7 +289,6 @@ public class InsertQuery {
             preparedStmt.execute();
         } catch (Exception e) {
             System.out.println(e);
-            System.out.println("hola");
         }
     }
 }
