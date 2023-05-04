@@ -1,153 +1,137 @@
-DROP DATABASE IF EXISTS eleccions2016;
-CREATE DATABASE IF NOT EXISTS eleccions2016;
+-- MySQL Workbench Forward Engineering
 
-USE eleccions2016;
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
-CREATE TABLE IF NOT EXISTS eleccions (
-	eleccio_id 			TINYINT UNSIGNED AUTO_INCREMENT,
-	nom 				VARCHAR(45),
-	data 				DATE NOT NULL,
-	any 				YEAR GENERATED ALWAYS AS (YEAR(data)),
-	mes 				TINYINT GENERATED ALWAYS AS (MONTH(data)),
-  CONSTRAINT pk_eleccions PRIMARY KEY (eleccio_id),
-  CONSTRAINT uk_eleccions_any_mes UNIQUE (any, mes),
-  CONSTRAINT uk_eleccions_data UNIQUE (data)
-  );
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
 
-CREATE TABLE candidatures (
-	candidatura_id 				INT UNSIGNED AUTO_INCREMENT,
-	eleccio_id 					TINYINT UNSIGNED NOT NULL,
-	codi_candidatura 			CHAR(6),
-	nom_curt 					VARCHAR(50),
-	nom_llarg 					VARCHAR(150),
-	codi_acumulacio_provincia 	CHAR(6),
-	codi_acumulacio_ca 			CHAR(6),
-	codi_acumulacio_nacional 	CHAR(6),
-    CONSTRAINT pk_candidatures PRIMARY KEY (candidatura_id),
-	CONSTRAINT uk_candidatures_eleccio_candidatura UNIQUE (eleccio_id, codi_candidatura),
-    CONSTRAINT fk_candidatures_partits_eleccions FOREIGN KEY (eleccio_id)
-		REFERENCES eleccions(eleccio_id)
-);
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb2` DEFAULT CHARACTER SET utf8 ;
+USE `mydb2` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`comunitats_autonomes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb2`.`comunitats_autonomes` (
+  `comunitat_aut_id` TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nom` VARCHAR(45) NULL,
+  `codi_ine` CHAR(2) NOT NULL,
+  PRIMARY KEY (`comunitat_aut_id`),
+  UNIQUE INDEX `uk_com_aut_codi_ine` (`codi_ine` ASC) VISIBLE)
+ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS persones (
-persona_id 			INT UNSIGNED AUTO_INCREMENT,
-  nom 				VARCHAR(30),
-  cog1 				VARCHAR(30),
-  cog2 				VARCHAR(30),
-  sexe 				ENUM('M', 'F') COMMENT 'M=Masculí, F=Femení',
-  data_naixement 	DATE,
-  dni 				CHAR(10) NOT NULL,
-  CONSTRAINT pk_persones PRIMARY KEY (persona_id),
-  CONSTRAINT uk_persones_dni  UNIQUE (dni)
-);
+-- -----------------------------------------------------
+-- Table `mydb`.`provincies`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb2`.`provincies` (
+  `provincia_id` TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `comunitat_aut_id` TINYINT UNSIGNED NOT NULL,
+  `nom` VARCHAR(45) NULL,
+  `codi_ine` CHAR(2) NOT NULL,
+  `num_escons` TINYINT UNSIGNED NULL COMMENT 'Numero d\'escons que li pertoquen a aquella provincia',
+  PRIMARY KEY (`provincia_id`),
+  UNIQUE INDEX `uk_provincies_codi_ine` (`codi_ine` ASC) VISIBLE,
+  INDEX `idx_fk_provincies_comunitats_autonomes` (`comunitat_aut_id` ASC) VISIBLE,
+  CONSTRAINT `fk_provincies_comunitats_autonomes`
+    FOREIGN KEY (`comunitat_aut_id`)
+    REFERENCES `mydb`.`comunitats_autonomes` (`comunitat_aut_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS comunitats_autonomes (
-  comunitat_aut_id 		TINYINT UNSIGNED AUTO_INCREMENT,
-  nom 					VARCHAR(45),
-  codi_ine CHAR(2) 		NOT NULL,
-  CONSTRAINT pk_comunitats_autonomes PRIMARY KEY (comunitat_aut_id),
-  CONSTRAINT uk_comunitats_autonomes_codi_ine UNIQUE (codi_ine)
-);
+-- -----------------------------------------------------
+-- Table `mydb`.`municipis`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb2`.`municipis` (
+  `municipi_id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nom` VARCHAR(100) NULL,
+  `codi_ine` CHAR(3) NOT NULL,
+  `provincia_id` TINYINT UNSIGNED NOT NULL,
+  `districte` CHAR(2) NULL COMMENT 'Número de districte municipal , sinó el seu valor serà 99. Per exemple aquí municiís com Blanes el seu valor serà 99, però en ciutats com Barcelona hi haurà el número de districte',
+  PRIMARY KEY (`municipi_id`),
+  UNIQUE INDEX `uk_municipis_codi` (`codi_ine` ASC, `provincia_id` ASC, `districte` ASC) VISIBLE,
+  INDEX `idx_fk_municipis_provincies1` (`provincia_id` ASC) VISIBLE,
+  CONSTRAINT `fk_municipis_provincies`
+    FOREIGN KEY (`provincia_id`)
+    REFERENCES `mydb`.`provincies` (`provincia_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS provincies (
-  provincia_id 			TINYINT UNSIGNED AUTO_INCREMENT,
-  comunitat_aut_id 		TINYINT UNSIGNED NOT NULL,
-  nom 					VARCHAR(45),
-  codi_ine 				CHAR(2) NOT NULL,
-  num_escons 			TINYINT UNSIGNED,
-  CONSTRAINT pk_provincies PRIMARY KEY (provincia_id),
-  CONSTRAINT uk_provincies UNIQUE (codi_ine),
-  CONSTRAINT fk_provincies_comunitat_aut_id FOREIGN KEY (comunitat_aut_id)
-	REFERENCES comunitats_autonomes (comunitat_aut_id)
-);
+-- -----------------------------------------------------
+-- Table `mydb`.`candidatures`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb2`.`candidatures` (
+  `candidatura_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `eleccio_id` TINYINT UNSIGNED NOT NULL,
+  `codi_candidatura` CHAR(6) NULL,
+  `nom_curt` VARCHAR(50) NULL COMMENT 'Sigles de la candidatura',
+  `nom_llarg` VARCHAR(150) NULL COMMENT 'Nom llarg de la candidatura (denominació)',
+  `codi_acumulacio_provincia` CHAR(6) NULL COMMENT 'Codi de la candidatura d\'acumulació a nivell provincial.',
+  `codi_acumulacio_ca` CHAR(6) NULL COMMENT 'Codi de la candidatura d\'acumulació a nivell de comunitat autònoma',
+  `codi_acumulario_nacional` CHAR(6) NULL,
+  PRIMARY KEY (`candidatura_id`),
+  UNIQUE INDEX `uk_eleccions_partits` (`eleccio_id` ASC, `codi_candidatura` ASC) VISIBLE)
+ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS municipis (
-  municipi_id 		SMALLINT UNSIGNED AUTO_INCREMENT,
-  nom 				VARCHAR(100),
-  codi_ine 			CHAR(3) NOT NULL,
-  provincia_id 		TINYINT UNSIGNED NOT NULL,
-  districte 		CHAR(2),
-  CONSTRAINT pk_municipis PRIMARY KEY (municipi_id),
-  CONSTRAINT uk_municipis_codi_ine UNIQUE (codi_ine),
-  CONSTRAINT fk_municipis_provincia_id FOREIGN KEY (provincia_id)
-      REFERENCES provincies (provincia_id)
-);
+-- -----------------------------------------------------
+-- Table `mydb`.`persones`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb2`.`persones` (
+  `persona_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nom` VARCHAR(30) NULL,
+  `cog1` VARCHAR(30) NULL,
+  `cog2` VARCHAR(30) NULL,
+  `sexe` ENUM('M', 'F') NULL COMMENT 'M=Masculí, F=Femení',
+  `data_naixement` DATE NULL,
+  `dni` CHAR(10) NOT NULL,
+  PRIMARY KEY (`persona_id`),
+  UNIQUE INDEX `uk_candidats_dni` (`dni` ASC) VISIBLE)
+ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS eleccions_municipis (
-  eleccio_id 		TINYINT UNSIGNED NOT NULL,
-  municipi_id 		SMALLINT UNSIGNED NOT NULL,
-  num_meses 		SMALLINT UNSIGNED,
-  cens 				INT UNSIGNED,
-  vots_emesos 		INT UNSIGNED,
-  vots_valids 		INT UNSIGNED,
-  vots_candidatures INT UNSIGNED,
-  vots_blanc 		INT UNSIGNED NULL,
-  vots_nuls 		INT UNSIGNED NULL,
-  CONSTRAINT uk_eleccions_municipis_eleccio_municipi UNIQUE (eleccio_id, municipi_id),
-  CONSTRAINT pk_eleccions_municipis PRIMARY KEY (eleccio_id,municipi_id),
-  CONSTRAINT fk_eleccions_municipis_municipis FOREIGN KEY (municipi_id)
-    REFERENCES municipis(municipi_id),
-  CONSTRAINT fk_eleccions_municipis_eleccions FOREIGN KEY (eleccio_id)
-    REFERENCES eleccions(eleccio_id)
-    );
-    
-
-    
-CREATE TABLE IF NOT EXISTS vots_candidatures_mun (
-  eleccio_id 		TINYINT UNSIGNED NOT NULL,
-  municipi_id 		SMALLINT UNSIGNED NOT NULL,
-  candidatura_id 	INT UNSIGNED NOT NULL,
-  vots 				INT UNSIGNED,
-  CONSTRAINT pk_vots_candidatures_mun PRIMARY KEY(eleccio_id, municipi_id, candidatura_id),
-  CONSTRAINT fk_candidatures_municipis_candidatures FOREIGN KEY (candidatura_id)
-    REFERENCES candidatures(candidatura_id),
-  CONSTRAINT fk_candidatures_municipis_eleccions_municipis FOREIGN KEY (eleccio_id, municipi_id)
-    REFERENCES eleccions_municipis (eleccio_id , municipi_id)
-);
-
-
-CREATE TABLE IF NOT EXISTS vots_candidatures_prov (
-  provincia_id 				TINYINT UNSIGNED NOT NULL,
-  candidatura_id 			INT UNSIGNED NOT NULL,
-  vots 						INT UNSIGNED,
-  candidats_obtinguts 		SMALLINT UNSIGNED,
-  CONSTRAINT pk_const_candidatures_prov PRIMARY KEY (provincia_id, candidatura_id),
-  CONSTRAINT fk_vots_candidatures_prov_provincia_id FOREIGN KEY (provincia_id)
-    REFERENCES provincies (provincia_id),
-  CONSTRAINT fk_vots_candidatures_prov_candidatura_id FOREIGN KEY (candidatura_id)
-    REFERENCES candidatures (candidatura_id)
-);
+-- -----------------------------------------------------
+-- Table `mydb`.`candidats`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb2`.`candidats` (
+  `candidat_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `candidatura_id` INT UNSIGNED NOT NULL,
+  `persona_id` INT UNSIGNED NOT NULL,
+  `provincia_id` TINYINT UNSIGNED NOT NULL,
+  `num_ordre` TINYINT NULL COMMENT 'Num ordre del candidatdins la llista del partit dins de la circumpscripció que es presenta.',
+  `tipus` ENUM('T', 'S') NULL COMMENT 'T=Titular, S=Suplent',
+  PRIMARY KEY (`candidat_id`),
+  INDEX `fk_candidats_provincies1_idx` (`provincia_id` ASC) VISIBLE,
+  INDEX `fk_candidats_persones1_idx` (`persona_id` ASC) VISIBLE,
+  INDEX `fk_candidats_candidatures1_idx` (`candidatura_id` ASC) VISIBLE,
+  UNIQUE INDEX `uk_candidats_persona_cand` (`candidatura_id` ASC, `persona_id` ASC) VISIBLE,
+  CONSTRAINT `fk_candidats_provincies1`
+    FOREIGN KEY (`provincia_id`)
+    REFERENCES `mydb`.`provincies` (`provincia_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_candidats_persones1`
+    FOREIGN KEY (`persona_id`)
+    REFERENCES `mydb`.`persones` (`persona_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_candidats_candidatures1`
+    FOREIGN KEY (`candidatura_id`)
+    REFERENCES `mydb`.`candidatures` (`candidatura_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 
-CREATE TABLE IF NOT EXISTS vots_candidatures_ca (
-  comunitat_autonoma_id 	TINYINT UNSIGNED NOT NULL,
-  candidatura_id 			INT UNSIGNED NOT NULL,
-  vots 						INT UNSIGNED,
-  CONSTRAINT pk_vots_candidatures_com_aut PRIMARY KEY (comunitat_autonoma_id,candidatura_id),
-  CONSTRAINT fk_vots_candidatures_com_aut_comunitat_autonoma FOREIGN KEY (comunitat_autonoma_id)
-    REFERENCES comunitats_autonomes (comunitat_aut_id),
-  CONSTRAINT fk_vote_candidatures_com_aut_candidatures FOREIGN KEY (candidatura_id)
-    REFERENCES candidatures (candidatura_id)
-);
-
-
-CREATE TABLE IF NOT EXISTS candidats (
-  candidat_id 			BIGINT UNSIGNED AUTO_INCREMENT,
-  candidatura_id 		INT UNSIGNED NOT NULL,
-  persona_id 			INT UNSIGNED NOT NULL,
-  provincia_id 			TINYINT UNSIGNED NOT NULL,
-  num_ordre 			TINYINT,
-  tipus 				ENUM('T', 'S'),
-  CONSTRAINT pk_candidats_candidat_id PRIMARY KEY (candidat_id),
-  CONSTRAINT fk_candidats_candidatura_id FOREIGN KEY (candidatura_id)
-	REFERENCES candidatures (candidatura_id),
-  CONSTRAINT fk_candidats_persona_id FOREIGN KEY (persona_id) 
-	REFERENCES persones (persona_id),
-  CONSTRAINT fk_candidats_provincia_id FOREIGN KEY (provincia_id)
-	REFERENCES provincies (provincia_id)
-);
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
