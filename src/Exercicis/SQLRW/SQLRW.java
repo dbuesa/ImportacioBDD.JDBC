@@ -7,13 +7,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class SQLRW {
+    static String ipDavid = "10.2.211.106";
+    static String ipMarc = "10.2.106.42";
     static String ipDirecte = "10.2.179.196";
     private static Connection conn = null;
     private String driver = "com.mysql.cj.jdbc.Driver"; //com.mysql.jdbc.Driver
     private String url;
     private String usuari ="perepi";
     private String contrasenya = "pastanaga";
-    private String host = ipDirecte;
+    private String host = ipMarc;
     private String base_dades = "practicaEleccions";
 
 
