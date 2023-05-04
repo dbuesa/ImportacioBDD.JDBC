@@ -5,19 +5,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema practicaEleccions
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema practicaEleccions
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb2` DEFAULT CHARACTER SET utf8 ;
-USE `mydb2` ;
+CREATE SCHEMA IF NOT EXISTS `practicaEleccions` DEFAULT CHARACTER SET utf8 ;
+USE `practicaEleccions` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`comunitats_autonomes`
+-- Table `practicaEleccions`.`comunitats_autonomes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb2`.`comunitats_autonomes` (
+CREATE TABLE IF NOT EXISTS `practicaEleccions`.`comunitats_autonomes` (
   `comunitat_aut_id` TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(45) NULL,
   `codi_ine` CHAR(2) NOT NULL,
@@ -27,9 +27,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`provincies`
+-- Table `practicaEleccions`.`provincies`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb2`.`provincies` (
+CREATE TABLE IF NOT EXISTS `practicaEleccions`.`provincies` (
   `provincia_id` TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `comunitat_aut_id` TINYINT UNSIGNED NOT NULL,
   `nom` VARCHAR(45) NULL,
@@ -47,9 +47,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`municipis`
+-- Table `practicaEleccions`.`municipis`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb2`.`municipis` (
+CREATE TABLE IF NOT EXISTS `practicaEleccions`.`municipis` (
   `municipi_id` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(100) NULL,
   `codi_ine` CHAR(3) NOT NULL,
@@ -67,9 +67,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`candidatures`
+-- Table `practicaEleccions`.`candidatures`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb2`.`candidatures` (
+CREATE TABLE IF NOT EXISTS `practicaEleccions`.`candidatures` (
   `candidatura_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `eleccio_id` TINYINT UNSIGNED NOT NULL,
   `codi_candidatura` CHAR(6) NULL,
@@ -84,9 +84,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`persones`
+-- Table `practicaEleccions`.`persones`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb2`.`persones` (
+CREATE TABLE IF NOT EXISTS `practicaEleccions`.`persones` (
   `persona_id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(30) NULL,
   `cog1` VARCHAR(30) NULL,
@@ -100,9 +100,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`candidats`
+-- Table `practicaEleccions`.`candidats`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb2`.`candidats` (
+CREATE TABLE IF NOT EXISTS `practicaEleccions`.`candidats` (
   `candidat_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `candidatura_id` INT UNSIGNED NOT NULL,
   `persona_id` INT UNSIGNED NOT NULL,
