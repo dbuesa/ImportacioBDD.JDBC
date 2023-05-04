@@ -14,7 +14,7 @@ public class SQLRW {
     private String usuari ="perepi";
     private String contrasenya = "pastanaga";
     private String host = ipDirecte;
-    private String base_dades = "mydb2";
+    private String base_dades = "practicaEleccions";
 
 
     private SQLRW(){
