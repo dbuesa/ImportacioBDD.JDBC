@@ -13,24 +13,30 @@ Al principi i final de cada importació a la base de dades hi ha missatges per i
 
 S'importa manualment, ja que només tenim un tipus d'eleccions i aquesta és la de 2016.
 
+
 **-- COMUNITATS_AUTONOMES --**
 
-Trobarem el codi_ine i el nom dels quals siguin 99 per treure el nivell total.
+Trobarem el codi_ine i el nom de les comunitats autonòmes.
+Hem hagut d'excloure el total nacional (_codi_ine CA_ = 99).
+
 
 **-- PROVÍNCIES --**
 
-Importarem les províncies excloent el total nacional i la comunitat. On la ID de la comunitat autònoma 
-l'extraiem on el codi_ine de la taula de la comunitat autònoma.
+Importarem les províncies excloent el total de comunitat. La ID de la comunitat autònoma 
+l'extraiem amb el codi_ine de la taula de la comunitat autònoma.
+
 
 **-- MUNICIPIS --**
 
 A la de municipis extraurem el nom del municipi si el número del districte municipal és 99 o el nom de la província si aquest no és 99. També hem canviat la clau única del codi_ine perquè 
 aquesta faci referència al districte i a la província també.
-On la ID de la província l'extraiem amb el codi_ine de la taula de províncies.
+La ID de la província l'extraiem amb el codi_ine de la taula de províncies.
+
 
 **-- CANDIDATURES --**
 
 Les taules com candidats necessiten aquesta taula.
+
 
 **-- PERSONES I CANDIDATS--**
 
@@ -43,13 +49,17 @@ extret.
 La provincia_id de la taula províncies on el seu codi sigui igual al valor
 extret.
 
+
 **-- VOTS MUNICIPALS --**
-Afegim els vots municipals on el municipi_id de la taula municipis i provincies siguin iguals al codi_ine extret del fitxer d'informació
+
+Afegim els vots municipals on el municipi_id de la taula municipis i províncies siguin iguals al codi_ine extret del fitxer d'informació.
+
 
 **-- VOTS PROVINCIALS  --**
 
 Afegim els vots provincials on la ID de la província l'extraiem on el codi_ine de la taula de províncies.
-I on la ID de la candidatura la saquem de la taula candidatures.
+La ID de la candidatura la saquem de la taula candidatures.
+
 
 **-- VOTS AUTONOMICS --**
 
@@ -61,6 +71,7 @@ Com els vots provincials i els autonòmics s'extreuen del mateix document, hem d
 
 
 **-- PROBLEMES --**
+
 
 - Per la taula vots_candidats_municipis necessitàvem importar el seu municipi_id des de la taula eleccions_municipis 
 i dintre de la informació de la base de dades no teníem cap indici d'aquesta taula.
@@ -74,4 +85,6 @@ Vam escollir la segona opció i vam inserir les dades seguidament amb les de mun
 - Fer les consultes ha sigut lleugerament entremaliat, ja que no comptàvem amb tots els imports fets i no podíem veure el resultat.
 - A l'hora d'importar la taula de vots_municipis, com havíem d'importar més de 86.000 files vam fer un comptador on contava tots els imports fets, i si necessitàvem parar la importació després fèiem que només importés després de l'últim import.
 - Hem decidit esborrar sexe i data de naixement de persones, ja que aquesta informació no existia dintre del fitxer .DAT.
-- A l'hora de fer les sentències sql ens vam donar adonar que les files tenien un espai al principi de cada valor i per solucionar-ho hem fet un trim per eliminar els espais restants. 
+- A l'hora de fer les sentències sql ens vam adonar que les files tenien un espai al principi de cada valor i per solucionar-ho hem fet un trim per eliminar els espais restants. 
+- Vam tenir bastants problemes per inserir el projecte de l'InteliJ al nostre repositori de github, ja que no teniem cap experiencia en el github i també a l'hora que tothom tingues el projecte actualitzat.
+- Hem tingut problemes de conexió conectant-nos al servidor a través del pont individual de cadascú. Així que al final, per volcar tota la informació a la base de dades, ho hem fet conectant-nos directament al servidor a través de la configuració de VPN disponible a l'isard.

@@ -16,3 +16,6 @@ ALTER TABLE persones
 ALTER TABLE municipis
     DROP INDEX uk_municipis_codi,
     ADD CONSTRAINT uk_municipis_codi_ine_provincia_districte UNIQUE (codi_ine, provincia_id, districte);
+
+ALTER TABLE candidatures
+	CHANGE codi_acumulario_nacional codi_acumulacio_nacional CHAR(6) NULL;

@@ -10,13 +10,13 @@ public class Execute {
             //InsertQuery.insertIntoEleccions();
 
             // 1. Inserim dades a la taula COMUNITATS
-            Import.importarComunitatsAutonomes();
+            //Import.importarComunitatsAutonomes();
 
             // 2. Inserim dades a la taula PROVINCIES
-            Import.importarProvincies();
+            //Import.importarProvincies();
 
             // 3. Inserim dades a la taula MUNICIPIS i ELECCIONS_MUNICIPIS
-            Import.importarMunicipisAndEleccionsMunicipis();
+            //Import.importarMunicipis();
 
             // 4. Inserim dades a la taula CANDIDATURES
             Import.importarCandidatures();
@@ -25,13 +25,13 @@ public class Execute {
             Import.importarPersonesAndCandidats();
 
             // 6. Inserim dades a la taula VOTS_CANDIDATURES_MUN
-            Import.importVotsMunicipals();
+            //Import.importVotsMunicipals();
 
             // 7. Inserim dades a la taula VOTS_CANDIDATURES_PROV
-            Import.importVotsProvincials();
+            //Import.importVotsProvincials();
 
             // 8. Inserim dades a la taula VOTS_CANDIDATURES_CA
-            Import.importVotsAutonomiques();
+            //Import.importVotsAutonomiques();
 
             // Tanquem connexió
             DBMySQLManager.closeConnection();

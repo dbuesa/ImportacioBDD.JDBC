@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `practicaEleccions`.`provincies` (
   INDEX `idx_fk_provincies_comunitats_autonomes` (`comunitat_aut_id` ASC) VISIBLE,
   CONSTRAINT `fk_provincies_comunitats_autonomes`
     FOREIGN KEY (`comunitat_aut_id`)
-    REFERENCES `mydb`.`comunitats_autonomes` (`comunitat_aut_id`)
+    REFERENCES `practicaEleccions`.`comunitats_autonomes` (`comunitat_aut_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `practicaEleccions`.`municipis` (
   INDEX `idx_fk_municipis_provincies1` (`provincia_id` ASC) VISIBLE,
   CONSTRAINT `fk_municipis_provincies`
     FOREIGN KEY (`provincia_id`)
-    REFERENCES `mydb`.`provincies` (`provincia_id`)
+    REFERENCES `practicaEleccions`.`provincies` (`provincia_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -116,17 +116,17 @@ CREATE TABLE IF NOT EXISTS `practicaEleccions`.`candidats` (
   UNIQUE INDEX `uk_candidats_persona_cand` (`candidatura_id` ASC, `persona_id` ASC) VISIBLE,
   CONSTRAINT `fk_candidats_provincies1`
     FOREIGN KEY (`provincia_id`)
-    REFERENCES `mydb`.`provincies` (`provincia_id`)
+    REFERENCES `practicaEleccions`.`provincies` (`provincia_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_candidats_persones1`
     FOREIGN KEY (`persona_id`)
-    REFERENCES `mydb`.`persones` (`persona_id`)
+    REFERENCES `practicaEleccions`.`persones` (`persona_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_candidats_candidatures1`
     FOREIGN KEY (`candidatura_id`)
-    REFERENCES `mydb`.`candidatures` (`candidatura_id`)
+    REFERENCES `practicaEleccions`.`candidatures` (`candidatura_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

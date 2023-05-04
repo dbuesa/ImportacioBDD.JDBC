@@ -83,7 +83,7 @@ public class Import {
         }
     }
 
-    public static void importarMunicipisAndEleccionsMunicipis() {
+    public static void importarMunicipis() {
         BufferedReader bfLector = null;
         try {
             System.out.print("Important dades a les taules \"municipis\" ");
@@ -110,9 +110,9 @@ public class Import {
 
                 //Inserim dades
                 InsertQuery.insertIntoMunicipis(nom, codi_ine, ine_provincia, districte);
-                InsertQuery.insertIntoEleccionsMunicipis(ine_provincia, codi_ine, districte, num_meses, cens, vots_candidatures, vots_blanc, vots_nuls);
+                //InsertQuery.insertIntoEleccionsMunicipis(ine_provincia, codi_ine, districte, num_meses, cens, vots_candidatures, vots_blanc, vots_nuls);
             }
-            System.out.println(": Municipis i eleccions-municipis importats correctament.");
+            System.out.println(": Municipis importats correctament.");
 
         } catch (IOException e) {
             e.printStackTrace();

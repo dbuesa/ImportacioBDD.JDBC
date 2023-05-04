@@ -156,7 +156,7 @@ public class InsertQuery {
             String query =  "INSERT INTO candidats (candidatura_id, persona_id, provincia_id, num_ordre, tipus) " +
                             "VALUES ((SELECT candidatura_id " +
                             "           FROM candidatures " +
-                            "         WHERE codi_candidatura = ? AND eleccio_id = 1)," +
+                            "         WHERE codi_candidatura = ?)," +
                             "        (SELECT persona_id" +
                             "           FROM persones" +
                             "         WHERE dni = ?), " +
