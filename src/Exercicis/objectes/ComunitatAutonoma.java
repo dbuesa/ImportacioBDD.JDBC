@@ -1,6 +1,8 @@
 package Exercicis.objectes;
 
-public class ComunitatAutonoma implements CRUD {
+import Exercicis.objectes.DAO.DAODB;
+
+public class ComunitatAutonoma {
     int comunitat_aut_id;
     String nom;
     String codi_ine;
@@ -42,25 +44,5 @@ public class ComunitatAutonoma implements CRUD {
                 ", nom='" + nom + '\'' +
                 ", codi_ine='" + codi_ine + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean create() {
-        return false;
-    }
-
-    @Override
-    public boolean read() {
-        return false;
-    }
-
-    @Override
-    public boolean update() {
-        return false;
-    }
-
-    @Override
-    public boolean delete() {
-        return false;
     }
 }

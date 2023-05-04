@@ -1,6 +1,8 @@
 package Exercicis.objectes;
 
-public class Provincia implements CRUD {
+import Exercicis.objectes.DAO.DAODB;
+
+public class Provincia{
     int provincia_id;
     int comunitat_aut_id;
     String nom;
@@ -65,25 +67,5 @@ public class Provincia implements CRUD {
                 ", codi_ine='" + codi_ine + '\'' +
                 ", num_escons=" + num_escons +
                 '}';
-    }
-
-    @Override
-    public boolean create() {
-        return false;
-    }
-
-    @Override
-    public boolean read() {
-        return false;
-    }
-
-    @Override
-    public boolean update() {
-        return false;
-    }
-
-    @Override
-    public boolean delete() {
-        return false;
     }
 }

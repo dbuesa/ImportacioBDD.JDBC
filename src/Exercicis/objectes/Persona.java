@@ -1,6 +1,8 @@
 package Exercicis.objectes;
 
-public class Persona implements CRUD{
+import Exercicis.objectes.DAO.DAODB;
+
+public class Persona{
     int persona_id;
     String nom;
     String cog1;
@@ -87,25 +89,5 @@ public class Persona implements CRUD{
                 ", data_naixament='" + data_naixament + '\'' +
                 ", dni='" + dni + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean create() {
-        return false;
-    }
-
-    @Override
-    public boolean read() {
-        return false;
-    }
-
-    @Override
-    public boolean update() {
-        return false;
-    }
-
-    @Override
-    public boolean delete() {
-        return false;
     }
 }

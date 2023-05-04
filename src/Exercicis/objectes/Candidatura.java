@@ -1,6 +1,8 @@
 package Exercicis.objectes;
 
-public class Candidatura implements CRUD {
+import Exercicis.objectes.DAO.DAODB;
+
+public class Candidatura{
     int candidatura_id;
     int eleccio_id;
     String codi_candidatura;
@@ -99,23 +101,4 @@ public class Candidatura implements CRUD {
                 '}';
     }
 
-    @Override
-    public boolean create() {
-        return false;
-    }
-
-    @Override
-    public boolean read() {
-        return false;
-    }
-
-    @Override
-    public boolean update() {
-        return false;
-    }
-
-    @Override
-    public boolean delete() {
-        return false;
-    }
 }

@@ -1,6 +1,8 @@
 package Exercicis.objectes;
 
-public class Municipi implements CRUD{
+import Exercicis.objectes.DAO.DAODB;
+
+public class Municipi{
     int municipi_id;
     String nom;
     String codi_ine;
@@ -65,25 +67,5 @@ public class Municipi implements CRUD{
                 ", provincia_id=" + provincia_id +
                 ", districte='" + districte + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean create() {
-        return false;
-    }
-
-    @Override
-    public boolean read() {
-        return false;
-    }
-
-    @Override
-    public boolean update() {
-        return false;
-    }
-
-    @Override
-    public boolean delete() {
-        return false;
     }
 }
