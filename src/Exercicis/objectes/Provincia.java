@@ -57,6 +57,17 @@ public class Provincia implements CRUD {
     }
 
     @Override
+    public String toString() {
+        return "Provincia{" +
+                "provincia_id=" + provincia_id +
+                ", comunitat_aut_id=" + comunitat_aut_id +
+                ", nom='" + nom + '\'' +
+                ", codi_ine='" + codi_ine + '\'' +
+                ", num_escons=" + num_escons +
+                '}';
+    }
+
+    @Override
     public boolean create() {
         return false;
     }

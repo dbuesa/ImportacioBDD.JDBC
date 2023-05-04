@@ -77,6 +77,19 @@ public class Persona implements CRUD{
     }
 
     @Override
+    public String toString() {
+        return "Persona{" +
+                "persona_id=" + persona_id +
+                ", nom='" + nom + '\'' +
+                ", cog1='" + cog1 + '\'' +
+                ", cog2='" + cog2 + '\'' +
+                ", sexe=" + sexe +
+                ", data_naixament='" + data_naixament + '\'' +
+                ", dni='" + dni + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean create() {
         return false;
     }

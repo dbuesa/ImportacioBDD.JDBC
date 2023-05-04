@@ -66,6 +66,18 @@ public class Candidat implements CRUD {
     }
 
     @Override
+    public String toString() {
+        return "Candidat{" +
+                "candidat_id=" + candidat_id +
+                ", candidatura_id=" + candidatura_id +
+                ", persona_id=" + persona_id +
+                ", provincia_id=" + provincia_id +
+                ", num_ordre=" + num_ordre +
+                ", tipus=" + tipus +
+                '}';
+    }
+
+    @Override
     public boolean create() {
         return false;
     }

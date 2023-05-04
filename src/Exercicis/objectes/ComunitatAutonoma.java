@@ -36,6 +36,15 @@ public class ComunitatAutonoma implements CRUD {
     }
 
     @Override
+    public String toString() {
+        return "ComunitatAutonoma{" +
+                "comunitat_aut_id=" + comunitat_aut_id +
+                ", nom='" + nom + '\'' +
+                ", codi_ine='" + codi_ine + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean create() {
         return false;
     }

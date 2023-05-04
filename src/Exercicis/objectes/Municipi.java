@@ -55,6 +55,18 @@ public class Municipi implements CRUD{
         this.districte = districte;
     }
 
+
+    @Override
+    public String toString() {
+        return "Municipi{" +
+                "municipi_id=" + municipi_id +
+                ", nom='" + nom + '\'' +
+                ", codi_ine='" + codi_ine + '\'' +
+                ", provincia_id=" + provincia_id +
+                ", districte='" + districte + '\'' +
+                '}';
+    }
+
     @Override
     public boolean create() {
         return false;

@@ -1,6 +1,6 @@
 package Exercicis.objectes;
 
-public class Candidatura {
+public class Candidatura implements CRUD {
     int candidatura_id;
     int eleccio_id;
     String codi_candidatura;
@@ -83,5 +83,39 @@ public class Candidatura {
 
     public void setCodi_acumulacio_nacional(String codi_acumulacio_nacional) {
         this.codi_acumulacio_nacional = codi_acumulacio_nacional;
+    }
+
+    @Override
+    public String toString() {
+        return "Candidatura{" +
+                "candidatura_id=" + candidatura_id +
+                ", eleccio_id=" + eleccio_id +
+                ", codi_candidatura='" + codi_candidatura + '\'' +
+                ", nom_curt='" + nom_curt + '\'' +
+                ", nom_llarg='" + nom_llarg + '\'' +
+                ", codi_acumulacio_provincia='" + codi_acumulacio_provincia + '\'' +
+                ", codi_acumulacio_ca='" + codi_acumulacio_ca + '\'' +
+                ", codi_acumulacio_nacional='" + codi_acumulacio_nacional + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean create() {
+        return false;
+    }
+
+    @Override
+    public boolean read() {
+        return false;
+    }
+
+    @Override
+    public boolean update() {
+        return false;
+    }
+
+    @Override
+    public boolean delete() {
+        return false;
     }
 }
