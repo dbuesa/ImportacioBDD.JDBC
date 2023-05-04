@@ -1,23 +1,26 @@
 package Exercicis.objectes.DAO;
 
-public class ProvinciaDAODB implements DAODB{
+import Exercicis.objectes.Provincia;
+
+public class ProvinciaDAODB implements DAODB<Provincia> {
+
     @Override
-    public boolean create(Object o) {
+    public boolean create(Provincia provincia) {
         return false;
     }
 
     @Override
-    public boolean read(Object o) {
+    public boolean read(Provincia provincia) {
         return false;
     }
 
     @Override
-    public boolean update(Object o) {
+    public boolean update(Provincia provincia) {
         return false;
     }
 
     @Override
-    public boolean delete(Object o) {
+    public boolean delete(Provincia provincia) {
         return false;
     }
 }

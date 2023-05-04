@@ -1,23 +1,27 @@
 package Exercicis.objectes.DAO;
 
-public class ComunitatAutonomaDAODB implements DAODB{
+import Exercicis.objectes.ComunitatAutonoma;
+
+public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
+
+
     @Override
-    public boolean create(Object o) {
+    public boolean create(ComunitatAutonoma comunitatAutonoma) {
         return false;
     }
 
     @Override
-    public boolean read(Object o) {
+    public boolean read(ComunitatAutonoma comunitatAutonoma) {
         return false;
     }
 
     @Override
-    public boolean update(Object o) {
+    public boolean update(ComunitatAutonoma comunitatAutonoma) {
         return false;
     }
 
     @Override
-    public boolean delete(Object o) {
+    public boolean delete(ComunitatAutonoma comunitatAutonoma) {
         return false;
     }
 }

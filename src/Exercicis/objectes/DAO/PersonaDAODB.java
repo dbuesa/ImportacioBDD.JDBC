@@ -1,23 +1,26 @@
 package Exercicis.objectes.DAO;
 
-public class PersonaDAODB implements DAODB{
+import Exercicis.objectes.Persona;
+
+public class PersonaDAODB implements DAODB<Persona> {
+
     @Override
-    public boolean create(Object o) {
+    public boolean create(Persona persona) {
         return false;
     }
 
     @Override
-    public boolean read(Object o) {
+    public boolean read(Persona persona) {
         return false;
     }
 
     @Override
-    public boolean update(Object o) {
+    public boolean update(Persona persona) {
         return false;
     }
 
     @Override
-    public boolean delete(Object o) {
+    public boolean delete(Persona persona) {
         return false;
     }
 }

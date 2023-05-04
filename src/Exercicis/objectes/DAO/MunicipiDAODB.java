@@ -1,23 +1,26 @@
 package Exercicis.objectes.DAO;
 
-public class MunicipiDAODB implements DAODB{
+import Exercicis.objectes.Municipi;
+
+public class MunicipiDAODB implements DAODB<Municipi> {
+
     @Override
-    public boolean create(Object o) {
+    public boolean create(Municipi municipi) {
         return false;
     }
 
     @Override
-    public boolean read(Object o) {
+    public boolean read(Municipi municipi) {
         return false;
     }
 
     @Override
-    public boolean update(Object o) {
+    public boolean update(Municipi municipi) {
         return false;
     }
 
     @Override
-    public boolean delete(Object o) {
+    public boolean delete(Municipi municipi) {
         return false;
     }
 }
