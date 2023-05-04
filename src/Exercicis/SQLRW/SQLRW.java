@@ -5,17 +5,18 @@ import Exercicis.Importacio.DBMySQLManager;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class SQLRW {
+    static String ipDirecte = "10.2.179.196";
     static String ipDavid = "10.2.211.106";
     static String ipMarc = "10.2.106.42";
-    static String ipDirecte = "10.2.179.196";
     private static Connection conn = null;
     private String driver = "com.mysql.cj.jdbc.Driver"; //com.mysql.jdbc.Driver
     private String url;
     private String usuari ="perepi";
     private String contrasenya = "pastanaga";
-    private String host = ipMarc;
+    private String host = ipDirecte;
     private String base_dades = "practicaEleccions";
 
 
@@ -45,4 +46,16 @@ public class SQLRW {
             conn.close();
         }
     }
+
+    public static int write(String query){
+        Connection con = getConnection();
+
+        int r = 0;
+
+        try {
+            Statement stmt = con.createStatement();
+            r = stmt.executeUpdate(query);
+        }
+    }
+
 }
