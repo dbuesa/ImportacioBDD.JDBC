@@ -14,27 +14,27 @@ public class SQLRW {
     private static Connection conn = null;
     private String driver = "com.mysql.cj.jdbc.Driver"; //com.mysql.jdbc.Driver
     private String url;
-    private String usuari ="perepi";
+    private String usuari = "perepi";
     private String contrasenya = "pastanaga";
     private String host = ipDirecte;
     private String base_dades = "practicaEleccions";
 
 
-    private SQLRW(){
+    private SQLRW() {
 
         this.url = "jdbc:mysql://" + host + ":3306/" + base_dades;
 
-        try{
+        try {
             Class.forName(driver);
             conn = DriverManager.getConnection(url, usuari, contrasenya);
-        }
-        catch(ClassNotFoundException | SQLException e){
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
+
     public static Connection getConnection() {
 
-        if (conn == null){
+        if (conn == null) {
             new SQLRW();
         }
 
@@ -47,15 +47,21 @@ public class SQLRW {
         }
     }
 
-    public static int write(String query){
+    public static int write(String query) throws SQLException {
         Connection con = getConnection();
+        if (con == null) return 0;
 
         int r = 0;
 
         try {
             Statement stmt = con.createStatement();
             r = stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            closeConnection();
         }
-    }
 
+        return r;
+    }
 }
