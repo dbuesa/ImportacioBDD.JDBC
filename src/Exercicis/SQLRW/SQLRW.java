@@ -2,10 +2,9 @@ package Exercicis.SQLRW;
 
 import Exercicis.Importacio.DBMySQLManager;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLRW {
     static String ipDirecte = "10.2.179.196";
@@ -45,6 +44,36 @@ public class SQLRW {
         if (conn != null) {
             conn.close();
         }
+    }
+
+    public static List<Object> read(String query) throws SQLException {
+        Connection con = getConnection();
+        if (con == null) return null;
+
+        try {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            return getRsValues(rs);
+        }catch (SQLException e){
+            System.out.println(e.getMessage());
+        }finally {
+            closeConnection();
+        }
+        return null;
+    }
+    private static List<Object> getRsValues(ResultSet rs) throws SQLException {
+        List<Object> values = new ArrayList<>();
+        ResultSetMetaData metaData = rs.getMetaData();
+        int columnCount = metaData.getColumnCount();
+
+        while (rs.next()) {
+            for (int i = 1; i <= columnCount; i++) {
+                String value = rs.getString(i);
+                values.add(value);
+            }
+        }
+
+        return values;
     }
 
     public static int write(String query) throws SQLException {
