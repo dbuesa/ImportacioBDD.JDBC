@@ -86,7 +86,7 @@ public class Import {
     public static void importarMunicipisAndEleccionsMunicipis() {
         BufferedReader bfLector = null;
         try {
-            System.out.print("Important dades a les taules \"municipis\" i \"eleccions_municipis\"");
+            System.out.print("Important dades a les taules \"municipis\" ");
             // Ruta del nostre arxiu (
             Path pathFitxer1 = Paths.get("C:", "M02", "02201606_MESA", "05021606.DAT");
             bfLector = Files.newBufferedReader(pathFitxer1, StandardCharsets.ISO_8859_1);
@@ -102,11 +102,11 @@ public class Import {
                 codi_ine = strLinia.substring(13, 16).trim();
                 ine_provincia = strLinia.substring(11, 13).trim();
                 districte = strLinia.substring(16, 18).trim(); // Si és 99 és municipi
-                num_meses = Integer.parseInt(strLinia.substring(136,141));
-                cens = Integer.parseInt(strLinia.substring(149,157));
-                vots_candidatures = Integer.parseInt(strLinia.substring(205,213));
-                vots_blanc = Integer.parseInt(strLinia.substring(189,197));
-                vots_nuls = Integer.parseInt(strLinia.substring(197,205));
+                //num_meses = Integer.parseInt(strLinia.substring(136,141));
+                //cens = Integer.parseInt(strLinia.substring(149,157));
+                //vots_candidatures = Integer.parseInt(strLinia.substring(205,213));
+                //vots_blanc = Integer.parseInt(strLinia.substring(189,197));
+                //vots_nuls = Integer.parseInt(strLinia.substring(197,205));
 
                 //Inserim dades
                 InsertQuery.insertIntoMunicipis(nom, codi_ine, ine_provincia, districte);
