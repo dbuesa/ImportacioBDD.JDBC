@@ -1,12 +1,23 @@
 package Exercicis.objectes.DAO;
 
+import Exercicis.SQLRW.SQLRW;
 import Exercicis.objectes.Persona;
+
+import java.sql.Connection;
 
 public class PersonaDAODB implements DAODB<Persona> {
 
     @Override
     public boolean create(Persona persona) {
-        return false;
+        boolean addedPerson = false;
+        Connection conn = SQLRW.getConnection();
+        try{
+            String sql
+
+        }catch (Exception e){
+
+        }
+
     }
 
     @Override
