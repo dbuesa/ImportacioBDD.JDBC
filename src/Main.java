@@ -11,6 +11,7 @@ public class Main {
 
 
     public static void main(String[] args) {
+        /*
         ComunitatAutonomaDAODB caDAO = new ComunitatAutonomaDAODB();
 
         try {
@@ -20,8 +21,19 @@ public class Main {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+         */
 
+        CandidaturaDAODB cDAODB = new CandidaturaDAODB();
 
+        try {
+            String infoCandidatura = cDAODB.read(1);
+            System.out.println(infoCandidatura);
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+/*
         Persona p1 = new Persona("Paco", "Perez", "Perez", "88465939");
         PersonaDAODB p1DAO = new PersonaDAODB();
 
@@ -46,6 +58,8 @@ public class Main {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+
+ */
     }
 }
 
