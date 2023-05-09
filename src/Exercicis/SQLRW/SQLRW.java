@@ -21,7 +21,7 @@ public class SQLRW {
 
     private SQLRW() {
 
-        this.url = "jdbc:mysql://" + host + ":3306/" + base_dades;
+        this.url = "jdbc:mysql://" + host + ":3306/" + base_dades + "?serverTimezone=UTC";
 
         try {
             Class.forName(driver);
