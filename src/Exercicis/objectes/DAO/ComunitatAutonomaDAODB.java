@@ -43,7 +43,7 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
         PreparedStatement stmt = null;
         try {
             con = DBMySQLManager.getConnection();
-            String sql = "SELECT nom FROM comunitats_autonomes WHERE id = ?";
+            String sql = "SELECT nom FROM comunitats_autonomes WHERE comunitat_aut_id = ?";
             stmt = con.prepareStatement(sql);
             stmt.setLong(1, id);
             ResultSet rs = stmt.executeQuery();
