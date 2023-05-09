@@ -36,6 +36,8 @@ public class Vista {
                 operationOption = scan.nextInt();
                 switch (operationOption) {
                     case 1:
+                        insertPersona();
+                        break;
                 }
                 break;
             case 3:
@@ -98,7 +100,6 @@ public class Vista {
         }
     }
 
-
     public static void insertCandidatura() {
         System.out.println("Introdueix la eleccio_id de la candidatura: ");
         long eleccio_id = scan.nextLong();
@@ -143,5 +144,35 @@ public class Vista {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    public static void insertPersona() {
+        System.out.println("Introdueix el nom de la persona:");
+        scan.nextLine();
+        String nom = scan.nextLine().trim();
+        System.out.println("Introdueix el seu primer cognom:");
+        String cog1 = scan.nextLine().trim();
+        System.out.println("Introdueix el seu segon cognom:");
+        String cog2 = scan.nextLine().trim();
+        System.out.println("Introdueix el seu DNI (HAN DE SER 8 DÍGITS!)");
+        String dni = scan.nextLine().trim();
+        while (dni.length() != 8 || !dni.matches("[0-9]+")) {
+            System.out.println("DNI invàlid! Torna a introduïr-lo, si us plau. Recorda: MÀXIM 2 dígits!");
+            dni = scan.nextLine().trim();
+        }
+
+        Persona p = new Persona(nom, cog1, cog2, dni);
+        PersonaDAODB pDAO = new PersonaDAODB();
+        try {
+            if (pDAO.create(p)) {
+                System.out.println("Registre afegit!");
+            } else {
+                System.out.println("Oops... Algu ha sortit malament...");
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+
     }
 }
