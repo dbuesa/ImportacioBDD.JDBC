@@ -21,7 +21,7 @@ public class DBMySQLManager {
     // Constructors
     private DBMySQLManager(){
 
-        this.url = "jdbc:mysql://" + host + ":3306/" + base_dades + "?serverTimezone=UTC";
+        this.url = "jdbc:mysql://" + ipDirecte + ":3306/" + base_dades + "?serverTimezone=UTC";
 
         try{
             Class.forName(driver);
