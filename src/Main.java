@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
-        ComunitatAutonoma c1 = new ComunitatAutonoma("Los Madriles", "123");
+        ComunitatAutonoma c1 = new ComunitatAutonoma("Los Madriles", "88");
 
         ComunitatAutonomaDAODB c1DAO = new ComunitatAutonomaDAODB();
 
