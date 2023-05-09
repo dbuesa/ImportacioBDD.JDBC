@@ -48,12 +48,14 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
         PreparedStatement stmt = null;
         try {
 
-            String sql = "SELECT nom FROM comunitats_autonomes WHERE comunitat_aut_id = ?";
+            String sql = "SELECT comunitat_aut_id, nom, codi_ine FROM comunitats_autonomes WHERE comunitat_aut_id = ?";
             stmt = con.prepareStatement(sql);
             stmt.setLong(1, com_aut_id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                value = rs.getString("nom");
+                value = rs.getString("comunitat_aut_id");
+                value += ", " + rs.getString("nom");
+                value += ", " + rs.getString("codi_ine");
             }
         } catch (Exception e) {
             System.out.println("Error al leer el valor de la comunidad autónoma " + e.getMessage());
