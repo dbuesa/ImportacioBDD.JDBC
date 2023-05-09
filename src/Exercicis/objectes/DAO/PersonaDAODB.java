@@ -12,12 +12,12 @@ public class PersonaDAODB implements DAODB<Persona> {
         boolean addedPerson = false;
         Connection conn = SQLRW.getConnection();
         try{
-            String sql
+            String sql = "INSERT INTO persones (nom, cog1, cog2, dni) VALUES (?, ?, ?, ?)";
 
         }catch (Exception e){
 
         }
-
+        return false;
     }
 
     @Override
