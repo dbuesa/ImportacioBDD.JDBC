@@ -23,6 +23,7 @@ public class Main {
         }
          */
 
+        /*
         CandidaturaDAODB cDAODB = new CandidaturaDAODB();
 
         try {
@@ -31,6 +32,7 @@ public class Main {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        */
 
         PersonaDAODB pDAOB = new PersonaDAODB();
 
@@ -40,6 +42,8 @@ public class Main {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+
+
 
 /*
         Persona p1 = new Persona("Paco", "Perez", "Perez", "88465939");

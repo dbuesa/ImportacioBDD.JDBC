@@ -54,12 +54,12 @@ public class CandidaturaDAODB implements DAODB<Candidatura> {
         PreparedStatement stmt = null;
         try {
             con = DBMySQLManager.getConnection();
-            String sql = "SELECT nom FROM candidatures WHERE candidatura_id = ?";
+            String sql = "SELECT nom_curt FROM candidatures WHERE candidatura_id = ?";
             stmt = con.prepareStatement(sql);
             stmt.setLong(1, can_id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                value = rs.getString("nom");
+                value = rs.getString("nom_curt");
             }
         } catch (Exception e) {
             System.out.println("Error al leer el valor de la comunidad autónoma " + e.getMessage());
