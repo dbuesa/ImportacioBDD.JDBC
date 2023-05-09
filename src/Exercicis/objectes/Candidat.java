@@ -1,7 +1,5 @@
 package Exercicis.objectes;
 
-import Exercicis.objectes.DAO.DAODB;
-
 public class Candidat {
     int candidat_id;
     int candidatura_id;
@@ -43,7 +41,7 @@ public class Candidat {
         return tipus;
     }
 
-    public void setCandidat_id(int candidat_id) {
+    public void setCandidat_id() {
         this.candidat_id = candidat_id;
     }
 
