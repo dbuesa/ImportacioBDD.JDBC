@@ -12,10 +12,12 @@ public class PersonaDAODB implements DAODB<Persona> {
     @Override
     public boolean create(Persona persona) throws SQLException {
         boolean addedPerson = false;
-        Connection con = DBMySQLManager.getConnection();
+        Connection con = null;
+        PreparedStatement stmt = null;
         try{
+            con = DBMySQLManager.getConnection();
             String sql = "INSERT INTO persones (nom, cog1, cog2, dni) VALUES (?, ?, ?, ?)";
-            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt = con.prepareStatement(sql);
             stmt.setString(1, persona.getNom());
             stmt.setString(2, persona.getCog1());
             stmt.setString(3, persona.getCog2());
@@ -28,7 +30,12 @@ public class PersonaDAODB implements DAODB<Persona> {
         }catch (Exception e){
             System.out.println("Error al crear la persona " + e.getMessage());
         }finally{
-            DBMySQLManager.closeConnection();
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
         }
         return addedPerson;
     }

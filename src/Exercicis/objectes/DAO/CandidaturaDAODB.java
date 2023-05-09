@@ -35,7 +35,12 @@ public class CandidaturaDAODB implements DAODB<Candidatura> {
         }catch (Exception e) {
             System.out.println("Error al crear la comunitat autònoma " + e.getMessage());
         }finally {
-            DBMySQLManager.closeConnection();
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
         }
         return addedApplication;
     }
