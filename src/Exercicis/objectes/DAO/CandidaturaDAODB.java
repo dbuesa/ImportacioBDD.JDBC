@@ -13,11 +13,13 @@ public class CandidaturaDAODB implements DAODB<Candidatura> {
     @Override
     public boolean create(Candidatura candidatura) throws SQLException {
         boolean addedApplication = false;
-        Connection con = DBMySQLManager.getConnection();
+        Connection con = null;
+        PreparedStatement stmt = null;
         try {
+            con = DBMySQLManager.getConnection();
             String sql = "INSERT INTO candidatures (eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional)" +
                         "VALUES (?,?,?,?,?,?,?)";
-            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt = con.prepareStatement(sql);
             stmt.setLong(1, candidatura.getEleccio_id());
             stmt.setString(2, candidatura.getCodi_candidatura());
             stmt.setString(3, candidatura.getNom_curt());
