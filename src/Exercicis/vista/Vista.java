@@ -66,6 +66,7 @@ public class Vista {
 
     public static void insertCA(){
         System.out.println("Quin és el nom de la comunitat autònoma que desitges introduïr?");
+        scan.nextLine();
         String nom = scan.nextLine().trim();
         System.out.println("Quin és el seu codi_ine (MÀXIM 2 CARÀCTERS!)");
         String codi_ine = scan.nextLine().trim();
