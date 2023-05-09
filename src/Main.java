@@ -12,14 +12,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ComunitatAutonomaDAODB dao = new ComunitatAutonomaDAODB();
-        ComunitatAutonoma c = new ComunitatAutonoma(1);
-        try {
-            c = dao.readById(1);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println("Comunidad autónoma encontrada: " + c.getNom());
 
 
         Persona p1 = new Persona("Paco", "Perez", "Perez", "88465939");

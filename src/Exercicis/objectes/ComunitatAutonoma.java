@@ -11,9 +11,7 @@ public class ComunitatAutonoma {
         this.nom = nom;
         this.codi_ine = codi_ine;
     }
-    public ComunitatAutonoma(long comunitat_aut_id) {
-        this.comunitat_aut_id = comunitat_aut_id;
-    }
+
 
     public long getComunitat_aut_id() {
         return comunitat_aut_id;
