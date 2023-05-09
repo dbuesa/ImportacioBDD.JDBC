@@ -34,10 +34,7 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
     }
 
     @Override
-    public boolean read(long com_aut_id) {
-        return false;
-    }
-    public String readById(long id) throws SQLException {
+    public String read(long com_aut_id) throws SQLException {
         String value = null;
         Connection con = null;
         PreparedStatement stmt = null;
@@ -45,7 +42,7 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
             con = DBMySQLManager.getConnection();
             String sql = "SELECT nom FROM comunitats_autonomes WHERE comunitat_aut_id = ?";
             stmt = con.prepareStatement(sql);
-            stmt.setLong(1, id);
+            stmt.setLong(1, com_aut_id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 value = rs.getString("nom");
@@ -62,6 +59,7 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
         }
         return value;
     }
+
 
     @Override
     public boolean update(ComunitatAutonoma comunitatAutonoma) {

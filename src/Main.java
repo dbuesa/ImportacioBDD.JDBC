@@ -14,7 +14,7 @@ public class Main {
         ComunitatAutonomaDAODB caDAO = new ComunitatAutonomaDAODB();
 
         try {
-            String infoComunitatAutonoma = caDAO.readById(1);
+            String infoComunitatAutonoma = caDAO.read(1);
             System.out.println(infoComunitatAutonoma);
 
         } catch (SQLException ex) {

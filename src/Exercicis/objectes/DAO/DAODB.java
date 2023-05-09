@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public interface DAODB<T> {
     boolean create(T t) throws SQLException;
-    boolean read(long id);
+    String read(long id) throws SQLException;
     boolean update(T t);
     boolean delete(T t);
 }

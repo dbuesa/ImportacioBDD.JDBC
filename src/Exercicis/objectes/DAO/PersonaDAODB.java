@@ -42,8 +42,8 @@ public class PersonaDAODB implements DAODB<Persona> {
     }
 
     @Override
-    public boolean read(long id) {
-        return false;
+    public String read(long id) {
+        return null;
     }
 
 //    @Override
