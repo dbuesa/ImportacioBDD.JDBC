@@ -54,14 +54,19 @@ public class PersonaDAODB implements DAODB<Persona> {
         String value = null;
 
         PreparedStatement stmt = null;
+        String valueFinal = null;
         try {
 
-            String sql = "SELECT nom FROM persones WHERE persona_id = ?";
+            String sql = "SELECT nom, cog1, cog2, dni FROM persones WHERE persona_id = ?";
             stmt = con.prepareStatement(sql);
             stmt.setLong(1, persona_id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
                 value = rs.getString("nom");
+                String value2 = rs.getString("cog1");
+                String value3 = rs.getString("cog2");
+                String value4 = rs.getString("dni");
+                valueFinal = value + " " + value2 + " " + value3 + " " + value4;
             }
         } catch (Exception e) {
             System.out.println("Error al leer el valor de la comunidad autónoma " + e.getMessage());
@@ -70,7 +75,8 @@ public class PersonaDAODB implements DAODB<Persona> {
                 stmt.close();
             }
         }
-        return value;
+
+        return valueFinal;
     }
 
     public boolean update(Persona persona) throws SQLException {

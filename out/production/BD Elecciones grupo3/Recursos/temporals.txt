@@ -79,3 +79,64 @@ public boolean update(Persona persona) throws SQLException{
 //        return new Persona(persona_id, (String) o[0], (String) o[1], (String) o[2], (String) o[3]);
 //    }
 
+
+
+MAIN:
+
+  /*
+        PersonaDAODB personaDAO = new PersonaDAODB();
+
+        try {
+            // Leer la persona que se desea actualizar desde la base de datos
+            long personaId = 3839; // ID de la persona a actualizar
+            String nombreActual = personaDAO.read(personaId);
+            System.out.println("Nombre actual: " + nombreActual);
+
+            // Crear una instancia de Persona con los nuevos valores
+            Persona persona = new Persona("Nuevo nombre");
+            persona.setPersona_id(personaId);
+            persona.setNom("Davidillo");
+            persona.setCog1("García");
+            persona.setDni("33333333");
+
+            // Actualizar la persona en la base de datos
+            boolean actualizado = personaDAO.update(persona);
+            if (actualizado) {
+                System.out.println("Persona actualizada correctamente.");
+            } else {
+                System.out.println("No se pudo actualizar la persona.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al realizar la operación en la base de datos: " + e.getMessage());
+        }
+    }
+
+         */
+        ComunitatAutonomaDAODB CA_DAO = new ComunitatAutonomaDAODB();
+
+        try {
+            // Leer la persona que se desea actualizar desde la base de datos
+            long comunitat_aut_id = 20; // ID de la persona a actualizar
+            String nombreActual = CA_DAO.read(comunitat_aut_id);
+            System.out.println("Nombre actual: " + nombreActual);
+
+            // Crear una instancia de Persona con los nuevos valores
+            ComunitatAutonoma CA = new ComunitatAutonoma("Nuevo nombre");
+            CA.setComunitat_aut_id(comunitat_aut_id);
+            CA.setNom("Llambilles");
+            CA.setCodi_ine("77");
+
+
+            // Actualizar la persona en la base de datos
+            boolean actualizado = CA_DAO.update(CA);
+            if (actualizado) {
+                System.out.println("CA actualizada correctamente.");
+            } else {
+                System.out.println("No se pudo actualizar la CA.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al realizar la operación en la base de datos: " + e.getMessage());
+        }
+    }
