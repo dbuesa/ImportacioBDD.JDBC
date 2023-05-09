@@ -11,10 +11,8 @@ public class ComunitatAutonoma {
         this.nom = nom;
         this.codi_ine = codi_ine;
     }
-    public ComunitatAutonoma(long comunitat_aut_id, String nom, String codi_ine) {
+    public ComunitatAutonoma(long comunitat_aut_id) {
         this.comunitat_aut_id = comunitat_aut_id;
-        this.nom = nom;
-        this.codi_ine = codi_ine;
     }
 
     public long getComunitat_aut_id() {

@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
 
         ComunitatAutonomaDAODB dao = new ComunitatAutonomaDAODB();
-        ComunitatAutonoma c = null;
+        ComunitatAutonoma c = new ComunitatAutonoma(1);
         try {
             c = dao.readById(1);
         } catch (SQLException e) {
