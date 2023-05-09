@@ -68,6 +68,37 @@ public class PersonaDAODB implements DAODB<Persona> {
         }
         return value;
     }
+
+
+    public boolean update(Persona persona) throws SQLException{
+        boolean updatedPerson = false;
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DBMySQLManager.getConnection();
+            String sql = "UPDATE persones SET nom = ?, cog1 = ?, cog2 = ?, dni = ? WHERE persona_id = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, persona.getNom());
+            stmt.setString(2, persona.getCog1());
+            stmt.setString(3, persona.getCog2());
+            stmt.setString(4, persona.getDni());
+            stmt.setLong(5, persona.getPersona_id());
+
+            int quantity = stmt.executeUpdate();
+
+            updatedPerson = (quantity > 0);
+        } catch (Exception e) {
+            System.out.println("Error al actualizar la persona " + e.getMessage());
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return updatedPerson;
+    }
 //    @Override
 //    public boolean read(Persona persona) throws SQLException {
 //
@@ -111,10 +142,6 @@ public class PersonaDAODB implements DAODB<Persona> {
 //    }
 
 
-    @Override
-    public boolean update(Persona persona) {
-        return false;
-    }
 
     @Override
     public boolean delete(Persona persona) {
