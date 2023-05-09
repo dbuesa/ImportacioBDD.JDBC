@@ -1,7 +1,6 @@
 package Exercicis.objectes.DAO;
 
 import Exercicis.Importacio.DBMySQLManager;
-import Exercicis.SQLRW.SQLRW;
 import Exercicis.objectes.Candidatura;
 import Exercicis.objectes.ComunitatAutonoma;
 
