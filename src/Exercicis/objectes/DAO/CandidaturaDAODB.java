@@ -11,6 +11,12 @@ import java.sql.SQLException;
 
 public class CandidaturaDAODB implements DAODB<Candidatura> {
 
+    private Connection con; // Mantener una única conexión abierta
+
+    public CandidaturaDAODB() {
+        con = DBMySQLManager.getConnection(); // Obtener la conexión al instanciar la clase
+    }
+
     @Override
     public boolean create(Candidatura candidatura) throws SQLException {
         boolean addedApplication = false;

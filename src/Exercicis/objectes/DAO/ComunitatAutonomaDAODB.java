@@ -2,19 +2,27 @@ package Exercicis.objectes.DAO;
 
 import Exercicis.Importacio.DBMySQLManager;
 import Exercicis.objectes.ComunitatAutonoma;
+import Exercicis.objectes.Persona;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
 
 
+    private Connection con; // Mantener una única conexión abierta
+
+    public ComunitatAutonomaDAODB() {
+        con = DBMySQLManager.getConnection(); // Obtener la conexión al instanciar la clase
+    }
     @Override
     public boolean create(ComunitatAutonoma comunitatAutonoma) throws SQLException {
         boolean addedApplication = false;
-        Connection con = DBMySQLManager.getConnection();
+
         try {
             String sql = "INSERT INTO comunitats_autonomes (nom, codi_ine) VALUES (?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -36,10 +44,10 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
     @Override
     public String read(long com_aut_id) throws SQLException {
         String value = null;
-        Connection con = null;
+
         PreparedStatement stmt = null;
         try {
-            con = DBMySQLManager.getConnection();
+
             String sql = "SELECT nom FROM comunitats_autonomes WHERE comunitat_aut_id = ?";
             stmt = con.prepareStatement(sql);
             stmt.setLong(1, com_aut_id);
@@ -53,17 +61,54 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
             if (stmt != null) {
                 stmt.close();
             }
-            if (con != null) {
-                con.close();
-            }
         }
         return value;
     }
 
 
-    @Override
-    public boolean update(ComunitatAutonoma comunitatAutonoma) {
-        return false;
+
+    public boolean update(ComunitatAutonoma ca) throws SQLException {
+        boolean updatedCa = false;
+
+        PreparedStatement stmt = null;
+        try {
+
+
+            // Construir la consulta SQL base
+            StringBuilder sqlBuilder = new StringBuilder("UPDATE comunitats_autonomes SET");
+            List<Object> parameters = new ArrayList<>();
+
+            // Verificar y agregar los campos a actualizar
+            if (ca.getNom() != null) {
+                sqlBuilder.append(" nom = ?,");
+                parameters.add(ca.getNom());
+            }
+            if (ca.getCodi_ine() != null) {
+                sqlBuilder.append(" codi_ine = ?,");
+                parameters.add(ca.getCodi_ine());
+            }
+
+            // Eliminar la última coma (,) y completar la cláusula WHERE
+            sqlBuilder.deleteCharAt(sqlBuilder.length() - 1);
+            sqlBuilder.append(" WHERE comunitat_aut_id = ?");
+            parameters.add(ca.getComunitat_aut_id());
+
+            // Crear la declaración preparada y establecer los parámetros
+            stmt = con.prepareStatement(sqlBuilder.toString());
+            for (int i = 0; i < parameters.size(); i++) {
+                stmt.setObject(i + 1, parameters.get(i));
+            }
+
+            int quantity = stmt.executeUpdate();
+            updatedCa = (quantity > 0);
+        } catch (Exception e) {
+            System.out.println("Error al actualizar la comunitat autonoma " + e.getMessage());
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+        }
+        return updatedCa;
     }
 
     @Override

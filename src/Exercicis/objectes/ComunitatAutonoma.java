@@ -12,6 +12,9 @@ public class ComunitatAutonoma {
         this.codi_ine = codi_ine;
     }
 
+    public ComunitatAutonoma(String nom) {
+        this.nom = nom;
+    }
 
     public long getComunitat_aut_id() {
         return comunitat_aut_id;
