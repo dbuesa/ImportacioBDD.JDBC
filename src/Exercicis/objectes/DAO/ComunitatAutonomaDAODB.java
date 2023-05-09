@@ -19,7 +19,7 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
             String sql = "INSERT INTO comunitats_autonomes (nom, codi_ine) VALUES (?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, comunitatAutonoma.getNom());
-            stmt.setString(2, comunitatAutonoma.getCodi_ine());
+            stmt.setLong(2, comunitatAutonoma.getCodi_ine());
 
             int quantity = stmt.executeUpdate();
 
