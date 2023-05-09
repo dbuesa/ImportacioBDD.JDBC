@@ -102,7 +102,8 @@ public class Vista {
     public static void insertCandidatura() {
         System.out.println("Introdueix la eleccio_id de la candidatura: ");
         long eleccio_id = scan.nextLong();
-        System.out.println("Introdueix el codi de la candidatura (HAN DE SER 6 DÍGITS!");
+        System.out.println("Introdueix el codi de la candidatura (HAN DE SER 6 DÍGITS!)");
+        scan.nextLine();
         String codi_can = scan.nextLine();
         while (codi_can.length() != 6 || !codi_can.matches("[0-9]+")) {
             System.out.println("codi_candidatura invàlid! Torna a introduïr-lo, si us plau. Recorda: 6 dígits!");
