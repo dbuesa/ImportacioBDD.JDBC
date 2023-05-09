@@ -15,7 +15,13 @@ public class Persona{
         this.dni = dni;
     }
 
-    public Persona(long persona_id, String s, String s1, String s2, String s3) {
+    public Persona(String nom) {
+        this.nom = nom;
+    }
+
+
+
+    public Persona() {
         this.persona_id = persona_id;
     }
 

@@ -10,9 +10,40 @@ import java.sql.SQLException;
 
 public class Main {
 
-
     public static void main(String[] args) {
-        Vista.menu();
+        PersonaDAODB personaDAO = new PersonaDAODB();
+
+        try {
+            // Leer la persona que se desea actualizar desde la base de datos
+            long personaId = 3839; // ID de la persona a actualizar
+            String nombreActual = personaDAO.read(personaId);
+            System.out.println("Nombre actual: " + nombreActual);
+
+            // Crear una instancia de Persona con los nuevos valores
+            Persona persona = new Persona("Nuevo nombre");
+            persona.setPersona_id(personaId);
+            persona.setNom("Miguel");
+            persona.setCog1("García");
+            persona.setDni("33333333");
+
+            // Actualizar la persona en la base de datos
+            boolean actualizado = personaDAO.update(persona);
+            if (actualizado) {
+                System.out.println("Persona actualizada correctamente.");
+            } else {
+                System.out.println("No se pudo actualizar la persona.");
+            }
+
+            // Leer la persona actualizada desde la base de datos
+            String nombreActualizado = personaDAO.read(personaId);
+            System.out.println("Nombre actualizado: " + nombreActualizado);
+
+        } catch (SQLException e) {
+            System.out.println("Error al realizar la operación en la base de datos: " + e.getMessage());
+        }
+    }
+}
+
 
         /*
         ComunitatAutonomaDAODB caDAO = new ComunitatAutonomaDAODB();
@@ -75,6 +106,5 @@ public class Main {
         }
 
  */
-    }
-}
+
 
