@@ -11,6 +11,8 @@ import java.sql.SQLException;
 public class Main {
 
     public static void main(String[] args) {
+        Vista.menu();
+        /*
         PersonaDAODB personaDAO = new PersonaDAODB();
 
         try {
@@ -41,6 +43,9 @@ public class Main {
         } catch (SQLException e) {
             System.out.println("Error al realizar la operación en la base de datos: " + e.getMessage());
         }
+    }
+
+         */
     }
 }
 
