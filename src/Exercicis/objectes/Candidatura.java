@@ -23,6 +23,13 @@ public class Candidatura{
         this.codi_acumulacio_nacional = codi_acumulacio_nacional;
     }
 
+    public Candidatura(String nom_llarg) {
+        this.nom_llarg = nom_llarg;
+    }
+
+    public void setCandidatura_id(long candidatura_id) {
+        this.candidatura_id = candidatura_id;
+    }
 
     public long getCandidatura_id() {
         return candidatura_id;

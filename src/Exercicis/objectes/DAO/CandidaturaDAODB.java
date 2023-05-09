@@ -83,9 +83,6 @@ public class CandidaturaDAODB implements DAODB<Candidatura> {
             if (stmt != null) {
                 stmt.close();
             }
-            if (con != null) {
-                con.close();
-            }
         }
         return value;
 
@@ -109,7 +106,7 @@ public class CandidaturaDAODB implements DAODB<Candidatura> {
             }
             if (candidatura.getNom_curt() != null) {
                 sqlBuilder.append(" nom_curt = ?,");
-                parameters.add(candidatura.getCodi_candidatura());
+                parameters.add(candidatura.getNom_curt());
             }
             if (candidatura.getNom_llarg() != null) {
                 sqlBuilder.append(" nom_llarg = ?,");
