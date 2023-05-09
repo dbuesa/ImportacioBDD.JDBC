@@ -34,7 +34,7 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
     }
 
     @Override
-    public boolean read(long comunitatAutonoma) {
+    public boolean read(long com_aut_id) {
         return false;
     }
     public String readById(long id) throws SQLException {
