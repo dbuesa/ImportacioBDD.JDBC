@@ -16,9 +16,15 @@ public class CandidaturaDAODB implements DAODB<Candidatura> {
         Connection con = DBMySQLManager.getConnection();
         try {
             String sql = "INSERT INTO candidatures (eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional)" +
-                    "VALUES (?,?,?,?,?,?,?)";
+                        "VALUES (?,?,?,?,?,?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
-
+            stmt.setLong(1, candidatura.getEleccio_id());
+            stmt.setString(2, candidatura.getCodi_candidatura());
+            stmt.setString(3, candidatura.getNom_curt());
+            stmt.setString(4, candidatura.getNom_llarg());
+            stmt.setString(5, candidatura.getCodi_acumulacio_provincia());
+            stmt.setString(6, candidatura.getCodi_acumulacio_ca());
+            stmt.setString(7, candidatura.getCodi_acumulacio_nacional());
 
             int quantity = stmt.executeUpdate();
 
