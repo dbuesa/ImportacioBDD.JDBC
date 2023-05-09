@@ -126,4 +126,32 @@ public class OpcionsMenu {
             System.out.println(ex.getMessage());
         }
     }
+
+    public static void readCandidatura(){
+        System.out.println("Introdueix la candidatura_id de la candidatura la qual desitges rebre la informació:");
+        long can_id = scan.nextLong();
+
+        CandidaturaDAODB canDAO = new CandidaturaDAODB();
+        try {
+            String infoCandidatura = canDAO.read(can_id);
+            System.out.println(infoCandidatura);
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public static void readPersona(){
+        System.out.println("Introdueix la persona_id de la persona la qual desitges rebre la informació:");
+        long pers_id = scan.nextLong();
+
+        PersonaDAODB p = new PersonaDAODB();
+        try {
+            String infoCandidatura = p.read(pers_id);
+            System.out.println(infoCandidatura);
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

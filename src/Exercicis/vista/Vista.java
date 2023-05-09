@@ -7,6 +7,7 @@ import Exercicis.objectes.DAO.ComunitatAutonomaDAODB;
 import Exercicis.objectes.DAO.PersonaDAODB;
 import Exercicis.objectes.Persona;
 import Exercicis.opcionsMenu.OpcionsMenu;
+import org.apache.poi.sl.draw.geom.GuideIf;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -29,6 +30,9 @@ public class Vista {
                     case 1:
                         OpcionsMenu.insertCandidatura();
                         break;
+                    case 2:
+                        OpcionsMenu.readCandidatura();
+                        break;
                 }
                 break;
             case 2:
@@ -37,6 +41,9 @@ public class Vista {
                 switch (operationOption) {
                     case 1:
                         OpcionsMenu.insertPersona();
+                        break;
+                    case 2:
+                        OpcionsMenu.readPersona();
                         break;
                 }
                 break;
