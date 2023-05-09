@@ -1,5 +1,6 @@
 package Exercicis.objectes.DAO;
 
+import Exercicis.Importacio.DBMySQLManager;
 import Exercicis.SQLRW.SQLRW;
 import Exercicis.objectes.ComunitatAutonoma;
 
@@ -13,7 +14,7 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
     @Override
     public boolean create(ComunitatAutonoma comunitatAutonoma) throws SQLException {
         boolean addedApplication = false;
-        Connection con = SQLRW.getConnection();
+        Connection con = DBMySQLManager.getConnection();
         try {
             String sql = "INSERT INTO comunitats_autonomes (nom, codi_ine) VALUES (?,?)";
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -27,7 +28,7 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
         }catch (Exception e) {
             System.out.println("Error al crear la comunitat autònoma " + e.getMessage());
         }finally {
-            SQLRW.closeConnection();
+            DBMySQLManager.closeConnection();
         }
         return addedApplication;
     }
