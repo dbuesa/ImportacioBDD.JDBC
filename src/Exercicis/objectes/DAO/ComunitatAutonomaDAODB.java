@@ -37,28 +37,22 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
     public boolean read(ComunitatAutonoma comunitatAutonoma) {
         return false;
     }
-    public ComunitatAutonoma readById(long id) throws SQLException {
+    public String readById(long id) throws SQLException {
+        String value = null;
         Connection con = null;
         PreparedStatement stmt = null;
-        ResultSet rs = null;
-        ComunitatAutonoma comunitatAutonoma = null;
         try {
             con = DBMySQLManager.getConnection();
-            String sql = "SELECT * FROM comunitats_autonomes WHERE comunitat_autonoma_id = ?";
+            String sql = "SELECT nom FROM comunitats_autonomes WHERE id = ?";
             stmt = con.prepareStatement(sql);
-            stmt.setLong(1, comunitatAutonoma.getComunitat_aut_id());
-            rs = stmt.executeQuery();
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                String nom = rs.getString("nom");
-                String codi_ine = rs.getString("codi_ine");
-                comunitatAutonoma = new ComunitatAutonoma(nom, codi_ine);
+                value = rs.getString("nom");
             }
-        } catch (SQLException e) {
-            System.out.println("Error al obtener la comunidad autónoma con identificador " + comunitatAutonoma.getComunitat_aut_id() + ": " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error al leer el valor de la comunidad autónoma " + e.getMessage());
         } finally {
-            if (rs != null) {
-                rs.close();
-            }
             if (stmt != null) {
                 stmt.close();
             }
@@ -66,9 +60,8 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
                 con.close();
             }
         }
-        return comunitatAutonoma;
+        return value;
     }
-
 
     @Override
     public boolean update(ComunitatAutonoma comunitatAutonoma) {

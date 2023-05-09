@@ -11,27 +11,27 @@ public class Main {
 
 
     public static void main(String[] args) {
+        ComunitatAutonomaDAODB caDAO = new ComunitatAutonomaDAODB();
 
-        ComunitatAutonomaDAODB dao = new ComunitatAutonomaDAODB();
-        ComunitatAutonoma c = new ComunitatAutonoma(1);
         try {
-            c = dao.readById(1);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+            String infoComunitatAutonoma = caDAO.readById(1);
+            System.out.println(infoComunitatAutonoma);
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-        System.out.println("Comunidad autónoma encontrada: " + c.getNom());
 
 
         Persona p1 = new Persona("Paco", "Perez", "Perez", "88465939");
         PersonaDAODB p1DAO = new PersonaDAODB();
 
         try {
-            if (p1DAO.create(p1)){
+            if (p1DAO.create(p1)) {
                 System.out.println("Agregat, rei!");
-            }else {
+            } else {
                 System.out.println("Oops... Algu ha sortit malament, maco...");
             }
-        }catch (SQLException ex){
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
