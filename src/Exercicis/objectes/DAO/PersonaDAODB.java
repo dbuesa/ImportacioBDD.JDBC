@@ -6,7 +6,6 @@ import Exercicis.objectes.Persona;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.List;
 
 public class PersonaDAODB implements DAODB<Persona> {
 
@@ -43,8 +42,8 @@ public class PersonaDAODB implements DAODB<Persona> {
     }
 
     @Override
-    public Persona read(long id) {
-        return null;
+    public boolean read(long id) {
+        return false;
     }
 
 //    @Override

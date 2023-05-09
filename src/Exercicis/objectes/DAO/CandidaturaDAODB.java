@@ -47,7 +47,7 @@ public class CandidaturaDAODB implements DAODB<Candidatura> {
 
 
     @Override
-    public boolean read(Candidatura candidatura) {
+    public boolean read(long candidatura) {
         return false;
     }
 
