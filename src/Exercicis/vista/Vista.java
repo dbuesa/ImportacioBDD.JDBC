@@ -1,15 +1,5 @@
 package Exercicis.vista;
-
-import Exercicis.objectes.Candidatura;
-import Exercicis.objectes.ComunitatAutonoma;
-import Exercicis.objectes.DAO.CandidaturaDAODB;
-import Exercicis.objectes.DAO.ComunitatAutonomaDAODB;
-import Exercicis.objectes.DAO.PersonaDAODB;
-import Exercicis.objectes.Persona;
 import Exercicis.opcionsMenu.OpcionsMenu;
-import org.apache.poi.sl.draw.geom.GuideIf;
-
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Vista {
