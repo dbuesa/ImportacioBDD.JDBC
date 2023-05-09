@@ -5,6 +5,7 @@ import Exercicis.objectes.ComunitatAutonoma;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
@@ -35,6 +36,31 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
     @Override
     public boolean read(ComunitatAutonoma comunitatAutonoma) {
         return false;
+    }
+    public String readById(long id) throws SQLException {
+        String value = null;
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DBMySQLManager.getConnection();
+            String sql = "SELECT nom FROM comunitats_autonomes WHERE id = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setLong(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                value = rs.getString("nom");
+            }
+        } catch (Exception e) {
+            System.out.println("Error al leer el valor de la comunidad autónoma " + e.getMessage());
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return value;
     }
 
     @Override
