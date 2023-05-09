@@ -29,7 +29,6 @@ public class Vista {
                     case 1:
                         OpcionsMenu.insertCandidatura();
                         break;
-
                 }
                 break;
             case 2:
@@ -47,6 +46,9 @@ public class Vista {
                 switch (operationOption) {
                     case 1:
                         OpcionsMenu.insertCA();
+                        break;
+                    case 2:
+                        OpcionsMenu.readCA();
                         break;
                 }
                 break;
@@ -76,9 +78,6 @@ public class Vista {
         System.out.println("4. Eliminar registre");
         System.out.println("0. Sortir");
     }
-
-
-
 
 
 }

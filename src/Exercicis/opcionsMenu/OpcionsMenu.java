@@ -112,4 +112,18 @@ public class OpcionsMenu {
 
 
     }
+
+    public static void readCA(){
+        System.out.println("Introdueix la comunitat_aut_id de la comunitat la qual desitges rebre la informació:");
+        long com_aut_id = scan.nextLong();
+
+        ComunitatAutonomaDAODB caDAO = new ComunitatAutonomaDAODB();
+        try {
+            String infoComunitatAutonoma = caDAO.read(com_aut_id);
+            System.out.println(infoComunitatAutonoma);
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }
