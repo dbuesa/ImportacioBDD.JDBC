@@ -10,7 +10,7 @@ public class Persona{
     String dni;
 
 
-    public Persona(int persona_id, String nom, String cog1, String cog2, String dni) {
+    public Persona(String nom, String cog1, String cog2, String dni) {
         this.nom = nom;
         this.cog1 = cog1;
         this.cog2 = cog2;

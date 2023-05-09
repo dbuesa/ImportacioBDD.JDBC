@@ -30,7 +30,7 @@ public class PersonaDAODB implements DAODB<Persona> {
         }finally{
             DBMySQLManager.closeConnection();
         }
-        return false;
+        return addedPerson;
     }
 
     @Override
