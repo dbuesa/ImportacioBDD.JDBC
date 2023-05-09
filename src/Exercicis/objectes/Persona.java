@@ -7,18 +7,13 @@ public class Persona{
     String nom;
     String cog1;
     String cog2;
-    char sexe;
-    String data_naixament;
     String dni;
 
 
-    public Persona(int persona_id, String nom, String cog1, String cog2, char sexe, String data_naixament, String dni) {
-        this.persona_id = persona_id;
+    public Persona(int persona_id, String nom, String cog1, String cog2, String dni) {
         this.nom = nom;
         this.cog1 = cog1;
         this.cog2 = cog2;
-        this.sexe = sexe;
-        this.data_naixament = data_naixament;
         this.dni = dni;
     }
 
@@ -38,13 +33,6 @@ public class Persona{
         return cog2;
     }
 
-    public char getSexe() {
-        return sexe;
-    }
-
-    public String getData_naixament() {
-        return data_naixament;
-    }
 
     public String getDni() {
         return dni;
@@ -66,14 +54,6 @@ public class Persona{
         this.cog2 = cog2;
     }
 
-    public void setSexe(char sexe) {
-        this.sexe = sexe;
-    }
-
-    public void setData_naixament(String data_naixament) {
-        this.data_naixament = data_naixament;
-    }
-
     public void setDni(String dni) {
         this.dni = dni;
     }
@@ -85,8 +65,6 @@ public class Persona{
                 ", nom='" + nom + '\'' +
                 ", cog1='" + cog1 + '\'' +
                 ", cog2='" + cog2 + '\'' +
-                ", sexe=" + sexe +
-                ", data_naixament='" + data_naixament + '\'' +
                 ", dni='" + dni + '\'' +
                 '}';
     }
