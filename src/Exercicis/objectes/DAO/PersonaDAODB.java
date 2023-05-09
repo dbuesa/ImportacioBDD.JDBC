@@ -49,7 +49,7 @@ public class PersonaDAODB implements DAODB<Persona> {
         PreparedStatement stmt = null;
         try {
             con = DBMySQLManager.getConnection();
-            String sql = "SELECT nom FROM candidatures WHERE candidatura_id = ?";
+            String sql = "SELECT nom FROM persones WHERE persona_id = ?";
             stmt = con.prepareStatement(sql);
             stmt.setLong(1, persona_id);
             ResultSet rs = stmt.executeQuery();
