@@ -28,7 +28,15 @@ public class Main {
         try {
             String infoCandidatura = cDAODB.read(1);
             System.out.println(infoCandidatura);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
 
+        PersonaDAODB pDAOB = new PersonaDAODB();
+
+        try {
+            String infoPersona = pDAOB.read(1);
+            System.out.println(infoPersona);
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

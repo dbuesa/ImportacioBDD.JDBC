@@ -5,6 +5,7 @@ import Exercicis.objectes.Persona;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PersonaDAODB implements DAODB<Persona> {
@@ -42,10 +43,31 @@ public class PersonaDAODB implements DAODB<Persona> {
     }
 
     @Override
-    public String read(long id) {
-        return null;
+    public String read(long persona_id) throws SQLException {
+        String value = null;
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = DBMySQLManager.getConnection();
+            String sql = "SELECT nom FROM candidatures WHERE candidatura_id = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setLong(1, persona_id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                value = rs.getString("nom");
+            }
+        } catch (Exception e) {
+            System.out.println("Error al leer el valor de la comunidad autónoma " + e.getMessage());
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return value;
     }
-
 //    @Override
 //    public boolean read(Persona persona) throws SQLException {
 //
@@ -87,6 +109,7 @@ public class PersonaDAODB implements DAODB<Persona> {
 //        Object[] o = r.iterator().next();
 //        return new Persona(persona_id, (String) o[0], (String) o[1], (String) o[2], (String) o[3]);
 //    }
+
 
     @Override
     public boolean update(Persona persona) {
