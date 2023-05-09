@@ -16,7 +16,8 @@ public class PersonaDAODB implements DAODB<Persona> {
         PreparedStatement stmt = null;
         try{
             con = DBMySQLManager.getConnection();
-            String sql = "INSERT INTO persones (nom, cog1, cog2, dni) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO persones (nom, cog1, cog2, dni) " +
+                        "VALUES (?, ?, ?, ?)";
             stmt = con.prepareStatement(sql);
             stmt.setString(1, persona.getNom());
             stmt.setString(2, persona.getCog1());
