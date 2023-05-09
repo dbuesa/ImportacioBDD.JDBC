@@ -1,9 +1,7 @@
 package Exercicis.objectes;
 
-import Exercicis.objectes.DAO.DAODB;
-
 public class Persona{
-    int persona_id;
+    long persona_id;
     String nom;
     String cog1;
     String cog2;
@@ -17,7 +15,15 @@ public class Persona{
         this.dni = dni;
     }
 
-    public int getPersona_id() {
+    public Persona(long persona_id, String s, String s1, String s2, String s3) {
+        this.persona_id = persona_id;
+    }
+
+    public void setPersona_id(long persona_id) {
+        this.persona_id = persona_id;
+    }
+
+    public long getPersona_id() {
         return persona_id;
     }
 
