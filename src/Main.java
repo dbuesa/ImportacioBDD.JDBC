@@ -8,9 +8,20 @@ import Exercicis.objectes.Persona;
 import java.sql.SQLException;
 
 public class Main {
+
+
     public static void main(String[] args) {
-        //ComunitatAutonoma c1 = new ComunitatAutonoma("Los Madriles", "88");
-        //ComunitatAutonomaDAODB c1DAO = new ComunitatAutonomaDAODB();
+
+        ComunitatAutonomaDAODB dao = new ComunitatAutonomaDAODB();
+        ComunitatAutonoma c = null;
+        try {
+            c = dao.readById(1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Comunidad autónoma encontrada: " + c.getNom());
+
+
         Persona p1 = new Persona("Paco", "Perez", "Perez", "88465939");
         PersonaDAODB p1DAO = new PersonaDAODB();
 

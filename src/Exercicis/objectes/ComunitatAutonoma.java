@@ -3,6 +3,7 @@ package Exercicis.objectes;
 import Exercicis.objectes.DAO.DAODB;
 
 public class ComunitatAutonoma {
+    long comunitat_aut_id;
     String nom;
     String codi_ine;
 
@@ -10,7 +11,15 @@ public class ComunitatAutonoma {
         this.nom = nom;
         this.codi_ine = codi_ine;
     }
+    public ComunitatAutonoma(long comunitat_aut_id, String nom, String codi_ine) {
+        this.comunitat_aut_id = comunitat_aut_id;
+        this.nom = nom;
+        this.codi_ine = codi_ine;
+    }
 
+    public long getComunitat_aut_id() {
+        return comunitat_aut_id;
+    }
 
     public String getNom() {
         return nom;
@@ -25,9 +34,14 @@ public class ComunitatAutonoma {
         this.nom = nom;
     }
 
+    public void setComunitat_aut_id(long comunitat_aut_id) {
+        this.comunitat_aut_id = comunitat_aut_id;
+    }
+
     public void setCodi_ine(String codi_ine) {
         this.codi_ine = codi_ine;
     }
+
 
     @Override
     public String toString() {
