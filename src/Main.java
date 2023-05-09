@@ -4,6 +4,7 @@ import Exercicis.objectes.DAO.CandidaturaDAODB;
 import Exercicis.objectes.DAO.ComunitatAutonomaDAODB;
 import Exercicis.objectes.DAO.PersonaDAODB;
 import Exercicis.objectes.Persona;
+import Exercicis.vista.Vista;
 
 import java.sql.SQLException;
 
@@ -11,6 +12,8 @@ public class Main {
 
 
     public static void main(String[] args) {
+        Vista.menu();
+
         /*
         ComunitatAutonomaDAODB caDAO = new ComunitatAutonomaDAODB();
 
@@ -21,9 +24,10 @@ public class Main {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+
          */
 
-        /*
+    /*
         CandidaturaDAODB cDAODB = new CandidaturaDAODB();
 
         try {
@@ -32,7 +36,6 @@ public class Main {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        */
 
         PersonaDAODB pDAOB = new PersonaDAODB();
 
@@ -43,7 +46,7 @@ public class Main {
             System.out.println(ex.getMessage());
         }
 
-
+     */
 
 /*
         Persona p1 = new Persona("Paco", "Perez", "Perez", "88465939");
