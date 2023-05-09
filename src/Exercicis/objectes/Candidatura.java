@@ -4,6 +4,7 @@ import Exercicis.objectes.DAO.DAODB;
 
 public class Candidatura{
 
+    long candidatura_id;
     long eleccio_id;
     String codi_candidatura;
     String nom_curt;
@@ -23,9 +24,15 @@ public class Candidatura{
     }
 
 
+    public long getCandidatura_id() {
+        return candidatura_id;
+    }
+
     public long getEleccio_id() {
         return eleccio_id;
     }
+
+
 
     public String getCodi_candidatura() {
         return codi_candidatura;
