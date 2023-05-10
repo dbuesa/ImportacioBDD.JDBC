@@ -10,9 +10,9 @@ public class Main {
     public static void main(String[] args) {
         Vista.menu();
 
-        CandidaturaDAODB candidatura = new CandidaturaDAODB();
 /*
-        try {
+        CandidaturaDAODB candidatura = new CandidaturaDAODB();
+    try {
             // Leer la persona que se desea actualizar desde la base de datos
             long candidatura_id = 84; // ID de la persona a actualizar
             String candidaturaActual = candidatura.read(candidatura_id);
@@ -38,7 +38,8 @@ public class Main {
         }
 
 
- */
+         */
+
 
     }
 }

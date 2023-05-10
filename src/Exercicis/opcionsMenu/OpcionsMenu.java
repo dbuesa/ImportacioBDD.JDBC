@@ -112,7 +112,7 @@ public class OpcionsMenu {
 
     }
 
-    public static void readCA(){
+    public static void readCA() {
         System.out.println("Introdueix la comunitat_aut_id de la comunitat la qual desitges rebre la informació:");
         long com_aut_id = scan.nextLong();
 
@@ -126,7 +126,7 @@ public class OpcionsMenu {
         }
     }
 
-    public static void readCandidatura(){
+    public static void readCandidatura() {
         System.out.println("Introdueix la candidatura_id de la candidatura la qual desitges rebre la informació:");
         long can_id = scan.nextLong();
 
@@ -140,7 +140,7 @@ public class OpcionsMenu {
         }
     }
 
-    public static void readPersona(){
+    public static void readPersona() {
         System.out.println("Introdueix la persona_id de la persona la qual desitges rebre la informació:");
         long pers_id = scan.nextLong();
 
@@ -154,9 +154,82 @@ public class OpcionsMenu {
         }
     }
 
-    public static void updateCA(){}
+    public static void updateCA() {
+        boolean bandera = false;
+        do {
+            System.out.println("Quin camp vols modificar?");
+            System.out.println("1. nom");
+            System.out.println("2. codi_ine");
+            int opcio = scan.nextInt();
+            System.out.println("Itrodueix el id de la comunitat autònoma que desitges modificar");
+            int id = scan.nextInt();
+            updateColumnCA(id, opcio);
+            System.out.println("Vols seguir modificant la taula de comunitats autònomes (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
+            String continuar = scan.nextLine();
+            if (continuar.equals("1")) {
+                bandera = true;
+            }
+        } while (bandera);
+    }
 
-    public static void updateCandidatura(){}
 
-    public static void updatePersona(){}
+    public static void updateCandidatura() {
+    }
+
+    public static void updatePersona() {
+    }
+
+
+    public static void updateColumnCA(long ca_id, int columna) {
+        ComunitatAutonomaDAODB c = new ComunitatAutonomaDAODB();
+        try {
+            long idDesitjat = ca_id;
+            String caActual = c.read(idDesitjat);
+            System.out.println("Comunitat autònoma actual: " + caActual);
+
+            String nom = null;
+            String codi_ine;
+
+            if (columna == 1) {
+                System.out.println("Quin és el nou nom que desitges introduïr?");
+                scan.nextLine();
+                nom = scan.nextLine();
+                ComunitatAutonoma ca = new ComunitatAutonoma(nom);
+                ca.setComunitat_aut_id(idDesitjat);
+                ca.setNom(nom);
+                boolean actualitzat = c.update(ca);
+                if (actualitzat) {
+                    System.out.println("Comunitat autònoma actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la comunitat autònoma.");
+                }
+            } else if (columna == 2) {
+                System.out.println("Quin és el nou codi_ine que desitges introduïr (HAN DE SER 2 DÍGITS!)?");
+                scan.nextLine();
+                codi_ine = scan.nextLine();
+                while (codi_ine.length() != 2 || !codi_ine.matches("[0-9]+")) {
+                    System.out.println("Codi_ine INVÀLID! Torna a introduïr-lo, si us plau. Recorda: MÀXIM 2 dígits!");
+                    codi_ine = scan.nextLine();
+                }
+                ComunitatAutonoma ca = new ComunitatAutonoma(nom, codi_ine);
+                ca.setComunitat_aut_id(idDesitjat);
+                ca.setCodi_ine(codi_ine);
+
+                boolean actualitzat = c.update(ca);
+                if (actualitzat) {
+                    System.out.println("Comunitat autònoma actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la comunitat autònoma.");
+                }
+            } else {
+                System.out.println("Columna no vàlida.");
+                return;
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println("Error al realitzar la operació en la base de dades: " + e.getMessage());
+        }
+    }
 }
+

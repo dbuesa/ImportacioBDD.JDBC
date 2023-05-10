@@ -2,6 +2,8 @@ package Exercicis.vista;
 import Exercicis.opcionsMenu.OpcionsMenu;
 import java.util.Scanner;
 
+import static Exercicis.opcionsMenu.OpcionsMenu.updateCA;
+
 public class Vista {
     static Scanner scan = new Scanner(System.in);
 
@@ -47,6 +49,7 @@ public class Vista {
                     case 2:
                         OpcionsMenu.readCA();
                         break;
+                    case 3: updateCA();
                 }
                 break;
             case 0:
