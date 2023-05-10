@@ -505,12 +505,11 @@ public class OpcionsMenu {
 
     }
 
-    public static String verify6Numbers(String codi, String columna) {
+    public static void verify6Numbers(String codi, String columna) {
         while (codi.length() != 6 || !codi.matches("[0-9]+")) {
             System.out.println(columna + " INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 6 dígits!");
             codi = scan.nextLine().trim();
         }
-        return codi;
     }
 }
 
