@@ -8,9 +8,10 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
+        Vista.menu();
 
         CandidaturaDAODB candidatura = new CandidaturaDAODB();
-
+/*
         try {
             // Leer la persona que se desea actualizar desde la base de datos
             long candidatura_id = 84; // ID de la persona a actualizar
@@ -35,6 +36,10 @@ public class Main {
         } catch (SQLException e) {
             System.out.println("Error al realizar la operación en la base de datos: " + e.getMessage());
         }
+
+
+ */
+
     }
 }
 

@@ -85,7 +85,6 @@ public class OpcionsMenu {
 
     public static void insertPersona() {
         System.out.println("Introdueix el nom de la persona:");
-        scan.nextLine();
         String nom = scan.nextLine().trim();
         System.out.println("Introdueix el seu primer cognom:");
         String cog1 = scan.nextLine().trim();
@@ -154,4 +153,10 @@ public class OpcionsMenu {
             System.out.println(ex.getMessage());
         }
     }
+
+    public static void updateCA(){}
+
+    public static void updateCandidatura(){}
+
+    public static void updatePersona(){}
 }
