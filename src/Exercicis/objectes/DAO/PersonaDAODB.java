@@ -62,11 +62,10 @@ public class PersonaDAODB implements DAODB<Persona> {
             stmt.setLong(1, persona_id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                value = rs.getString("persona_id");
-                value += ", " + rs.getString("nom");
-                value += " " + rs.getString("cog1");
-                value += " " + rs.getString("cog2");
-                value += ", " + rs.getString("dni");
+                value = "NOM: " + rs.getString("nom");
+                value += "\n1r COGNOM: " + rs.getString("cog1");
+                value += "\n2n COGNOM: " + rs.getString("cog2");
+                value += "\nDNI: " + rs.getString("dni");
             }
         } catch (Exception e) {
             System.out.println("Error al leer el valor de la comunidad autónoma " + e.getMessage());

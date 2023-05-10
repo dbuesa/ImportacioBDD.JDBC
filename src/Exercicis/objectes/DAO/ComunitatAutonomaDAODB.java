@@ -53,9 +53,8 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
             stmt.setLong(1, com_aut_id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                value = rs.getString("comunitat_aut_id");
-                value += ", " + rs.getString("nom");
-                value += ", " + rs.getString("codi_ine");
+                value = "NOM: " + rs.getString("nom");
+                value += "\nCODI_INE: " + rs.getString("codi_ine");
             }
         } catch (Exception e) {
             System.out.println("Error al leer el valor de la comunidad autónoma " + e.getMessage());

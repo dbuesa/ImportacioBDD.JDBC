@@ -68,14 +68,13 @@ public class CandidaturaDAODB implements DAODB<Candidatura> {
             stmt.setLong(1, can_id);
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                value =  rs.getString("candidatura_id");
-                value +=  rs.getString("eleccio_id");
-                value += ", " + rs.getString("codi_candidatura");
-                value += ", " + rs.getString("nom_curt");
-                value += ", " + rs.getString("nom_llarg");
-                value += ", " + rs.getString("codi_acumulacio_provincia");
-                value += ", " + rs.getString("codi_acumulacio_ca");
-                value += ", " + rs.getString("codi_acumulacio_nacional");
+                value =  "ELECCIO_ID: " + rs.getString("eleccio_id");
+                value += "\nCODI_CANDIDATURA: " + rs.getString("codi_candidatura");
+                value += "\nNOM CURT: " + rs.getString("nom_curt");
+                value += "\nNOM_LLARG: " + rs.getString("nom_llarg");
+                value += "\nCA_PROVINCIA: " + rs.getString("codi_acumulacio_provincia");
+                value += "\nCA_CA: " + rs.getString("codi_acumulacio_ca");
+                value += "\nCA_NACIONAL: " + rs.getString("codi_acumulacio_nacional");
             }
         } catch (Exception e) {
             System.out.println("Error al leer el valor de la comunidad autónoma " + e.getMessage());
