@@ -88,65 +88,40 @@ public class CandidaturaDAODB implements DAODB<Candidatura> {
 
     }
 
-
-
-    public boolean update(Candidatura candidatura) throws SQLException {
+    public boolean update(Candidatura candidatura) throws SQLException{
         boolean updatedCandidatura = false;
-
+        Connection con = null;
         PreparedStatement stmt = null;
         try {
-            // Construir la consulta SQL base
-            StringBuilder sqlBuilder = new StringBuilder("UPDATE candidatures SET");
-            List<Object> parameters = new ArrayList<>();
-
-            // Verificar y agregar los campos a actualizar
-            if (candidatura.getCodi_candidatura() != null) {
-                sqlBuilder.append(" codi_candidatura = ?,");
-                parameters.add(candidatura.getCodi_candidatura());
-            }
-            if (candidatura.getNom_curt() != null) {
-                sqlBuilder.append(" nom_curt = ?,");
-                parameters.add(candidatura.getNom_curt());
-            }
-            if (candidatura.getNom_llarg() != null) {
-                sqlBuilder.append(" nom_llarg = ?,");
-                parameters.add(candidatura.getNom_llarg());
-            }
-            if (candidatura.getCodi_acumulacio_provincia() != null) {
-                sqlBuilder.append(" codi_acumulacio_provincia = ?,");
-                parameters.add(candidatura.getCodi_acumulacio_provincia());
-            }
-            if (candidatura.getCodi_acumulacio_ca() != null) {
-                sqlBuilder.append(" codi_acumulacio_ca = ?,");
-                parameters.add(candidatura.getCodi_acumulacio_ca());
-            }
-            if (candidatura.getCodi_acumulacio_nacional() != null) {
-                sqlBuilder.append(" codi_acumulacio_nacional = ?,");
-                parameters.add(candidatura.getCodi_acumulacio_nacional());
-            }
-
-            // Eliminar la última coma (,) y completar la cláusula WHERE
-            sqlBuilder.deleteCharAt(sqlBuilder.length() - 1);
-            sqlBuilder.append(" WHERE candidatura_id = ?");
-            parameters.add(candidatura.getCandidatura_id());
-
-            // Crear la declaración preparada y establecer los parámetros
-            stmt = con.prepareStatement(sqlBuilder.toString());
-            for (int i = 0; i < parameters.size(); i++) {
-                stmt.setObject(i + 1, parameters.get(i));
-            }
+            con = DBMySQLManager.getConnection();
+            String sql = "UPDATE candidatures SET nom_curt = ?, nom_llarg = ?, codi_acumulacio_provincia = ?, codi_acumulacio_ca = ?, codi_acumulacio_nacional = ? WHERE candidatura_id = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, candidatura.getNom_curt());
+            stmt.setString(2, candidatura.getNom_llarg());
+            stmt.setString(3, candidatura.getCodi_acumulacio_provincia());
+            stmt.setString(4, candidatura.getCodi_acumulacio_ca());
+            stmt.setString(5, candidatura.getCodi_acumulacio_nacional());
+            stmt.setLong(6, candidatura.getCandidatura_id());
 
             int quantity = stmt.executeUpdate();
+
             updatedCandidatura = (quantity > 0);
+
+
         } catch (Exception e) {
             System.out.println("Error al actualizar la candidatura " + e.getMessage());
         } finally {
             if (stmt != null) {
                 stmt.close();
             }
+            if (con != null) {
+                con.close();
+            }
         }
         return updatedCandidatura;
     }
+
+
 
     @Override
     public boolean delete(Candidatura candidatura) {
