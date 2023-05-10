@@ -193,6 +193,25 @@ public class OpcionsMenu {
     }
 
     public static void updateCandidatura() {
+        boolean bandera = false;
+        do {
+            System.out.println("Quin camp vols modificar?");
+            System.out.println("1. codi_candidatura");
+            System.out.println("2. nom_curt");
+            System.out.println("3. nom_llarg");
+            System.out.println("4. codi_acumulacio_provincia");
+            System.out.println("5. codi_acumulacio_ca");
+            System.out.println("6. codi_acumulacio_nacional");
+            int opcio = scan.nextInt();
+            System.out.println("Itrodueix el id de la candidatura que desitges modificar");
+            int id = scan.nextInt();
+            updateColumnCandidatura(id, opcio);
+            System.out.println("Vols seguir modificant la taula de candidatures (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
+            String continuar = scan.nextLine();
+            if (continuar.equals("1")) {
+                bandera = true;
+            }
+        } while (bandera);
     }
 
     public static void deleteCA() {
@@ -235,7 +254,7 @@ public class OpcionsMenu {
         }
     }
 
-    public static void deleteCandidatura(){
+    public static void deleteCandidatura() {
         System.out.println("Introdueix el id de la candidatura que desitges eliminar");
         long id = scan.nextLong();
         CandidaturaDAODB candidaturaDAODB = new CandidaturaDAODB();
@@ -254,8 +273,6 @@ public class OpcionsMenu {
             System.out.println("Error al eliminar la candidatura: " + e.getMessage());
         }
     }
-
-
 
 
     public static void updateColumnCA(long ca_id, int columna) {
@@ -311,10 +328,10 @@ public class OpcionsMenu {
     }
 
 
-    public static void updateColumnPersona(long ca_id, int columna) {
+    public static void updateColumnPersona(long per_id, int columna) {
         PersonaDAODB p = new PersonaDAODB();
         try {
-            long idDesitjat = ca_id;
+            long idDesitjat = per_id;
             String caActual = p.read(idDesitjat);
             System.out.println("\nPERSONA ACTUAL: " + caActual + "\n");
 
@@ -378,6 +395,127 @@ public class OpcionsMenu {
                     System.out.println("Persona actualitzada correctament.");
                 } else {
                     System.out.println("No s'ha pogut actualitzar la persona.");
+                }
+            } else {
+                System.out.println("Columna no vàlida.");
+                return;
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println("Error al realitzar la operació en la base de dades: " + e.getMessage());
+        }
+
+    }
+
+    public static void updateColumnCandidatura(long can_id, int columna) {
+        CandidaturaDAODB can = new CandidaturaDAODB();
+        try {
+            long idDesitjat = can_id;
+            String caActual = can.read(idDesitjat);
+            System.out.println("\nCANDIDATURA ACTUAL: " + caActual + "\n");
+
+            long eleccio_id = 1;
+            String codi_candidatura = null;
+            String nom_curt = null;
+            String nom_llarg = null;
+            String codi_acumulacio_provincia = null;
+            String codi_acumulacio_ca = null;
+            String codi_acumulacio_nacional = null;
+
+              if (columna == 1) {
+                System.out.println("Quin és el nou codi_candidatura que desitges introduïr (HAN DE SER 6 DÍGITS!)?");
+                scan.nextLine();
+                codi_candidatura = scan.nextLine();
+                while (codi_candidatura.length() != 6 || !codi_candidatura.matches("[0-9]+")) {
+                    System.out.println("codi_candidatura INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 6 dígits!");
+                    codi_candidatura = scan.nextLine().trim();
+                }
+                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca,codi_acumulacio_nacional);
+                ca.setCandidatura_id(idDesitjat);
+                ca.setCandidatura_id((int) eleccio_id);
+                boolean actualitzat = can.update(ca);
+                if (actualitzat) {
+                    System.out.println("Candidatura actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la candidatura.");
+                }
+            } else if (columna == 2) {
+                System.out.println("Quin és el nou nom_curt que desitges introduïr?");
+                scan.nextLine();
+                nom_curt = scan.nextLine();
+                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca,codi_acumulacio_nacional);
+                ca.setCandidatura_id(idDesitjat);
+                ca.setNom_curt(nom_curt);
+                boolean actualitzat = can.update(ca);
+                if (actualitzat) {
+                    System.out.println("Candidatura actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la candidatura.");
+                }
+            } else if (columna == 3) {
+                System.out.println("Quin és el nou nom_llarg que desitges introduïr?");
+                scan.nextLine();
+                nom_llarg = scan.nextLine();
+                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca,codi_acumulacio_nacional);
+                ca.setCandidatura_id(idDesitjat);
+                ca.setNom_llarg(nom_llarg);
+                boolean actualitzat = can.update(ca);
+                if (actualitzat) {
+                    System.out.println("Candidatura actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la candidatura.");
+                }
+            } else if (columna == 4) {
+                System.out.println("Quin és el nou codi_acumulacio_provincia que desitges introduïr? (HAN DE SER 6 DÍGITS!)");
+                scan.nextLine();
+                codi_acumulacio_provincia = scan.nextLine();
+                while (codi_acumulacio_provincia.length() != 6 || !codi_acumulacio_provincia.matches("[0-9]+")) {
+                    System.out.println("codi_candidatura INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 6 dígits!");
+                    codi_acumulacio_provincia = scan.nextLine().trim();
+                }
+                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca,codi_acumulacio_nacional);
+                ca.setCandidatura_id(idDesitjat);
+                ca.setCodi_acumulacio_provincia(codi_acumulacio_provincia);
+                boolean actualitzat = can.update(ca);
+                if (actualitzat) {
+                    System.out.println("Candidatura actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la candidatura.");
+                }
+            } else if (columna == 5) {
+                System.out.println("Quin és el nou codi_acumulacio_ca que desitges introduïr? (HAN DE SER 6 DÍGITS!)");
+                scan.nextLine();
+                codi_acumulacio_ca = scan.nextLine();
+                while (codi_acumulacio_ca.length() != 6 || !codi_acumulacio_ca.matches("[0-9]+")) {
+                    System.out.println("codi_candidatura INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 6 dígits!");
+                    codi_acumulacio_ca = scan.nextLine().trim();
+                }
+                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca,codi_acumulacio_nacional);
+                ca.setCandidatura_id(idDesitjat);
+                ca.setCodi_acumulacio_ca(codi_acumulacio_ca);
+                boolean actualitzat = can.update(ca);
+                if (actualitzat) {
+                    System.out.println("Candidatura actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la candidatura.");
+                }
+            } else if (columna == 6) {
+                System.out.println("Quin és el nou codi_acumulacio_nacional que desitges introduïr? (HAN DE SER 6 DÍGITS!)");
+                scan.nextLine();
+                codi_acumulacio_nacional = scan.nextLine();
+                while (codi_acumulacio_nacional.length() != 6 || !codi_acumulacio_nacional.matches("[0-9]+")) {
+                    System.out.println("codi_candidatura INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 6 dígits!");
+                    codi_acumulacio_nacional = scan.nextLine().trim();
+                }
+                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca,codi_acumulacio_nacional);
+                ca.setCandidatura_id(idDesitjat);
+                ca.setCodi_acumulacio_nacional(codi_acumulacio_nacional);
+                boolean actualitzat = can.update(ca);
+                if (actualitzat) {
+                    System.out.println("Candidatura actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la candidatura.");
                 }
             } else {
                 System.out.println("Columna no vàlida.");

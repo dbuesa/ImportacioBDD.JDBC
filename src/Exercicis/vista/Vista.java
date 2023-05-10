@@ -28,6 +28,9 @@ public class Vista {
                     case 2:
                         OpcionsMenu.readCandidatura();
                         break;
+                    case 3:
+                        OpcionsMenu.updateCandidatura();
+                        break;
                     case 4:
                         OpcionsMenu.deleteCandidatura();
                         break;
