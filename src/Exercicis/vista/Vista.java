@@ -1,5 +1,7 @@
 package Exercicis.vista;
+
 import Exercicis.opcionsMenu.OpcionsMenu;
+
 import java.util.Scanner;
 
 import static Exercicis.opcionsMenu.OpcionsMenu.updateCA;
@@ -37,6 +39,9 @@ public class Vista {
                     case 2:
                         OpcionsMenu.readPersona();
                         break;
+                    case 3:
+                        OpcionsMenu.updatePersona();
+                        break;
                 }
                 break;
             case 3:
@@ -49,7 +54,8 @@ public class Vista {
                     case 2:
                         OpcionsMenu.readCA();
                         break;
-                    case 3: updateCA();
+                    case 3:
+                        updateCA();
                 }
                 break;
             case 0:

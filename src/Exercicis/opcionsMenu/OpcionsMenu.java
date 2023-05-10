@@ -93,7 +93,7 @@ public class OpcionsMenu {
         System.out.println("Introdueix el seu DNI (HAN DE SER 8 DÍGITS!)");
         String dni = scan.nextLine().trim();
         while (dni.length() != 8 || !dni.matches("[0-9]+")) {
-            System.out.println("DNI INVÀLID! Torna a introduïr-lo, si us plau. Recorda: MÀXIM 2 dígits!");
+            System.out.println("DNI INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 8 dígits!");
             dni = scan.nextLine().trim();
         }
 
@@ -177,6 +177,23 @@ public class OpcionsMenu {
     }
 
     public static void updatePersona() {
+        boolean bandera = false;
+        do {
+            System.out.println("Quin camp vols modificar?");
+            System.out.println("1. nom");
+            System.out.println("2. cog1");
+            System.out.println("3. cog2");
+            System.out.println("4. DNI");
+            int opcio = scan.nextInt();
+            System.out.println("Itrodueix el id de la persona que desitges modificar");
+            int id = scan.nextInt();
+            updateColumnPersona(id, opcio);
+            System.out.println("Vols seguir modificant la taula de persones (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
+            String continuar = scan.nextLine();
+            if (continuar.equals("1")) {
+                bandera = true;
+            }
+        } while (bandera);
     }
 
 
@@ -185,7 +202,7 @@ public class OpcionsMenu {
         try {
             long idDesitjat = ca_id;
             String caActual = c.read(idDesitjat);
-            System.out.println("Comunitat autònoma actual: " + caActual);
+            System.out.println("\nCOMUNITAT AUTÒNOMA ACTUAL: " + caActual + "\n");
 
             String nom = null;
             String codi_ine;
@@ -230,6 +247,87 @@ public class OpcionsMenu {
         } catch (SQLException e) {
             System.out.println("Error al realitzar la operació en la base de dades: " + e.getMessage());
         }
+    }
+
+
+    public static void updateColumnPersona(long ca_id, int columna){
+        PersonaDAODB p = new PersonaDAODB();
+        try {
+            long idDesitjat = ca_id;
+            String caActual = p.read(idDesitjat);
+            System.out.println("\nPERSONA ACTUAL: " + caActual + "\n");
+
+            String nom = null;
+            String cog1 = null;
+            String cog2 = null;
+            String dni = null;
+
+            if (columna == 1) {
+                System.out.println("Quin és el nou nom que desitges introduïr?");
+                scan.nextLine();
+                nom = scan.nextLine();
+                Persona per = new Persona(nom);
+                per.setPersona_id(idDesitjat);
+                per.setNom(nom);
+                boolean actualitzat = p.update(per);
+                if (actualitzat) {
+                    System.out.println("Persona actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la persona.");
+                }
+            } else if (columna == 2) {
+                System.out.println("Quin és el nou primer cognom desitges introduïr?");
+                scan.nextLine();
+                cog1 = scan.nextLine();
+                Persona per = new Persona(nom, cog1, cog2, dni);
+                per.setPersona_id(idDesitjat);
+                per.setCog1(cog1);
+                boolean actualitzat = p.update(per);
+                if (actualitzat) {
+                    System.out.println("Persona actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la persona.");
+                }
+            } else if (columna == 3) {
+                System.out.println("Quin és el nou segon cognom desitges introduïr?");
+                scan.nextLine();
+                cog2 = scan.nextLine();
+                Persona per = new Persona(nom, cog1, cog2, dni);
+                per.setPersona_id(idDesitjat);
+                per.setCog2(cog2);
+                boolean actualitzat = p.update(per);
+                if (actualitzat) {
+                    System.out.println("Persona actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la persona.");
+                }
+            } else if (columna == 4) {
+                System.out.println("Quin és el nou DNI desitges introduïr?");
+                scan.nextLine();
+                dni = scan.nextLine();
+                while (dni.length() != 8 || !dni.matches("[0-9]+")) {
+                    System.out.println("DNI INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 8 dígits!");
+                    dni = scan.nextLine().trim();
+                }
+                Persona per = new Persona(nom, cog1, cog2, dni);
+                per.setPersona_id(idDesitjat);
+                per.setDni(dni);
+                boolean actualitzat = p.update(per);
+                if (actualitzat) {
+                    System.out.println("Persona actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la persona.");
+                }
+            } else {
+                System.out.println("Columna no vàlida.");
+                return;
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println("Error al realitzar la operació en la base de dades: " + e.getMessage());
+        }
+
     }
 }
 
