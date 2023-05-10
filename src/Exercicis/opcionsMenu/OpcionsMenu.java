@@ -43,32 +43,20 @@ public class OpcionsMenu {
         System.out.println("Introdueix el codi de la candidatura (HAN DE SER 6 DÍGITS!)");
         scan.nextLine();
         String codi_can = scan.nextLine();
-        while (codi_can.length() != 6 || !codi_can.matches("[0-9]+")) {
-            System.out.println("codi_candidatura INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 6 dígits!");
-            codi_can = scan.nextLine().trim();
-        }
+        verify6Numbers(codi_can, "codi_candidatura");
         System.out.println("Introdueix el nom curt de la candidatura");
         String nom_curt = scan.nextLine();
         System.out.println("Introdueix el nom llarg de la candidatura");
         String nom_llarg = scan.nextLine();
         System.out.println("Introdueix el codi d'acumulació provincial (HAN DE SER 6 DÍGITS!)");
         String codi_acu_prov = scan.nextLine();
-        while (codi_acu_prov.length() != 6 || !codi_acu_prov.matches("[0-9]+")) {
-            System.out.println("codi_acumulacio_provincia INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 6 dígits!");
-            codi_acu_prov = scan.nextLine().trim();
-        }
+        verify6Numbers(codi_acu_prov, "codi_acumulacio_provincia");
         System.out.println("Introdueix el codi d'acumulació CA (HAN DE SER 6 DÍGITS!)");
         String codi_acu_ca = scan.nextLine();
-        while (codi_acu_ca.length() != 6 || !codi_acu_ca.matches("[0-9]+")) {
-            System.out.println("codi_acumulacio_provincia INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 6 dígits!");
-            codi_acu_ca = scan.nextLine().trim();
-        }
+        verify6Numbers(codi_acu_ca, "codi_acumulacio_ca");
         System.out.println("Introdueix el codi d'acumulació nacional (HAN DE SER 6 DÍGITS!)");
         String codi_acu_na = scan.nextLine();
-        while (codi_acu_na.length() != 6 || !codi_acu_na.matches("[0-9]+")) {
-            System.out.println("codi_acumulacio_provincia INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 6 dígits!");
-            codi_acu_na = scan.nextLine().trim();
-        }
+        verify6Numbers(codi_acu_na, "codi_acumulacio_na");
 
         Candidatura can = new Candidatura(eleccio_id, codi_can, nom_curt, nom_llarg, codi_acu_prov, codi_acu_ca, codi_acu_na);
         CandidaturaDAODB canDAO = new CandidaturaDAODB();
@@ -423,15 +411,12 @@ public class OpcionsMenu {
             String codi_acumulacio_ca = null;
             String codi_acumulacio_nacional = null;
 
-              if (columna == 1) {
+            if (columna == 1) {
                 System.out.println("Quin és el nou codi_candidatura que desitges introduïr (HAN DE SER 6 DÍGITS!)?");
                 scan.nextLine();
                 codi_candidatura = scan.nextLine();
-                while (codi_candidatura.length() != 6 || !codi_candidatura.matches("[0-9]+")) {
-                    System.out.println("codi_candidatura INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 6 dígits!");
-                    codi_candidatura = scan.nextLine().trim();
-                }
-                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca,codi_acumulacio_nacional);
+                verify6Numbers(codi_candidatura, "codi_candidatura");
+                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional);
                 ca.setCandidatura_id(idDesitjat);
                 ca.setCandidatura_id((int) eleccio_id);
                 boolean actualitzat = can.update(ca);
@@ -444,7 +429,7 @@ public class OpcionsMenu {
                 System.out.println("Quin és el nou nom_curt que desitges introduïr?");
                 scan.nextLine();
                 nom_curt = scan.nextLine();
-                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca,codi_acumulacio_nacional);
+                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional);
                 ca.setCandidatura_id(idDesitjat);
                 ca.setNom_curt(nom_curt);
                 boolean actualitzat = can.update(ca);
@@ -457,7 +442,7 @@ public class OpcionsMenu {
                 System.out.println("Quin és el nou nom_llarg que desitges introduïr?");
                 scan.nextLine();
                 nom_llarg = scan.nextLine();
-                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca,codi_acumulacio_nacional);
+                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional);
                 ca.setCandidatura_id(idDesitjat);
                 ca.setNom_llarg(nom_llarg);
                 boolean actualitzat = can.update(ca);
@@ -470,11 +455,8 @@ public class OpcionsMenu {
                 System.out.println("Quin és el nou codi_acumulacio_provincia que desitges introduïr? (HAN DE SER 6 DÍGITS!)");
                 scan.nextLine();
                 codi_acumulacio_provincia = scan.nextLine();
-                while (codi_acumulacio_provincia.length() != 6 || !codi_acumulacio_provincia.matches("[0-9]+")) {
-                    System.out.println("codi_candidatura INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 6 dígits!");
-                    codi_acumulacio_provincia = scan.nextLine().trim();
-                }
-                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca,codi_acumulacio_nacional);
+                verify6Numbers(codi_acumulacio_provincia, "codi_acumulacio_provincia");
+                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional);
                 ca.setCandidatura_id(idDesitjat);
                 ca.setCodi_acumulacio_provincia(codi_acumulacio_provincia);
                 boolean actualitzat = can.update(ca);
@@ -487,11 +469,8 @@ public class OpcionsMenu {
                 System.out.println("Quin és el nou codi_acumulacio_ca que desitges introduïr? (HAN DE SER 6 DÍGITS!)");
                 scan.nextLine();
                 codi_acumulacio_ca = scan.nextLine();
-                while (codi_acumulacio_ca.length() != 6 || !codi_acumulacio_ca.matches("[0-9]+")) {
-                    System.out.println("codi_candidatura INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 6 dígits!");
-                    codi_acumulacio_ca = scan.nextLine().trim();
-                }
-                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca,codi_acumulacio_nacional);
+                verify6Numbers(codi_acumulacio_ca, "codi_acumulacio_ca");
+                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional);
                 ca.setCandidatura_id(idDesitjat);
                 ca.setCodi_acumulacio_ca(codi_acumulacio_ca);
                 boolean actualitzat = can.update(ca);
@@ -504,11 +483,8 @@ public class OpcionsMenu {
                 System.out.println("Quin és el nou codi_acumulacio_nacional que desitges introduïr? (HAN DE SER 6 DÍGITS!)");
                 scan.nextLine();
                 codi_acumulacio_nacional = scan.nextLine();
-                while (codi_acumulacio_nacional.length() != 6 || !codi_acumulacio_nacional.matches("[0-9]+")) {
-                    System.out.println("codi_candidatura INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 6 dígits!");
-                    codi_acumulacio_nacional = scan.nextLine().trim();
-                }
-                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca,codi_acumulacio_nacional);
+                verify6Numbers(codi_acumulacio_nacional, "codi_acumulacio_nacional");
+                Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional);
                 ca.setCandidatura_id(idDesitjat);
                 ca.setCodi_acumulacio_nacional(codi_acumulacio_nacional);
                 boolean actualitzat = can.update(ca);
@@ -527,6 +503,14 @@ public class OpcionsMenu {
             System.out.println("Error al realitzar la operació en la base de dades: " + e.getMessage());
         }
 
+    }
+
+    public static String verify6Numbers(String codi, String columna) {
+        while (codi.length() != 6 || !codi.matches("[0-9]+")) {
+            System.out.println(columna + " INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 6 dígits!");
+            codi = scan.nextLine().trim();
+        }
+        return codi;
     }
 }
 
