@@ -4,6 +4,7 @@ import Exercicis.opcionsMenu.OpcionsMenu;
 
 import java.util.Scanner;
 
+import static Exercicis.opcionsMenu.OpcionsMenu.deleteCA;
 import static Exercicis.opcionsMenu.OpcionsMenu.updateCA;
 
 public class Vista {
@@ -27,6 +28,16 @@ public class Vista {
                     case 2:
                         OpcionsMenu.readCandidatura();
                         break;
+                    case 4:
+                        OpcionsMenu.deleteCandidatura();
+                        break;
+                    case 0:
+                        System.out.println("Fins aviat!");
+                        System.exit(0);
+                        break;
+                    default:
+                        System.out.println("Opció no vàlida");
+                        break;
                 }
                 break;
             case 2:
@@ -42,6 +53,16 @@ public class Vista {
                     case 3:
                         OpcionsMenu.updatePersona();
                         break;
+                    case 4:
+                        OpcionsMenu.deletePersona();
+                        break;
+                    case 0:
+                        System.out.println("Fins aviat!");
+                        System.exit(0);
+                        break;
+                    default:
+                        System.out.println("Opció no vàlida");
+                        break;
                 }
                 break;
             case 3:
@@ -56,6 +77,16 @@ public class Vista {
                         break;
                     case 3:
                         updateCA();
+                    case 4:
+                        deleteCA();
+                        break;
+                    case 0:
+                        System.out.println("Fins aviat!");
+                        System.exit(0);
+                        break;
+                    default:
+                        System.out.println("Opció no vàlida");
+                        break;
                 }
                 break;
             case 0:
@@ -79,7 +110,7 @@ public class Vista {
     public static void registerMenu() {
         System.out.println("Selecciona una operació per a la taula escollida, si us plau");
         System.out.println("1. Crear registre");
-        System.out.println("2. Llegir registre");
+        System.out.println("2. Obtenir dades d'un registre");
         System.out.println("3. Modificar registre");
         System.out.println("4. Eliminar registre");
         System.out.println("0. Sortir");

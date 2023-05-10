@@ -172,10 +172,6 @@ public class OpcionsMenu {
         } while (bandera);
     }
 
-
-    public static void updateCandidatura() {
-    }
-
     public static void updatePersona() {
         boolean bandera = false;
         do {
@@ -195,6 +191,71 @@ public class OpcionsMenu {
             }
         } while (bandera);
     }
+
+    public static void updateCandidatura() {
+    }
+
+    public static void deleteCA() {
+        System.out.println("Introdueix el id de la comunitat autònoma que desitges eliminar");
+        long id = scan.nextLong();
+        ComunitatAutonomaDAODB comunitatAutonomaDAODB = new ComunitatAutonomaDAODB();
+
+        ComunitatAutonoma comunitatAutonoma = new ComunitatAutonoma();
+        comunitatAutonoma.setComunitat_aut_id(id);
+
+        try {
+            boolean result = comunitatAutonomaDAODB.delete(comunitatAutonoma);
+            if (result) {
+                System.out.println("Comunitat autonòma eliminada correctament.");
+            } else {
+                System.out.println("No s'ha pogut eliminar la comunitat autònoma.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar la comunitat autònoma: " + e.getMessage());
+        }
+    }
+
+    public static void deletePersona() {
+        System.out.println("Introdueix el id de la persona que desitges eliminar");
+        long id = scan.nextLong();
+        PersonaDAODB personaDAO = new PersonaDAODB();
+
+        Persona persona = new Persona();
+        persona.setPersona_id(id);
+
+        try {
+            boolean result = personaDAO.delete(persona);
+            if (result) {
+                System.out.println("Persona eliminada correctament.");
+            } else {
+                System.out.println("No s'ha pogut eliminar la persona.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar la persona: " + e.getMessage());
+        }
+    }
+
+    public static void deleteCandidatura(){
+        System.out.println("Introdueix el id de la candidatura que desitges eliminar");
+        long id = scan.nextLong();
+        CandidaturaDAODB candidaturaDAODB = new CandidaturaDAODB();
+
+        Candidatura candidatura = new Candidatura();
+        candidatura.setCandidatura_id(id);
+
+        try {
+            boolean result = candidaturaDAODB.delete(candidatura);
+            if (result) {
+                System.out.println("Candidatura eliminada correctament.");
+            } else {
+                System.out.println("No s'ha pogut eliminar la candidatura.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar la candidatura: " + e.getMessage());
+        }
+    }
+
+
 
 
     public static void updateColumnCA(long ca_id, int columna) {
@@ -250,7 +311,7 @@ public class OpcionsMenu {
     }
 
 
-    public static void updateColumnPersona(long ca_id, int columna){
+    public static void updateColumnPersona(long ca_id, int columna) {
         PersonaDAODB p = new PersonaDAODB();
         try {
             long idDesitjat = ca_id;

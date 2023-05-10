@@ -279,3 +279,23 @@ MAIN:
         } catch (SQLException e) {
             System.out.println("Error al eliminar la comunitat autonoma: " + e.getMessage());
         }
+
+
+-- MAIN DELETE CANDIDATURAS
+
+CandidaturaDAODB candidaturaDAODB = new CandidaturaDAODB();
+
+        // Crear una instancia de Persona con el ID de la persona a eliminar
+        Candidatura candidatura = new Candidatura();
+        candidatura.setCandidatura_id(84); // ID de la persona a eliminar
+
+        try {
+            boolean result = candidaturaDAODB.delete(candidatura);
+            if (result) {
+                System.out.println("Candidatura eliminada correctamente.");
+            } else {
+                System.out.println("No se pudo eliminar la candidatura.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar la candidatura: " + e.getMessage());
+        }
