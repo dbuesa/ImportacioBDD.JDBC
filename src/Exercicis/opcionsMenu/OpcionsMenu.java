@@ -93,7 +93,7 @@ public class OpcionsMenu {
         System.out.println("Introdueix el seu DNI (HAN DE SER 8 DÍGITS!)");
         String dni = scan.nextLine().trim();
         while (dni.length() != 8 || !dni.matches("[0-9]+")) {
-            System.out.println("DNI INVÀLID! Torna a introduïr-lo, si us plau. Recorda: MÀXIM 2 dígits!");
+            System.out.println("DNI INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 8 dígits!");
             dni = scan.nextLine().trim();
         }
 
@@ -112,7 +112,7 @@ public class OpcionsMenu {
 
     }
 
-    public static void readCA(){
+    public static void readCA() {
         System.out.println("Introdueix la comunitat_aut_id de la comunitat la qual desitges rebre la informació:");
         long com_aut_id = scan.nextLong();
 
@@ -126,7 +126,7 @@ public class OpcionsMenu {
         }
     }
 
-    public static void readCandidatura(){
+    public static void readCandidatura() {
         System.out.println("Introdueix la candidatura_id de la candidatura la qual desitges rebre la informació:");
         long can_id = scan.nextLong();
 
@@ -140,7 +140,7 @@ public class OpcionsMenu {
         }
     }
 
-    public static void readPersona(){
+    public static void readPersona() {
         System.out.println("Introdueix la persona_id de la persona la qual desitges rebre la informació:");
         long pers_id = scan.nextLong();
 
@@ -154,9 +154,180 @@ public class OpcionsMenu {
         }
     }
 
-    public static void updateCA(){}
+    public static void updateCA() {
+        boolean bandera = false;
+        do {
+            System.out.println("Quin camp vols modificar?");
+            System.out.println("1. nom");
+            System.out.println("2. codi_ine");
+            int opcio = scan.nextInt();
+            System.out.println("Itrodueix el id de la comunitat autònoma que desitges modificar");
+            int id = scan.nextInt();
+            updateColumnCA(id, opcio);
+            System.out.println("Vols seguir modificant la taula de comunitats autònomes (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
+            String continuar = scan.nextLine();
+            if (continuar.equals("1")) {
+                bandera = true;
+            }
+        } while (bandera);
+    }
 
-    public static void updateCandidatura(){}
 
-    public static void updatePersona(){}
+    public static void updateCandidatura() {
+    }
+
+    public static void updatePersona() {
+        boolean bandera = false;
+        do {
+            System.out.println("Quin camp vols modificar?");
+            System.out.println("1. nom");
+            System.out.println("2. cog1");
+            System.out.println("3. cog2");
+            System.out.println("4. DNI");
+            int opcio = scan.nextInt();
+            System.out.println("Itrodueix el id de la persona que desitges modificar");
+            int id = scan.nextInt();
+            updateColumnPersona(id, opcio);
+            System.out.println("Vols seguir modificant la taula de persones (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
+            String continuar = scan.nextLine();
+            if (continuar.equals("1")) {
+                bandera = true;
+            }
+        } while (bandera);
+    }
+
+
+    public static void updateColumnCA(long ca_id, int columna) {
+        ComunitatAutonomaDAODB c = new ComunitatAutonomaDAODB();
+        try {
+            long idDesitjat = ca_id;
+            String caActual = c.read(idDesitjat);
+            System.out.println("\nCOMUNITAT AUTÒNOMA ACTUAL: " + caActual + "\n");
+
+            String nom = null;
+            String codi_ine;
+
+            if (columna == 1) {
+                System.out.println("Quin és el nou nom que desitges introduïr?");
+                scan.nextLine();
+                nom = scan.nextLine();
+                ComunitatAutonoma ca = new ComunitatAutonoma(nom);
+                ca.setComunitat_aut_id(idDesitjat);
+                ca.setNom(nom);
+                boolean actualitzat = c.update(ca);
+                if (actualitzat) {
+                    System.out.println("Comunitat autònoma actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la comunitat autònoma.");
+                }
+            } else if (columna == 2) {
+                System.out.println("Quin és el nou codi_ine que desitges introduïr (HAN DE SER 2 DÍGITS!)?");
+                scan.nextLine();
+                codi_ine = scan.nextLine();
+                while (codi_ine.length() != 2 || !codi_ine.matches("[0-9]+")) {
+                    System.out.println("Codi_ine INVÀLID! Torna a introduïr-lo, si us plau. Recorda: MÀXIM 2 dígits!");
+                    codi_ine = scan.nextLine();
+                }
+                ComunitatAutonoma ca = new ComunitatAutonoma(nom, codi_ine);
+                ca.setComunitat_aut_id(idDesitjat);
+                ca.setCodi_ine(codi_ine);
+
+                boolean actualitzat = c.update(ca);
+                if (actualitzat) {
+                    System.out.println("Comunitat autònoma actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la comunitat autònoma.");
+                }
+            } else {
+                System.out.println("Columna no vàlida.");
+                return;
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println("Error al realitzar la operació en la base de dades: " + e.getMessage());
+        }
+    }
+
+
+    public static void updateColumnPersona(long ca_id, int columna){
+        PersonaDAODB p = new PersonaDAODB();
+        try {
+            long idDesitjat = ca_id;
+            String caActual = p.read(idDesitjat);
+            System.out.println("\nPERSONA ACTUAL: " + caActual + "\n");
+
+            String nom = null;
+            String cog1 = null;
+            String cog2 = null;
+            String dni = null;
+
+            if (columna == 1) {
+                System.out.println("Quin és el nou nom que desitges introduïr?");
+                scan.nextLine();
+                nom = scan.nextLine();
+                Persona per = new Persona(nom);
+                per.setPersona_id(idDesitjat);
+                per.setNom(nom);
+                boolean actualitzat = p.update(per);
+                if (actualitzat) {
+                    System.out.println("Persona actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la persona.");
+                }
+            } else if (columna == 2) {
+                System.out.println("Quin és el nou primer cognom desitges introduïr?");
+                scan.nextLine();
+                cog1 = scan.nextLine();
+                Persona per = new Persona(nom, cog1, cog2, dni);
+                per.setPersona_id(idDesitjat);
+                per.setCog1(cog1);
+                boolean actualitzat = p.update(per);
+                if (actualitzat) {
+                    System.out.println("Persona actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la persona.");
+                }
+            } else if (columna == 3) {
+                System.out.println("Quin és el nou segon cognom desitges introduïr?");
+                scan.nextLine();
+                cog2 = scan.nextLine();
+                Persona per = new Persona(nom, cog1, cog2, dni);
+                per.setPersona_id(idDesitjat);
+                per.setCog2(cog2);
+                boolean actualitzat = p.update(per);
+                if (actualitzat) {
+                    System.out.println("Persona actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la persona.");
+                }
+            } else if (columna == 4) {
+                System.out.println("Quin és el nou DNI desitges introduïr?");
+                scan.nextLine();
+                dni = scan.nextLine();
+                while (dni.length() != 8 || !dni.matches("[0-9]+")) {
+                    System.out.println("DNI INVÀLID! Torna a introduïr-lo, si us plau. Recorda: 8 dígits!");
+                    dni = scan.nextLine().trim();
+                }
+                Persona per = new Persona(nom, cog1, cog2, dni);
+                per.setPersona_id(idDesitjat);
+                per.setDni(dni);
+                boolean actualitzat = p.update(per);
+                if (actualitzat) {
+                    System.out.println("Persona actualitzada correctament.");
+                } else {
+                    System.out.println("No s'ha pogut actualitzar la persona.");
+                }
+            } else {
+                System.out.println("Columna no vàlida.");
+                return;
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println("Error al realitzar la operació en la base de dades: " + e.getMessage());
+        }
+
+    }
 }
+
