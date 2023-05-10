@@ -140,3 +140,142 @@ MAIN:
             System.out.println("Error al realizar la operación en la base de datos: " + e.getMessage());
         }
     }
+
+
+
+
+
+
+
+    --Update
+
+    public boolean update(Candidatura candidatura) throws SQLException {
+            boolean updatedCandidatura = false;
+
+            PreparedStatement stmt = null;
+            try {
+                // Construir la consulta SQL base
+                StringBuilder sqlBuilder = new StringBuilder("UPDATE candidatures SET");
+                List<Object> parameters = new ArrayList<>();
+
+                // Verificar y agregar los campos a actualizar
+                if (candidatura.getCodi_candidatura() != null) {
+                    sqlBuilder.append(" codi_candidatura = ?,");
+                    parameters.add(candidatura.getCodi_candidatura());
+                }
+                if (candidatura.getNom_curt() != null) {
+                    sqlBuilder.append(" nom_curt = ?,");
+                    parameters.add(candidatura.getNom_curt());
+                }
+                if (candidatura.getNom_llarg() != null) {
+                    sqlBuilder.append(" nom_llarg = ?,");
+                    parameters.add(candidatura.getNom_llarg());
+                }
+                if (candidatura.getCodi_acumulacio_provincia() != null) {
+                    sqlBuilder.append(" codi_acumulacio_provincia = ?,");
+                    parameters.add(candidatura.getCodi_acumulacio_provincia());
+                }
+                if (candidatura.getCodi_acumulacio_ca() != null) {
+                    sqlBuilder.append(" codi_acumulacio_ca = ?,");
+                    parameters.add(candidatura.getCodi_acumulacio_ca());
+                }
+                if (candidatura.getCodi_acumulacio_nacional() != null) {
+                    sqlBuilder.append(" codi_acumulacio_nacional = ?,");
+                    parameters.add(candidatura.getCodi_acumulacio_nacional());
+                }
+
+                // Eliminar la última coma (,) y completar la cláusula WHERE
+                sqlBuilder.deleteCharAt(sqlBuilder.length() - 1);
+                sqlBuilder.append(" WHERE candidatura_id = ?");
+                parameters.add(candidatura.getCandidatura_id());
+
+                // Crear la declaración preparada y establecer los parámetros
+                stmt = con.prepareStatement(sqlBuilder.toString());
+                for (int i = 0; i < parameters.size(); i++) {
+                    stmt.setObject(i + 1, parameters.get(i));
+                }
+
+                int quantity = stmt.executeUpdate();
+                updatedCandidatura = (quantity > 0);
+            } catch (Exception e) {
+                System.out.println("Error al actualizar la candidatura " + e.getMessage());
+            } finally {
+                if (stmt != null) {
+                    stmt.close();
+                }
+            }
+            return updatedCandidatura;
+        }
+
+
+
+
+
+    --MAIN DEL UPDATE
+
+    CandidaturaDAODB candidaturaDAO = new CandidaturaDAODB();
+
+                // Crear una instancia de Candidatura con los datos a actualizar
+                Candidatura candidatura = new Candidatura("nuevo nombre corto", "nuevo nombre largo");
+                candidatura.setCandidatura_id(84); // ID de la candidatura a actualizar
+                candidatura.setNom_curt("PALEATO"); // Nuevo valor para el campo "nom_curt"
+                candidatura.setNom_llarg("PUEBLO ALZADO LINDO ESPAÑOL ATEO TRIUNFADOR OMNIPRESENTE"); // Nuevo valor para el campo "nom_llarg"
+                candidatura.setCodi_acumulacio_provincia("888888");
+                candidatura.setCodi_acumulacio_ca("888888");
+                candidatura.setCodi_acumulacio_nacional("888888");
+
+                try {
+                    boolean result = candidaturaDAO.update(candidatura);
+                    if (result) {
+                        System.out.println("Candidatura actualizada correctamente.");
+                    } else {
+                        System.out.println("No se pudo actualizar la candidatura.");
+                    }
+                } catch (SQLException e) {
+                    System.out.println("Error al actualizar la candidatura: " + e.getMessage());
+                }
+            }
+
+
+
+    -- MAIN DELETE PERSONA
+
+    PersonaDAODB personaDAO = new PersonaDAODB();
+
+            // Crear una instancia de Persona con el ID de la persona a eliminar
+            Persona persona = new Persona();
+            persona.setPersona_id(3839); // ID de la persona a eliminar
+
+            try {
+                boolean result = personaDAO.delete(persona);
+                if (result) {
+                    System.out.println("Persona eliminada correctamente.");
+                } else {
+                    System.out.println("No se pudo eliminar la persona.");
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al eliminar la persona: " + e.getMessage());
+            }
+        }
+
+
+
+-- MAIN DELETE COMUNITATS AUTONOMES
+
+
+        ComunitatAutonomaDAODB comunitatAutonomaDAODB = new ComunitatAutonomaDAODB();
+
+        // Crear una instancia de Persona con el ID de la persona a eliminar
+        ComunitatAutonoma comunitatAutonoma = new ComunitatAutonoma();
+        comunitatAutonoma.setComunitat_aut_id(20); // ID de la persona a eliminar
+
+        try {
+            boolean result = comunitatAutonomaDAODB.delete(comunitatAutonoma);
+            if (result) {
+                System.out.println("Comunitat autonoma eliminada correctamente.");
+            } else {
+                System.out.println("No se pudo eliminar la comunitat autonoma.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar la comunitat autonoma: " + e.getMessage());
+        }

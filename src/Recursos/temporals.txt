@@ -235,3 +235,67 @@ MAIN:
                     System.out.println("Error al actualizar la candidatura: " + e.getMessage());
                 }
             }
+
+
+
+    -- MAIN DELETE PERSONA
+
+    PersonaDAODB personaDAO = new PersonaDAODB();
+
+            // Crear una instancia de Persona con el ID de la persona a eliminar
+            Persona persona = new Persona();
+            persona.setPersona_id(3839); // ID de la persona a eliminar
+
+            try {
+                boolean result = personaDAO.delete(persona);
+                if (result) {
+                    System.out.println("Persona eliminada correctamente.");
+                } else {
+                    System.out.println("No se pudo eliminar la persona.");
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al eliminar la persona: " + e.getMessage());
+            }
+        }
+
+
+
+-- MAIN DELETE COMUNITATS AUTONOMES
+
+
+        ComunitatAutonomaDAODB comunitatAutonomaDAODB = new ComunitatAutonomaDAODB();
+
+        // Crear una instancia de Persona con el ID de la persona a eliminar
+        ComunitatAutonoma comunitatAutonoma = new ComunitatAutonoma();
+        comunitatAutonoma.setComunitat_aut_id(20); // ID de la persona a eliminar
+
+        try {
+            boolean result = comunitatAutonomaDAODB.delete(comunitatAutonoma);
+            if (result) {
+                System.out.println("Comunitat autonoma eliminada correctamente.");
+            } else {
+                System.out.println("No se pudo eliminar la comunitat autonoma.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar la comunitat autonoma: " + e.getMessage());
+        }
+
+
+-- MAIN DELETE CANDIDATURAS
+
+CandidaturaDAODB candidaturaDAODB = new CandidaturaDAODB();
+
+        // Crear una instancia de Persona con el ID de la persona a eliminar
+        Candidatura candidatura = new Candidatura();
+        candidatura.setCandidatura_id(84); // ID de la persona a eliminar
+
+        try {
+            boolean result = candidaturaDAODB.delete(candidatura);
+            if (result) {
+                System.out.println("Candidatura eliminada correctamente.");
+            } else {
+                System.out.println("No se pudo eliminar la candidatura.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar la candidatura: " + e.getMessage());
+        }

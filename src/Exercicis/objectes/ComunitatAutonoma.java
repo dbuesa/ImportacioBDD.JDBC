@@ -16,6 +16,10 @@ public class ComunitatAutonoma {
         this.nom = nom;
     }
 
+    public ComunitatAutonoma() {
+
+    }
+
     public long getComunitat_aut_id() {
         return comunitat_aut_id;
     }

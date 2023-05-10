@@ -132,7 +132,29 @@ public class PersonaDAODB implements DAODB<Persona> {
     }
 
     @Override
-    public boolean delete(Persona persona) {
-        return false;
+    public boolean delete(Persona persona) throws SQLException {
+        boolean deletePerson = false;
+        PreparedStatement stmt = null;
+        try {
+
+            String sql = "DELETE FROM persones WHERE persona_id = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setLong(1, persona.getPersona_id());
+
+            int quantity = stmt.executeUpdate();
+
+            deletePerson = (quantity > 0);
+
+        } catch (Exception e) {
+            System.out.println("Error al borrar la persona " + e.getMessage());
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return deletePerson;
     }
 }

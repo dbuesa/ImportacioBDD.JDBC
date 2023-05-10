@@ -124,7 +124,29 @@ public class CandidaturaDAODB implements DAODB<Candidatura> {
 
 
     @Override
-    public boolean delete(Candidatura candidatura) {
-        return false;
+    public boolean delete(Candidatura candidatura) throws SQLException {
+        boolean deleteCandidatura = false;
+        PreparedStatement stmt = null;
+        try {
+
+            String sql = "DELETE FROM candidatures WHERE candidatura_id = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setLong(1, candidatura.getCandidatura_id());
+
+            int quantity = stmt.executeUpdate();
+
+            deleteCandidatura = (quantity > 0);
+
+        } catch (Exception e) {
+            System.out.println("Error al borrar la candidatura " + e.getMessage());
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return deleteCandidatura;
     }
 }

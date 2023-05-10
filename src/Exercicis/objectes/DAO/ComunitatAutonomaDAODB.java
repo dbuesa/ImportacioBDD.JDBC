@@ -114,9 +114,29 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
     }
 
     @Override
-    public boolean delete(ComunitatAutonoma comunitatAutonoma) {
-        return false;
+    public boolean delete(ComunitatAutonoma comunitatAutonoma) throws SQLException {
+        boolean deleteCA = false;
+        PreparedStatement stmt = null;
+        try {
+
+            String sql = "DELETE FROM comunitats_autonomes WHERE comunitat_aut_id = ?";
+            stmt = con.prepareStatement(sql);
+            stmt.setLong(1, comunitatAutonoma.getComunitat_aut_id());
+
+            int quantity = stmt.executeUpdate();
+
+             deleteCA = (quantity > 0);
+
+        } catch (Exception e) {
+            System.out.println("Error al borrar la comunitat autonoma " + e.getMessage());
+        } finally {
+            if (stmt != null) {
+                stmt.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return deleteCA;
     }
-
-
 }

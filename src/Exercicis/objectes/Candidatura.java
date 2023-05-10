@@ -32,6 +32,10 @@ public class Candidatura{
         this.nom_llarg = nom_llarg;
     }
 
+    public Candidatura() {
+
+    }
+
     public void setCandidatura_id(long candidatura_id) {
         this.candidatura_id = candidatura_id;
     }
