@@ -207,7 +207,40 @@ MAIN:
             return updatedCandidatura;
         }
 
+        -UPDATE V. CUTRE CANDIDATURES
 
+        public boolean update(Candidatura candidatura) throws SQLException{
+                boolean updatedCandidatura = false;
+                Connection con = null;
+                PreparedStatement stmt = null;
+                try {
+                    con = DBMySQLManager.getConnection();
+                    String sql = "UPDATE candidatures SET nom_curt = ?, nom_llarg = ?, codi_acumulacio_provincia = ?, codi_acumulacio_ca = ?, codi_acumulacio_nacional = ? WHERE candidatura_id = ?";
+                    stmt = con.prepareStatement(sql);
+                    stmt.setString(1, candidatura.getNom_curt());
+                    stmt.setString(2, candidatura.getNom_llarg());
+                    stmt.setString(3, candidatura.getCodi_acumulacio_provincia());
+                    stmt.setString(4, candidatura.getCodi_acumulacio_ca());
+                    stmt.setString(5, candidatura.getCodi_acumulacio_nacional());
+                    stmt.setLong(6, candidatura.getCandidatura_id());
+
+                    int quantity = stmt.executeUpdate();
+
+                    updatedCandidatura = (quantity > 0);
+
+
+                } catch (Exception e) {
+                    System.out.println("Error al actualizar la candidatura " + e.getMessage());
+                } finally {
+                    if (stmt != null) {
+                        stmt.close();
+                    }
+                    if (con != null) {
+                        con.close();
+                    }
+                }
+                return updatedCandidatura;
+            }
 
 
 
