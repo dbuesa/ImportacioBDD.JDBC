@@ -23,6 +23,11 @@ public class Candidatura{
         this.codi_acumulacio_nacional = codi_acumulacio_nacional;
     }
 
+    public Candidatura(String codi_acumulacio_ca, String codi_acumulacio_nacional) {
+        this.codi_acumulacio_ca = codi_acumulacio_ca;
+        this.codi_acumulacio_nacional = codi_acumulacio_nacional;
+    }
+
     public Candidatura(String nom_llarg) {
         this.nom_llarg = nom_llarg;
     }
