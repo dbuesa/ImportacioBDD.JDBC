@@ -182,16 +182,15 @@ public class OpcionsMenu {
 
     public static void updateCandidatura() {
         boolean bandera = false;
-        do {
+        input_id: do{
             int id = 0;
-            System.out.println("Itrodueix el id de la candidatura que desitges modificar");
             try {
                 System.out.println("Itrodueix el id de la comunitat autònoma que desitges modificar");
                 id = scan.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Error: el valor introducido no es un número válido");
                 scan.next();
-                continue;
+                continue input_id;
             }
             System.out.println("Quin camp vols modificar?");
             System.out.println("1. codi_candidatura");
