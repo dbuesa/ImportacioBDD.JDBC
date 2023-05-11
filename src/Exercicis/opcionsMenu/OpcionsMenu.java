@@ -50,8 +50,16 @@ public class OpcionsMenu {
         verify6Numbers(codi_can, "codi_candidatura");
         System.out.println("Introdueix el nom curt de la candidatura");
         String nom_curt = scan.nextLine();
+        while (!validateString(nom_curt)) {
+            System.out.println("nom_curt INVÀLID! Torna a introduïr-lo, si us plau");
+            nom_curt = scan.nextLine().trim();
+        }
         System.out.println("Introdueix el nom llarg de la candidatura");
         String nom_llarg = scan.nextLine();
+        while (!validateString(nom_llarg)) {
+            System.out.println("nom_llarg INVÀLID! Torna a introduïr-lo, si us plau");
+            nom_llarg = scan.nextLine().trim();
+        }
         System.out.println("Introdueix el codi d'acumulació provincial (HAN DE SER 6 DÍGITS!)");
         String codi_acu_prov = scan.nextLine();
         verify6Numbers(codi_acu_prov, "codi_acumulacio_provincia");
@@ -78,10 +86,22 @@ public class OpcionsMenu {
     public static void insertPersona() {
         System.out.println("Introdueix el nom de la persona:");
         String nom = scan.nextLine().trim();
+        while (!validateString(nom)) {
+            System.out.println("nom INVÀLID! Torna a introduïr-lo, si us plau");
+            nom = scan.nextLine().trim();
+        }
         System.out.println("Introdueix el seu primer cognom:");
         String cog1 = scan.nextLine().trim();
+        while (!validateString(cog1)) {
+            System.out.println("cog1 INVÀLID! Torna a introduïr-lo, si us plau");
+            cog1 = scan.nextLine().trim();
+        }
         System.out.println("Introdueix el seu segon cognom:");
         String cog2 = scan.nextLine().trim();
+        while (!validateString(cog2)) {
+            System.out.println("cog2 INVÀLID! Torna a introduïr-lo, si us plau");
+            cog2 = scan.nextLine().trim();
+        }
         System.out.println("Introdueix el seu DNI (HAN DE SER 8 DÍGITS!)");
         String dni = scan.nextLine().trim();
         while (dni.length() != 8 || !dni.matches("[0-9]+")) {
@@ -188,15 +208,8 @@ public class OpcionsMenu {
         boolean bandera = false;
         id_input:
         do {
-            int id = 0;
-            try {
-                System.out.println("Itrodueix el id de la comunitat autònoma que desitges modificar");
-                id = scan.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Error: el valor introducido no es un número válido");
-                scan.next();
-                continue id_input;
-            }
+            System.out.println("Itrodueix el id de la comunitat autònoma que desitges modificar");
+            int id = scan.nextInt();
             System.out.println("Quin camp vols modificar?");
             System.out.println("1. codi_candidatura");
             System.out.println("2. nom_curt");
@@ -289,6 +302,10 @@ public class OpcionsMenu {
                 System.out.println("Quin és el nou nom que desitges introduïr?");
                 scan.nextLine();
                 nom = scan.nextLine();
+                while (!validateString(nom)) {
+                    System.out.println("nom INVÀLID! Torna a introduïr-lo, si us plau");
+                    nom = scan.nextLine().trim();
+                }
                 ComunitatAutonoma ca = new ComunitatAutonoma(nom);
                 ca.setComunitat_aut_id(idDesitjat);
                 ca.setNom(nom);
@@ -344,6 +361,10 @@ public class OpcionsMenu {
                 System.out.println("Quin és el nou nom que desitges introduïr?");
                 scan.nextLine();
                 nom = scan.nextLine();
+                while (!validateString(nom)) {
+                    System.out.println("nom INVÀLID! Torna a introduïr-lo, si us plau");
+                    nom = scan.nextLine().trim();
+                }
                 Persona per = new Persona(nom);
                 per.setPersona_id(idDesitjat);
                 per.setNom(nom);
@@ -357,6 +378,10 @@ public class OpcionsMenu {
                 System.out.println("Quin és el nou primer cognom desitges introduïr?");
                 scan.nextLine();
                 cog1 = scan.nextLine();
+                while (!validateString(cog1)) {
+                    System.out.println("cog1 INVÀLID! Torna a introduïr-lo, si us plau");
+                    cog1 = scan.nextLine().trim();
+                }
                 Persona per = new Persona(nom, cog1, cog2, dni);
                 per.setPersona_id(idDesitjat);
                 per.setCog1(cog1);
@@ -370,6 +395,10 @@ public class OpcionsMenu {
                 System.out.println("Quin és el nou segon cognom desitges introduïr?");
                 scan.nextLine();
                 cog2 = scan.nextLine();
+                while (!validateString(cog2)) {
+                    System.out.println("cog2 INVÀLID! Torna a introduïr-lo, si us plau");
+                    cog2 = scan.nextLine().trim();
+                }
                 Persona per = new Persona(nom, cog1, cog2, dni);
                 per.setPersona_id(idDesitjat);
                 per.setCog2(cog2);
@@ -441,6 +470,10 @@ public class OpcionsMenu {
                 System.out.println("Quin és el nou nom_curt que desitges introduïr?");
                 scan.nextLine();
                 nom_curt = scan.nextLine();
+                while (!validateString(nom_curt)) {
+                    System.out.println("nom_curt INVÀLID! Torna a introduïr-lo, si us plau");
+                    nom_curt = scan.nextLine().trim();
+                }
                 Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional);
                 ca.setCandidatura_id(idDesitjat);
                 ca.setNom_curt(nom_curt);
@@ -454,6 +487,10 @@ public class OpcionsMenu {
                 System.out.println("Quin és el nou nom_llarg que desitges introduïr?");
                 scan.nextLine();
                 nom_llarg = scan.nextLine();
+                while (!validateString(nom_llarg)) {
+                    System.out.println("nom_curt INVÀLID! Torna a introduïr-lo, si us plau");
+                    nom_llarg = scan.nextLine().trim();
+                }
                 Candidatura ca = new Candidatura(eleccio_id, codi_candidatura, nom_curt, nom_llarg, codi_acumulacio_provincia, codi_acumulacio_ca, codi_acumulacio_nacional);
                 ca.setCandidatura_id(idDesitjat);
                 ca.setNom_llarg(nom_llarg);
