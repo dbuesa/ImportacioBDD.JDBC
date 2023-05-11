@@ -510,5 +510,6 @@ public class OpcionsMenu {
             codi = scan.nextLine().trim();
         }
     }
+
 }
 

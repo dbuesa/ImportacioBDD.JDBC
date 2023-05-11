@@ -14,9 +14,10 @@ public class Vista {
         boolean continuar = true;
         while (continuar) {
             menu();
-            System.out.println("¿Desitges realitzar una altra operació? (S/N)");
-            String respuesta = scan.nextLine();
-            continuar = respuesta.equalsIgnoreCase("S");
+            System.out.println("Desitges realitzar una altra operació? (S/N)");
+            scan.nextLine();
+            String resposta = scan.nextLine();
+            continuar= (resposta.equalsIgnoreCase("S"));
         }
     }
     public static void menu() {
