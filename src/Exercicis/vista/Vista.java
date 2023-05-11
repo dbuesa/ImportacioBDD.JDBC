@@ -34,7 +34,6 @@ public class Vista {
             scan.next();
         }
         option = scan.nextInt();
-        Toolkit.getDefaultToolkit().beep();
         switch (option) {
             case 1:
                 registerMenu();
@@ -43,7 +42,6 @@ public class Vista {
                     scan.next();
                 }
                 operationOption = scan.nextInt();
-                Toolkit.getDefaultToolkit().beep();
                 switch (operationOption) {
                     case 1:
                         OpcionsMenu.insertCandidatura();
@@ -76,7 +74,6 @@ public class Vista {
                     scan.next();
                 }
                 operationOption = scan.nextInt();
-                Toolkit.getDefaultToolkit().beep();
                 switch (operationOption) {
                     case 1:
                         OpcionsMenu.insertPersona();
@@ -109,7 +106,6 @@ public class Vista {
                     scan.next();
                 }
                 operationOption = scan.nextInt();
-                Toolkit.getDefaultToolkit().beep();
                 switch (operationOption) {
                     case 1:
                         OpcionsMenu.insertCA();
@@ -136,7 +132,6 @@ public class Vista {
                 }
                 break;
             case 0:
-                Toolkit.getDefaultToolkit().beep();
                 System.out.println("Fins aviat!");
                 System.exit(0);
                 break;

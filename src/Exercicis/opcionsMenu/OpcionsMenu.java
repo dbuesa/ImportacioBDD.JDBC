@@ -7,6 +7,9 @@ import Exercicis.objectes.DAO.ComunitatAutonomaDAODB;
 import Exercicis.objectes.DAO.PersonaDAODB;
 import Exercicis.objectes.Persona;
 
+import javax.sound.sampled.*;
+import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -637,5 +640,8 @@ public class OpcionsMenu {
 
         return palabra.matches(patron);
     }
+
+
+
 }
 
