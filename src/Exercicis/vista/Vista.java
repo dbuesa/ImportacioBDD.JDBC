@@ -27,11 +27,19 @@ public class Vista {
     public static void menu() {
         int option, operationOption;
         initialMenu();
+        while (!scan.hasNextInt()) {
+            System.out.println("Error: si us plau, introdueix un número del menú vàlid:");
+            scan.next();
+        }
         option = scan.nextInt();
         switch (option) {
             case 1:
                 registerMenu();
-                operationOption = scan.nextInt();
+                while (!scan.hasNextInt()) {
+                System.out.println("Error: si us plau, introdueix un número del menú vàlid:");
+                scan.next();
+            }
+            operationOption = scan.nextInt();
                 switch (operationOption) {
                     case 1:
                         OpcionsMenu.insertCandidatura();
@@ -56,6 +64,10 @@ public class Vista {
                 break;
             case 2:
                 registerMenu();
+                while (!scan.hasNextInt()) {
+                    System.out.println("Error: si us plau, introdueix un número del menú vàlid:");
+                    scan.next();
+                }
                 operationOption = scan.nextInt();
                 switch (operationOption) {
                     case 1:
@@ -81,6 +93,10 @@ public class Vista {
                 break;
             case 3:
                 registerMenu();
+                while (!scan.hasNextInt()) {
+                    System.out.println("Error: si us plau, introdueix un número del menú vàlid:");
+                    scan.next();
+                }
                 operationOption = scan.nextInt();
                 switch (operationOption) {
                     case 1:

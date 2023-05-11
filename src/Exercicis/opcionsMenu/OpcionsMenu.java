@@ -144,7 +144,7 @@ public class OpcionsMenu {
     public static void readCandidatura() {
         System.out.println("Introdueix la candidatura_id de la candidatura la qual desitges rebre la informació:");
         while (!scan.hasNextLong()) {
-            System.out.println("Error: si us plau, introdueix un número de candidatura_id vàlid:");
+            System.out.println("Error: si us plau, introdueix un número de la taula vàlid:");
             scan.next();
         }
         long can_id = scan.nextLong();
@@ -187,16 +187,17 @@ public class OpcionsMenu {
             }
             long id = scan.nextLong();
             int opcio;
-            do {
             System.out.println("Quin camp vols modificar?");
-            System.out.println("1. nom");
-            System.out.println("2. codi_ine");
-            while (!scan.hasNextInt()) {
-                System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
-                scan.next();
-            }
-            opcio = scan.nextInt();
-            }while (opcio < 1 || opcio >2);
+            do {
+                System.out.println("1. nom");
+                System.out.println("2. codi_ine");
+                while (!scan.hasNextInt()) {
+                    System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
+                    scan.next();
+                }
+                opcio = scan.nextInt();
+                if (opcio < 1 || opcio > 2) System.out.println("Aquest camp no existeix! Torna a probar:");
+            } while (opcio < 1 || opcio > 2);
             updateColumnCA(id, opcio);
             System.out.println("Vols seguir modificant la taula de comunitats autònomes (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
             String continuar = scan.nextLine();
@@ -216,8 +217,8 @@ public class OpcionsMenu {
             }
             long id = scan.nextLong();
             int opcio;
+            System.out.println("Quin camp vols modificar?");
             do {
-                System.out.println("Quin camp vols modificar?");
                 System.out.println("1. nom");
                 System.out.println("2. cog1");
                 System.out.println("3. cog2");
@@ -227,6 +228,7 @@ public class OpcionsMenu {
                     scan.next();
                 }
                 opcio = scan.nextInt();
+                if (opcio < 1 || opcio > 4) System.out.println("Aquest camp no existeix! Torna a probar:");
             } while (opcio < 1 || opcio > 4);
             updateColumnPersona(id, opcio);
             System.out.println("Vols seguir modificant la taula de persones (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
@@ -247,8 +249,8 @@ public class OpcionsMenu {
             }
             long id = scan.nextLong();
             int opcio;
+            System.out.println("Quin camp vols modificar?");
             do {
-                System.out.println("Quin camp vols modificar?");
                 System.out.println("1. codi_candidatura");
                 System.out.println("2. nom_curt");
                 System.out.println("3. nom_llarg");
@@ -260,6 +262,7 @@ public class OpcionsMenu {
                     scan.next();
                 }
                 opcio = scan.nextInt();
+                if (opcio < 1 || opcio > 6) System.out.println("Aquest camp no existeix! Torna a probar:");
             } while (opcio < 1 || opcio > 6);
             updateColumnCandidatura(id, opcio);
             System.out.println("Vols seguir modificant la taula de candidatures (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
