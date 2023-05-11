@@ -132,9 +132,6 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
             if (stmt != null) {
                 stmt.close();
             }
-            if (con != null) {
-                con.close();
-            }
         }
         return deleteCA;
     }

@@ -42,9 +42,6 @@ public class PersonaDAODB implements DAODB<Persona> {
             if (stmt != null) {
                 stmt.close();
             }
-            if (con != null) {
-                con.close();
-            }
         }
         return addedPerson;
     }
@@ -149,9 +146,6 @@ public class PersonaDAODB implements DAODB<Persona> {
         } finally {
             if (stmt != null) {
                 stmt.close();
-            }
-            if (con != null) {
-                con.close();
             }
         }
         return deletePerson;

@@ -48,9 +48,6 @@ public class CandidaturaDAODB implements DAODB<Candidatura> {
             if (stmt != null) {
                 stmt.close();
             }
-            if (con != null) {
-                con.close();
-            }
         }
         return addedApplication;
     }
@@ -166,9 +163,6 @@ public class CandidaturaDAODB implements DAODB<Candidatura> {
         } finally {
             if (stmt != null) {
                 stmt.close();
-            }
-            if (con != null) {
-                con.close();
             }
         }
         return deleteCandidatura;
