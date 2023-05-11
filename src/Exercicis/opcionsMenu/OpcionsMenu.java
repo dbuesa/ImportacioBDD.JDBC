@@ -46,6 +46,10 @@ public class OpcionsMenu {
 
     public static void insertCandidatura() {
         System.out.println("Introdueix la eleccio_id de la candidatura: ");
+        while (!scan.hasNextLong()) {
+            System.out.println("Error: si us plau, introdueix un número de eleccio_id vàlid:");
+            scan.next();
+        }
         long eleccio_id = scan.nextLong();
         System.out.println("Introdueix el codi de la candidatura (HAN DE SER 6 DÍGITS!)");
         scan.nextLine();
