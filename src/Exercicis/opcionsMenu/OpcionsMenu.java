@@ -8,6 +8,7 @@ import Exercicis.objectes.DAO.PersonaDAODB;
 import Exercicis.objectes.Persona;
 
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class OpcionsMenu {
@@ -144,12 +145,12 @@ public class OpcionsMenu {
     public static void updateCA() {
         boolean bandera = false;
         do {
+            System.out.println("Itrodueix el id de la comunitat autònoma que desitges modificar");
+            int id = scan.nextInt();
             System.out.println("Quin camp vols modificar?");
             System.out.println("1. nom");
             System.out.println("2. codi_ine");
             int opcio = scan.nextInt();
-            System.out.println("Itrodueix el id de la comunitat autònoma que desitges modificar");
-            int id = scan.nextInt();
             updateColumnCA(id, opcio);
             System.out.println("Vols seguir modificant la taula de comunitats autònomes (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
             String continuar = scan.nextLine();
@@ -182,6 +183,16 @@ public class OpcionsMenu {
     public static void updateCandidatura() {
         boolean bandera = false;
         do {
+            int id = 0;
+            System.out.println("Itrodueix el id de la candidatura que desitges modificar");
+            try {
+                System.out.println("Itrodueix el id de la comunitat autònoma que desitges modificar");
+                id = scan.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Error: el valor introducido no es un número válido");
+                scan.next();
+                continue;
+            }
             System.out.println("Quin camp vols modificar?");
             System.out.println("1. codi_candidatura");
             System.out.println("2. nom_curt");
@@ -190,8 +201,6 @@ public class OpcionsMenu {
             System.out.println("5. codi_acumulacio_ca");
             System.out.println("6. codi_acumulacio_nacional");
             int opcio = scan.nextInt();
-            System.out.println("Itrodueix el id de la candidatura que desitges modificar");
-            int id = scan.nextInt();
             updateColumnCandidatura(id, opcio);
             System.out.println("Vols seguir modificant la taula de candidatures (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
             String continuar = scan.nextLine();
