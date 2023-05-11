@@ -190,6 +190,10 @@ public class OpcionsMenu {
             System.out.println("Quin camp vols modificar?");
             System.out.println("1. nom");
             System.out.println("2. codi_ine");
+            while (!scan.hasNextInt()) {
+                System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
+                scan.next();
+            }
             int opcio = scan.nextInt();
             updateColumnCA(id, opcio);
             System.out.println("Vols seguir modificant la taula de comunitats autònomes (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
@@ -214,6 +218,10 @@ public class OpcionsMenu {
             System.out.println("2. cog1");
             System.out.println("3. cog2");
             System.out.println("4. DNI");
+            while (!scan.hasNextInt()) {
+                System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
+                scan.next();
+            }
             int opcio = scan.nextInt();
             updateColumnPersona(id, opcio);
             System.out.println("Vols seguir modificant la taula de persones (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
@@ -240,6 +248,10 @@ public class OpcionsMenu {
             System.out.println("4. codi_acumulacio_provincia");
             System.out.println("5. codi_acumulacio_ca");
             System.out.println("6. codi_acumulacio_nacional");
+            while (!scan.hasNextInt()) {
+                System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
+                scan.next();
+            }
             int opcio = scan.nextInt();
             updateColumnCandidatura(id, opcio);
             System.out.println("Vols seguir modificant la taula de candidatures (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
