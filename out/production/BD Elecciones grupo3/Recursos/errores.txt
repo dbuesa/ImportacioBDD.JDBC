@@ -1,3 +1,5 @@
 meter comprobaciones en toda introduccion de ids
-cuando pregunta si quieres seguir 1 o otro valor y le das a F, sigue
 puedes introducir numeros en todos los strings
+
+
+}
