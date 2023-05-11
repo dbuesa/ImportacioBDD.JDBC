@@ -212,6 +212,8 @@ public class OpcionsMenu {
                 scan.next();
             }
             long id = scan.nextLong();
+            int opcio;
+            do {
             System.out.println("Quin camp vols modificar?");
             System.out.println("1. nom");
             System.out.println("2. cog1");
@@ -221,7 +223,8 @@ public class OpcionsMenu {
                 System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
                 scan.next();
             }
-            int opcio = scan.nextInt();
+            opcio = scan.nextInt();
+            } while (opcio < 1 || opcio > 4);
             updateColumnPersona(id, opcio);
             System.out.println("Vols seguir modificant la taula de persones (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
             String continuar = scan.nextLine();
