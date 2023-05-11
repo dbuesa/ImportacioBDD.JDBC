@@ -17,6 +17,10 @@ public class OpcionsMenu {
     public static void insertCA() {
         System.out.println("Quin és el nom de la comunitat autònoma que desitges introduïr?");
         String nom = scan.nextLine().trim();
+        while (validateString(nom)) {
+            System.out.println("nom INVÀLID! Torna a introduïr-lo, si us plau");
+            nom = scan.nextLine().trim();
+        }
         System.out.println("Quin és el seu codi_ine (MÀXIM 2 DÍGITS!)");
         String codi_ine = scan.nextLine().trim();
         while (codi_ine.length() != 2 || !codi_ine.matches("[0-9]+")) {
@@ -182,7 +186,8 @@ public class OpcionsMenu {
 
     public static void updateCandidatura() {
         boolean bandera = false;
-        id_input: do {
+        id_input:
+        do {
             int id = 0;
             try {
                 System.out.println("Itrodueix el id de la comunitat autònoma que desitges modificar");
@@ -519,5 +524,11 @@ public class OpcionsMenu {
         }
     }
 
+
+    public static boolean validateString(String palabra) {
+        String patron = "^[a-zA-ZáéíóúñÁÉÍÓÚÇç]+$";
+
+        return palabra.matches(patron);
+    }
 }
 
