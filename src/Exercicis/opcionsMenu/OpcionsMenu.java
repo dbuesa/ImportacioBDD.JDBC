@@ -187,10 +187,14 @@ public class OpcionsMenu {
             }
             long id = scan.nextLong();
             int opcio;
-            System.out.println("Quin camp vols modificar?");
+            System.out.println("╔════════════════════════════════╗");
+            System.out.println("║   Quin camp vols modificar?    ║");
+            System.out.println("╚════════════════════════════════╝");
             do {
-                System.out.println("1. nom");
-                System.out.println("2. codi_ine");
+                System.out.println("╔═════════════════╗");
+                System.out.println("║ 1- nom          ║");
+                System.out.println("║ 2- codi_ine     ║");
+                System.out.println("╚═════════════════╝");
                 while (!scan.hasNextInt()) {
                     System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
                     scan.next();
@@ -217,12 +221,16 @@ public class OpcionsMenu {
             }
             long id = scan.nextLong();
             int opcio;
-            System.out.println("Quin camp vols modificar?");
+            System.out.println("╔════════════════════════════════╗");
+            System.out.println("║   Quin camp vols modificar?    ║");
+            System.out.println("╚════════════════════════════════╝");
             do {
-                System.out.println("1. nom");
-                System.out.println("2. cog1");
-                System.out.println("3. cog2");
-                System.out.println("4. DNI");
+                System.out.println("╔═══════════╗");
+                System.out.println("║ 1- nom    ║");
+                System.out.println("║ 2- cog1   ║");
+                System.out.println("║ 3- cog2   ║");
+                System.out.println("║ 4- DNI    ║");
+                System.out.println("╚═══════════╝");
                 while (!scan.hasNextInt()) {
                     System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
                     scan.next();
@@ -249,14 +257,18 @@ public class OpcionsMenu {
             }
             long id = scan.nextLong();
             int opcio;
-            System.out.println("Quin camp vols modificar?");
+            System.out.println("╔════════════════════════════════╗");
+            System.out.println("║   Quin camp vols modificar?    ║");
+            System.out.println("╚════════════════════════════════╝");
             do {
-                System.out.println("1. codi_candidatura");
-                System.out.println("2. nom_curt");
-                System.out.println("3. nom_llarg");
-                System.out.println("4. codi_acumulacio_provincia");
-                System.out.println("5. codi_acumulacio_ca");
-                System.out.println("6. codi_acumulacio_nacional");
+                System.out.println("╔════════════════════════════════╗");
+                System.out.println("║ 1- codi_candidatura            ║");
+                System.out.println("║ 2- nom_curt                    ║");
+                System.out.println("║ 3- nom_llarg                   ║");
+                System.out.println("║ 4- codi_acumulacio_provincia   ║");
+                System.out.println("║ 5- codi_acumulacio_ca          ║");
+                System.out.println("║ 6- codi_acumulacio_ncional     ║");
+                System.out.println("╚════════════════════════════════╝");
                 while (!scan.hasNextInt()) {
                     System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
                     scan.next();

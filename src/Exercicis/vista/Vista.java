@@ -18,7 +18,7 @@ public class Vista {
             scan.nextLine();
             String resposta = scan.nextLine();
             continuar = (resposta.equalsIgnoreCase("S"));
-            if (!(continuar = (resposta.equalsIgnoreCase("S")))){
+            if (!(continuar = (resposta.equalsIgnoreCase("S")))) {
                 System.out.println("Fins aviat!");
             }
         }
@@ -36,10 +36,10 @@ public class Vista {
             case 1:
                 registerMenu();
                 while (!scan.hasNextInt()) {
-                System.out.println("Error: si us plau, introdueix un número del menú vàlid:");
-                scan.next();
-            }
-            operationOption = scan.nextInt();
+                    System.out.println("Error: si us plau, introdueix un número del menú vàlid:");
+                    scan.next();
+                }
+                operationOption = scan.nextInt();
                 switch (operationOption) {
                     case 1:
                         OpcionsMenu.insertCandidatura();
@@ -52,6 +52,9 @@ public class Vista {
                         break;
                     case 4:
                         OpcionsMenu.deleteCandidatura();
+                        break;
+                    case 5:
+                        repeatMenu();
                         break;
                     case 0:
                         System.out.println("Fins aviat!");
@@ -82,6 +85,9 @@ public class Vista {
                     case 4:
                         OpcionsMenu.deletePersona();
                         break;
+                    case 5:
+                        repeatMenu();
+                        break;
                     case 0:
                         System.out.println("Fins aviat!");
                         System.exit(0);
@@ -111,6 +117,9 @@ public class Vista {
                     case 4:
                         deleteCA();
                         break;
+                    case 5:
+                        repeatMenu();
+                        break;
                     case 0:
                         System.out.println("Fins aviat!");
                         System.exit(0);
@@ -131,21 +140,30 @@ public class Vista {
     }
 
     public static void initialMenu() {
-        System.out.println("Sobre quina taula desitges treballar?");
-        System.out.println("1. Candidatures");
-        System.out.println("2. Persones");
-        System.out.println("3. Comunitats autònomes");
-        System.out.println("0. Sortir");
+        System.out.println("╔══════════════════════════════════════╗");
+        System.out.println("║           Sobre quina taula          ║");
+        System.out.println("║          desitges treballar?         ║");
+        System.out.println("╠══════════════════════════════════════╣");
+        System.out.println("║ 1- Candidatures                      ║");
+        System.out.println("║ 2- Persones                          ║");
+        System.out.println("║ 3- Comunitats autònomes              ║");
+        System.out.println("║ 0- Sortir                            ║");
+        System.out.println("╚══════════════════════════════════════╝");
     }
 
     public static void registerMenu() {
-        System.out.println("Selecciona una operació per a la taula escollida, si us plau");
-        System.out.println("1. Crear registre");
-        System.out.println("2. Obtenir dades d'un registre");
-        System.out.println("3. Modificar registre");
-        System.out.println("4. Eliminar registre");
-        System.out.println("0. Sortir");
+        System.out.println("╔══════════════════════════════════════╗");
+        System.out.println("║   Selecciona una operació per a la   ║");
+        System.out.println("║           taula escollida:           ║");
+        System.out.println("╠══════════════════════════════════════╣");
+        System.out.println("║ 1- Crear registre                    ║");
+        System.out.println("║ 2- Obtenir dades d'un registre       ║");
+        System.out.println("║ 3- Modificar registre                ║");
+        System.out.println("║ 4- Eliminar registre                 ║");
+        System.out.println("║ 5- Tornar al menú de taules          ║");
+        System.out.println("║ 0- Sortir                            ║");
+        System.out.println("╚══════════════════════════════════════╝");
     }
-
-
 }
+
+
