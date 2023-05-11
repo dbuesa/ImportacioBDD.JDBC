@@ -5,8 +5,7 @@ import Exercicis.opcionsMenu.OpcionsMenu;
 import java.awt.*;
 import java.util.Scanner;
 
-import static Exercicis.opcionsMenu.OpcionsMenu.deleteCA;
-import static Exercicis.opcionsMenu.OpcionsMenu.updateCA;
+import static Exercicis.opcionsMenu.OpcionsMenu.*;
 
 public class Vista {
     static Scanner scan = new Scanner(System.in);
@@ -34,7 +33,7 @@ public class Vista {
             scan.next();
         }
         option = scan.nextInt();
-        Toolkit.getDefaultToolkit().beep();
+
         switch (option) {
             case 1:
                 registerMenu();
