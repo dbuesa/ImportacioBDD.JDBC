@@ -126,6 +126,10 @@ public class OpcionsMenu {
 
     public static void readCA() {
         System.out.println("Introdueix la comunitat_aut_id de la comunitat la qual desitges rebre la informació:");
+        while (!scan.hasNextLong()) {
+            System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
+            scan.next();
+        }
         long com_aut_id = scan.nextLong();
 
         ComunitatAutonomaDAODB caDAO = new ComunitatAutonomaDAODB();
@@ -140,6 +144,10 @@ public class OpcionsMenu {
 
     public static void readCandidatura() {
         System.out.println("Introdueix la candidatura_id de la candidatura la qual desitges rebre la informació:");
+        while (!scan.hasNextLong()) {
+            System.out.println("Error: si us plau, introdueix un número de candidatura_id vàlid:");
+            scan.next();
+        }
         long can_id = scan.nextLong();
 
         CandidaturaDAODB canDAO = new CandidaturaDAODB();
@@ -154,6 +162,10 @@ public class OpcionsMenu {
 
     public static void readPersona() {
         System.out.println("Introdueix la persona_id de la persona la qual desitges rebre la informació:");
+        while (!scan.hasNextLong()) {
+            System.out.println("Error: si us plau, introdueix un número de persona_id vàlid:");
+            scan.next();
+        }
         long pers_id = scan.nextLong();
 
         PersonaDAODB p = new PersonaDAODB();
@@ -170,15 +182,17 @@ public class OpcionsMenu {
         boolean bandera = false;
         do {
             System.out.println("Itrodueix el id de la comunitat autònoma que desitges modificar");
-            int id = scan.nextInt();
-            scan.nextLine();
+            while (!scan.hasNextLong()) {
+                System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
+                scan.next();
+            }
+            long id = scan.nextLong();
             System.out.println("Quin camp vols modificar?");
             System.out.println("1. nom");
             System.out.println("2. codi_ine");
             int opcio = scan.nextInt();
             updateColumnCA(id, opcio);
             System.out.println("Vols seguir modificant la taula de comunitats autònomes (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
-            scan.nextLine();
             String continuar = scan.nextLine();
             if (continuar.equals("1")) {
                 bandera = true;
@@ -190,8 +204,11 @@ public class OpcionsMenu {
         boolean bandera = false;
         do {
             System.out.println("Itrodueix el id de la persona que desitges modificar");
-            int id = scan.nextInt();
-            scan.nextLine();
+            while (!scan.hasNextLong()) {
+                System.out.println("Error: si us plau, introdueix un número de persona_id vàlid:");
+                scan.next();
+            }
+            long id = scan.nextLong();
             System.out.println("Quin camp vols modificar?");
             System.out.println("1. nom");
             System.out.println("2. cog1");
@@ -200,7 +217,6 @@ public class OpcionsMenu {
             int opcio = scan.nextInt();
             updateColumnPersona(id, opcio);
             System.out.println("Vols seguir modificant la taula de persones (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
-            scan.nextLine();
             String continuar = scan.nextLine();
             if (continuar.equals("1")) {
                 bandera = true;
@@ -211,9 +227,12 @@ public class OpcionsMenu {
     public static void updateCandidatura() {
         boolean bandera = false;
         do {
-            System.out.println("Itrodueix el id de la comunitat autònoma que desitges modificar");
-            int id = scan.nextInt();
-            scan.nextLine();
+            System.out.println("Itrodueix el id de la candidatura que desitges modificar");
+            while (!scan.hasNextLong()) {
+                System.out.println("Error: si us plau, introdueix un número de candidatura_id vàlid:");
+                scan.next();
+            }
+            long id = scan.nextLong();
             System.out.println("Quin camp vols modificar?");
             System.out.println("1. codi_candidatura");
             System.out.println("2. nom_curt");
@@ -224,7 +243,6 @@ public class OpcionsMenu {
             int opcio = scan.nextInt();
             updateColumnCandidatura(id, opcio);
             System.out.println("Vols seguir modificant la taula de candidatures (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
-            scan.nextLine();
             String continuar = scan.nextLine();
             if (continuar.equals("1")) {
                 bandera = true;
@@ -234,6 +252,10 @@ public class OpcionsMenu {
 
     public static void deleteCA() {
         System.out.println("Introdueix el id de la comunitat autònoma que desitges eliminar");
+        while (!scan.hasNextLong()) {
+            System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
+            scan.next();
+        }
         long id = scan.nextLong();
         ComunitatAutonomaDAODB comunitatAutonomaDAODB = new ComunitatAutonomaDAODB();
 
@@ -254,6 +276,10 @@ public class OpcionsMenu {
 
     public static void deletePersona() {
         System.out.println("Introdueix el id de la persona que desitges eliminar");
+        while (!scan.hasNextLong()) {
+            System.out.println("Error: si us plau, introdueix un número de persona_id vàlid:");
+            scan.next();
+        }
         long id = scan.nextLong();
         PersonaDAODB personaDAO = new PersonaDAODB();
 
@@ -274,6 +300,10 @@ public class OpcionsMenu {
 
     public static void deleteCandidatura() {
         System.out.println("Introdueix el id de la candidatura que desitges eliminar");
+        while (!scan.hasNextLong()) {
+            System.out.println("Error: si us plau, introdueix un número de candidatura:_id vàlid:");
+            scan.next();
+        }
         long id = scan.nextLong();
         CandidaturaDAODB candidaturaDAODB = new CandidaturaDAODB();
 
@@ -568,15 +598,9 @@ public class OpcionsMenu {
 
 
     public static boolean validateString(String palabra) {
-        String patron = "^[a-zA-ZáéíóúàèìòùñÁÉÍÓÚÀÈÌÒÙÇç]+$";
+        String patron = "^[a-zA-ZáéíóúàèìòùñÁÉÍÓÚÀÈÌÒÙÇç\\s]+$";
 
         return palabra.matches(patron);
-    }
-
-    public static boolean validarNumeros(String cadena) {
-        String patron = "^[0-9]+$";
-
-        return cadena.matches(patron);
     }
 }
 
