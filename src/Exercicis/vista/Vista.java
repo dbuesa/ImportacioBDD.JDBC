@@ -112,7 +112,7 @@ public class Vista {
     }
 
     public static void initialMenu() {
-        System.out.println("Benvingut al menú de taules! Sobre quina taula desitges treballar");
+        System.out.println("Sobre quina taula desitges treballar?");
         System.out.println("1. Candidatures");
         System.out.println("2. Persones");
         System.out.println("3. Comunitats autònomes");
