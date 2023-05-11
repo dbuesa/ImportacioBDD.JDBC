@@ -1,2 +1,10 @@
 meter comprobaciones en toda introduccion de ids
 puedes introducir numeros en todos los strings
+
+public static boolean validarString(String palabra) {
+        // Expresión regular para permitir solo letras, incluyendo acentos, ñ y ç.
+        String patron = "^[a-zA-ZáéíóúñÁÉÍÓÚÇç]+$";
+
+        return palabra.matches(patron);
+    }
+}
