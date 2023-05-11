@@ -10,16 +10,17 @@ import static Exercicis.opcionsMenu.OpcionsMenu.updateCA;
 public class Vista {
     static Scanner scan = new Scanner(System.in);
 
-    public static void  repeatMenu(){
+    public static void repeatMenu() {
         boolean continuar = true;
         while (continuar) {
             menu();
             System.out.println("Desitges realitzar una altra operació? (S/N)");
             scan.nextLine();
             String resposta = scan.nextLine();
-            continuar= (resposta.equalsIgnoreCase("S"));
+            continuar = (resposta.equalsIgnoreCase("S"));
         }
     }
+
     public static void menu() {
         boolean continuar = true;
         int option, operationOption;
