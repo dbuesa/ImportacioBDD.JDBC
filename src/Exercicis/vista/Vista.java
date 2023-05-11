@@ -2,6 +2,7 @@ package Exercicis.vista;
 
 import Exercicis.opcionsMenu.OpcionsMenu;
 
+import java.awt.*;
 import java.util.Scanner;
 
 import static Exercicis.opcionsMenu.OpcionsMenu.deleteCA;
