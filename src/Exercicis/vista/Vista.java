@@ -25,6 +25,7 @@ public class Vista {
         }
     }
 
+
     public static void menu() {
         int option, operationOption;
         initialMenu();
@@ -33,6 +34,7 @@ public class Vista {
             scan.next();
         }
         option = scan.nextInt();
+        Toolkit.getDefaultToolkit().beep();
         switch (option) {
             case 1:
                 registerMenu();
@@ -41,6 +43,7 @@ public class Vista {
                     scan.next();
                 }
                 operationOption = scan.nextInt();
+                Toolkit.getDefaultToolkit().beep();
                 switch (operationOption) {
                     case 1:
                         OpcionsMenu.insertCandidatura();
@@ -73,6 +76,7 @@ public class Vista {
                     scan.next();
                 }
                 operationOption = scan.nextInt();
+                Toolkit.getDefaultToolkit().beep();
                 switch (operationOption) {
                     case 1:
                         OpcionsMenu.insertPersona();
@@ -105,6 +109,7 @@ public class Vista {
                     scan.next();
                 }
                 operationOption = scan.nextInt();
+                Toolkit.getDefaultToolkit().beep();
                 switch (operationOption) {
                     case 1:
                         OpcionsMenu.insertCA();
@@ -131,6 +136,7 @@ public class Vista {
                 }
                 break;
             case 0:
+                Toolkit.getDefaultToolkit().beep();
                 System.out.println("Fins aviat!");
                 System.exit(0);
                 break;
@@ -141,29 +147,30 @@ public class Vista {
     }
 
     public static void initialMenu() {
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║           Sobre quina taula          ║");
-        System.out.println("║          desitges treballar?         ║");
-        System.out.println("╠══════════════════════════════════════╣");
-        System.out.println("║ 1- Candidatures                      ║");
-        System.out.println("║ 2- Persones                          ║");
-        System.out.println("║ 3- Comunitats autònomes              ║");
-        System.out.println("║ 0- Sortir                            ║");
-        System.out.println("╚══════════════════════════════════════╝");
+        System.out.println("┌────────────────────────────────────────┐");
+        System.out.println("│               ¡Benvingut!              │");
+        System.out.println("│ Selecciona una taula per treballar-hi  │");
+        System.out.println("├────────────────────────────────────────┤");
+        System.out.println("│ 1. Candidatures                        │");
+        System.out.println("│ 2. Persones                            │");
+        System.out.println("│ 3. Comunitats Autónomes                │");
+        System.out.println("│ 0. Salir                               │");
+        System.out.println("└────────────────────────────────────────┘");
+
     }
 
     public static void registerMenu() {
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║   Selecciona una operació per a la   ║");
-        System.out.println("║           taula escollida:           ║");
-        System.out.println("╠══════════════════════════════════════╣");
-        System.out.println("║ 1- Crear registre                    ║");
-        System.out.println("║ 2- Obtenir dades d'un registre       ║");
-        System.out.println("║ 3- Modificar registre                ║");
-        System.out.println("║ 4- Eliminar registre                 ║");
-        System.out.println("║ 5- Tornar al menú de taules          ║");
-        System.out.println("║ 0- Sortir                            ║");
-        System.out.println("╚══════════════════════════════════════╝");
+        System.out.println("┌──────────────────────────────────────────┐");
+        System.out.println("│   Selecciona una operació per a la       │");
+        System.out.println("│           taula escollida:               │");
+        System.out.println("├──────────────────────────────────────────┤");
+        System.out.println("│     1. Crear registre                    │");
+        System.out.println("│     2. Obtenir dades d'un registre       │");
+        System.out.println("│     3. Modificar registre                │");
+        System.out.println("│     4. Eliminar registre                 │");
+        System.out.println("│     5. Tornar al menú de taules          │");
+        System.out.println("│     0. Sortir                            │");
+        System.out.println("└──────────────────────────────────────────┘");
     }
 }
 
