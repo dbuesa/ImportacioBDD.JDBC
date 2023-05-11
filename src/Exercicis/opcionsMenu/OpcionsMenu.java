@@ -563,9 +563,15 @@ public class OpcionsMenu {
 
 
     public static boolean validateString(String palabra) {
-        String patron = "^[a-zA-ZáéíóúñÁÉÍÓÚÇç]+$";
+        String patron = "^[a-zA-ZáéíóúàèìòùñÁÉÍÓÚÀÈÌÒÙÇç]+$";
 
         return palabra.matches(patron);
+    }
+
+    public static boolean validarNumeros(String cadena) {
+        String patron = "^[0-9]+$";
+
+        return cadena.matches(patron);
     }
 }
 
