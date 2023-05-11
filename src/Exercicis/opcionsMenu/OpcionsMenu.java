@@ -171,12 +171,14 @@ public class OpcionsMenu {
         do {
             System.out.println("Itrodueix el id de la comunitat autònoma que desitges modificar");
             int id = scan.nextInt();
+            scan.nextLine();
             System.out.println("Quin camp vols modificar?");
             System.out.println("1. nom");
             System.out.println("2. codi_ine");
             int opcio = scan.nextInt();
             updateColumnCA(id, opcio);
             System.out.println("Vols seguir modificant la taula de comunitats autònomes (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
+            scan.nextLine();
             String continuar = scan.nextLine();
             if (continuar.equals("1")) {
                 bandera = true;
@@ -189,6 +191,7 @@ public class OpcionsMenu {
         do {
             System.out.println("Itrodueix el id de la persona que desitges modificar");
             int id = scan.nextInt();
+            scan.nextLine();
             System.out.println("Quin camp vols modificar?");
             System.out.println("1. nom");
             System.out.println("2. cog1");
@@ -197,6 +200,7 @@ public class OpcionsMenu {
             int opcio = scan.nextInt();
             updateColumnPersona(id, opcio);
             System.out.println("Vols seguir modificant la taula de persones (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
+            scan.nextLine();
             String continuar = scan.nextLine();
             if (continuar.equals("1")) {
                 bandera = true;
@@ -206,10 +210,10 @@ public class OpcionsMenu {
 
     public static void updateCandidatura() {
         boolean bandera = false;
-        id_input:
         do {
             System.out.println("Itrodueix el id de la comunitat autònoma que desitges modificar");
             int id = scan.nextInt();
+            scan.nextLine();
             System.out.println("Quin camp vols modificar?");
             System.out.println("1. codi_candidatura");
             System.out.println("2. nom_curt");
@@ -220,6 +224,7 @@ public class OpcionsMenu {
             int opcio = scan.nextInt();
             updateColumnCandidatura(id, opcio);
             System.out.println("Vols seguir modificant la taula de candidatures (prem 1 per continuar modificant, o qualsevol altra tecla per sortir)?");
+            scan.nextLine();
             String continuar = scan.nextLine();
             if (continuar.equals("1")) {
                 bandera = true;
