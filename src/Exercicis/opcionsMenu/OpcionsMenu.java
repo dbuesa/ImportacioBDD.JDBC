@@ -17,7 +17,7 @@ public class OpcionsMenu {
     public static void insertCA() {
         System.out.println("Quin és el nom de la comunitat autònoma que desitges introduïr?");
         String nom = scan.nextLine().trim();
-        while (validateString(nom)) {
+        while (!validateString(nom)) {
             System.out.println("nom INVÀLID! Torna a introduïr-lo, si us plau");
             nom = scan.nextLine().trim();
         }
