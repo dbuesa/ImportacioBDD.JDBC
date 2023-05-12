@@ -132,21 +132,28 @@ public class OpcionsMenu {
     }
 
     public static void readCA() {
-        System.out.println("Introdueix la comunitat_aut_id de la comunitat la qual desitges rebre la informació:");
-        while (!scan.hasNextLong()) {
-            System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
-            scan.next();
-        }
-        long com_aut_id = scan.nextLong();
-
         ComunitatAutonomaDAODB caDAO = new ComunitatAutonomaDAODB();
-        try {
-            String infoComunitatAutonoma = caDAO.read(com_aut_id);
-            System.out.println(infoComunitatAutonoma);
+        String infoComunitatAutonoma = null;
 
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+        do {
+            System.out.println("Introdueix la comunitat_aut_id de la comunitat la qual desitges rebre la informació:");
+            while (!scan.hasNextLong()) {
+                System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
+                scan.next();
+            }
+            long com_aut_id = scan.nextLong();
+
+            try {
+                infoComunitatAutonoma = caDAO.read(com_aut_id);
+                if (infoComunitatAutonoma == null) {
+                    System.out.println("No s'ha trobat cap informació per a aquesta comunitat autònoma. Si us plau, prova amb un altre com_aut_id.");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        } while (infoComunitatAutonoma == null);
+
+        System.out.println(infoComunitatAutonoma);
     }
 
     public static void readCandidatura() {
