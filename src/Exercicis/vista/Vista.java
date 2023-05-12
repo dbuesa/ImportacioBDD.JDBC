@@ -149,7 +149,7 @@ public class Vista {
         System.out.println("│ 1. Candidatures                        │");
         System.out.println("│ 2. Persones                            │");
         System.out.println("│ 3. Comunitats Autónomes                │");
-        System.out.println("│ 0. Salir                               │");
+        System.out.println("│ 0. Sortir                              │");
         System.out.println("└────────────────────────────────────────┘");
 
     }
