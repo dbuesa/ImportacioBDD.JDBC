@@ -6,11 +6,6 @@ import Exercicis.objectes.DAO.CandidaturaDAODB;
 import Exercicis.objectes.DAO.ComunitatAutonomaDAODB;
 import Exercicis.objectes.DAO.PersonaDAODB;
 import Exercicis.objectes.Persona;
-
-import javax.sound.sampled.*;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -360,15 +355,15 @@ public class OpcionsMenu {
                 }
                 id = scan.nextLong();
 
-                try{
+                try {
                     infoCandidatura = c.read(id);
 
-                    if(infoCandidatura == null){
+                    if (infoCandidatura == null) {
                         System.out.println("No s'ha trobat cap informació per a aquesta candidatura. Si us plau, prova amb un altre candidatura_id.");
                         continue;
                     }
 
-                }catch(SQLException ex){
+                } catch (SQLException ex) {
                     System.out.println(ex.getMessage());
                 }
                 infoValida = true;
@@ -406,74 +401,86 @@ public class OpcionsMenu {
     }
 
     public static void deleteCA() {
-        System.out.println("Introdueix el id de la comunitat autònoma que desitges eliminar");
-        while (!scan.hasNextLong()) {
-            System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
-            scan.next();
-        }
-        long id = scan.nextLong();
-        ComunitatAutonomaDAODB comunitatAutonomaDAODB = new ComunitatAutonomaDAODB();
-
-        ComunitatAutonoma comunitatAutonoma = new ComunitatAutonoma();
-        comunitatAutonoma.setComunitat_aut_id(id);
-
-        try {
-            boolean result = comunitatAutonomaDAODB.delete(comunitatAutonoma);
-            if (result) {
-                System.out.println("Comunitat autonòma eliminada correctament.");
-            } else {
-                System.out.println("No s'ha pogut eliminar la comunitat autònoma.");
+        boolean found = false;
+        while (!found) {
+            System.out.println("Introdueix el id de la comunitat autònoma que desitges eliminar:");
+            while (!scan.hasNextLong()) {
+                System.out.println("Error: si us plau, introdueix un número de comunitat_aut_id vàlid:");
+                scan.next();
             }
-        } catch (SQLException e) {
-            System.out.println("Error al eliminar la comunitat autònoma: " + e.getMessage());
+            long id = scan.nextLong();
+            ComunitatAutonomaDAODB comunitatAutonomaDAODB = new ComunitatAutonomaDAODB();
+
+            ComunitatAutonoma comunitatAutonoma = new ComunitatAutonoma();
+            comunitatAutonoma.setComunitat_aut_id(id);
+
+            try {
+                boolean result = comunitatAutonomaDAODB.delete(comunitatAutonoma);
+                if (result) {
+                    System.out.println("Comunitat autonòma eliminada correctament.");
+                    found = true;
+                } else {
+                    System.out.println("La comunitat autònoma introduida no existex.");
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al eliminar la comunitat autònoma: " + e.getMessage());
+            }
         }
     }
 
     public static void deletePersona() {
-        System.out.println("Introdueix el id de la persona que desitges eliminar");
-        while (!scan.hasNextLong()) {
-            System.out.println("Error: si us plau, introdueix un número de persona_id vàlid:");
-            scan.next();
-        }
-        long id = scan.nextLong();
-        PersonaDAODB personaDAO = new PersonaDAODB();
-
-        Persona persona = new Persona();
-        persona.setPersona_id(id);
-
-        try {
-            boolean result = personaDAO.delete(persona);
-            if (result) {
-                System.out.println("Persona eliminada correctament.");
-            } else {
-                System.out.println("No s'ha pogut eliminar la persona.");
+        boolean found = false;
+        while (!found) {
+            System.out.println("Introdueix el id de la persona que desitges eliminar:");
+            while (!scan.hasNextLong()) {
+                System.out.println("Error: si us plau, introdueix un número de persona_id vàlid:");
+                scan.next();
             }
-        } catch (SQLException e) {
-            System.out.println("Error al eliminar la persona: " + e.getMessage());
+            long id = scan.nextLong();
+            PersonaDAODB personaDAO = new PersonaDAODB();
+
+            Persona persona = new Persona();
+            persona.setPersona_id(id);
+
+            try {
+                boolean result = personaDAO.delete(persona);
+                if (result) {
+                    System.out.println("Persona eliminada correctament.");
+                    found = true;
+                } else {
+                    System.out.println("La persona introduida no existeix.");
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al eliminar la persona: " + e.getMessage());
+            }
         }
     }
 
     public static void deleteCandidatura() {
-        System.out.println("Introdueix el id de la candidatura que desitges eliminar");
-        while (!scan.hasNextLong()) {
-            System.out.println("Error: si us plau, introdueix un número de candidatura:_id vàlid:");
-            scan.next();
-        }
-        long id = scan.nextLong();
-        CandidaturaDAODB candidaturaDAODB = new CandidaturaDAODB();
-
-        Candidatura candidatura = new Candidatura();
-        candidatura.setCandidatura_id(id);
-
-        try {
-            boolean result = candidaturaDAODB.delete(candidatura);
-            if (result) {
-                System.out.println("Candidatura eliminada correctament.");
-            } else {
-                System.out.println("No s'ha pogut eliminar la candidatura.");
+        boolean found = false;
+        while (!found) {
+            System.out.println("Introdueix el id de la candidatura que desitges eliminar:");
+            while (!scan.hasNextLong()) {
+                System.out.println("Error: si us plau, introdueix un número de candidatura_id vàlid:");
+                scan.next();
             }
-        } catch (SQLException e) {
-            System.out.println("Error al eliminar la candidatura: " + e.getMessage());
+            long id = scan.nextLong();
+            CandidaturaDAODB candidaturaDAO = new CandidaturaDAODB();
+
+            Candidatura candidatura = new Candidatura();
+            candidatura.setCandidatura_id(id);
+
+            try {
+                boolean result = candidaturaDAO.delete(candidatura);
+                if (result) {
+                    System.out.println("Candidatura eliminada correctament.");
+                    found = true;
+                } else {
+                    System.out.println("La candidatura introduida no existeix.");
+                }
+            } catch (SQLException e) {
+                System.out.println("Error al eliminar la candidatura: " + e.getMessage());
+            }
         }
     }
 
