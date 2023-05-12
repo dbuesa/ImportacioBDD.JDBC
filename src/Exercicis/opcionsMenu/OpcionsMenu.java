@@ -146,7 +146,7 @@ public class OpcionsMenu {
             try {
                 infoComunitatAutonoma = caDAO.read(com_aut_id);
                 if (infoComunitatAutonoma == null) {
-                    System.out.println("No s'ha trobat cap informació per a aquesta comunitat autònoma. Si us plau, prova amb un altre com_aut_id.");
+                    System.out.println("No s'ha trobat cap informació per a aquesta comunitat autònoma. Si us plau, prova amb un altre comunitat_aut_id.");
                 }
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
@@ -157,39 +157,53 @@ public class OpcionsMenu {
     }
 
     public static void readCandidatura() {
-        System.out.println("Introdueix la candidatura_id de la candidatura la qual desitges rebre la informació:");
-        while (!scan.hasNextLong()) {
-            System.out.println("Error: si us plau, introdueix un número de la taula vàlid:");
-            scan.next();
-        }
-        long can_id = scan.nextLong();
-
         CandidaturaDAODB canDAO = new CandidaturaDAODB();
-        try {
-            String infoCandidatura = canDAO.read(can_id);
-            System.out.println(infoCandidatura);
+        String infoCandidatura = null;
 
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+        do {
+            System.out.println("Introdueix la candidatura_id de la candidatura la qual desitges rebre la informació:");
+            while (!scan.hasNextLong()) {
+                System.out.println("Error: si us plau, introdueix un número de la taula vàlid:");
+                scan.next();
+            }
+            long can_id = scan.nextLong();
+
+            try {
+                infoCandidatura = canDAO.read(can_id);
+                if (infoCandidatura == null) {
+                    System.out.println("No s'ha trobat cap informació per a aquesta candidatura. Si us plau, prova amb un altre candidatura_id.");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        } while (infoCandidatura == null);
+
+        System.out.println(infoCandidatura);
     }
 
     public static void readPersona() {
-        System.out.println("Introdueix la persona_id de la persona la qual desitges rebre la informació:");
-        while (!scan.hasNextLong()) {
-            System.out.println("Error: si us plau, introdueix un número de persona_id vàlid:");
-            scan.next();
-        }
-        long pers_id = scan.nextLong();
-
         PersonaDAODB p = new PersonaDAODB();
-        try {
-            String infoCandidatura = p.read(pers_id);
-            System.out.println(infoCandidatura);
+        String infoPersona = null;
 
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
+        do {
+            System.out.println("Introdueix la persona_id de la persona la qual desitges rebre la informació:");
+            while (!scan.hasNextLong()) {
+                System.out.println("Error: si us plau, introdueix un número de persona_id vàlid:");
+                scan.next();
+            }
+            long pers_id = scan.nextLong();
+
+            try {
+                infoPersona = p.read(pers_id);
+                if (infoPersona == null) {
+                    System.out.println("No s'ha trobat cap informació per a aquesta persona. Si us plau, prova amb un altre persona_id.");
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        } while (infoPersona == null);
+
+        System.out.println(infoPersona);
     }
 
     public static void updateCA() {
