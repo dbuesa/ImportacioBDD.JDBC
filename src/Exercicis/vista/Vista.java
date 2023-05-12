@@ -11,14 +11,14 @@ public class Vista {
     static Scanner scan = new Scanner(System.in);
 
     public static void repeatMenu() {
-        boolean continuar = true;
-        while (continuar) {
+        boolean finish = true;
+        while (finish) {
             menu();
             System.out.println("Desitges realitzar una altra operació? (S/Qualsevol altra tecla)");
             scan.nextLine();
             String resposta = scan.nextLine();
-            continuar = (resposta.equalsIgnoreCase("S"));
-            if (!(continuar = (resposta.equalsIgnoreCase("S")))) {
+            finish = (resposta.equalsIgnoreCase("S"));
+            if (!(finish = (resposta.equalsIgnoreCase("S")))) {
                 System.out.println("Fins aviat!");
             }
         }
