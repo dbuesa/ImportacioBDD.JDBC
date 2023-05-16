@@ -1,4 +1,6 @@
-package Exercicis.Importacio;
+package Exercicis.importacio;
+
+import Exercicis.connexio.DBMySQLManager;
 
 import java.sql.SQLException;
 

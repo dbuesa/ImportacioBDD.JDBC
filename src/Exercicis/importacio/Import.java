@@ -1,4 +1,4 @@
-package Exercicis.Importacio;
+package Exercicis.importacio;
 
 import java.io.BufferedReader;
 import java.io.IOException;

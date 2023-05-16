@@ -1,8 +1,7 @@
 package Exercicis.objectes.DAO;
 
-import Exercicis.Importacio.DBMySQLManager;
+import Exercicis.connexio.DBMySQLManager;
 import Exercicis.objectes.ComunitatAutonoma;
-import Exercicis.objectes.Persona;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
