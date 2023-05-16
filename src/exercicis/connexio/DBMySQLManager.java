@@ -7,7 +7,6 @@ public class DBMySQLManager {
     static String ipMarc = "10.2.106.42";
     static String ipDirecte = "10.2.179.196";
 
-    static String ipXavi = "";
 
     // Propietats
     private static Connection conn = null;
@@ -16,7 +15,7 @@ public class DBMySQLManager {
     private String usuari ="perepi";
     private String contrasenya = "pastanaga";
     private String host = ipDirecte; //IP de qui executi el programa
-    private String base_dades = "practicaEleccions"; // PROVA: eleccions2017, BONA: eleccions2016
+    private String base_dades = "practicaEleccions";
 
     // Constructors
     private DBMySQLManager(){
