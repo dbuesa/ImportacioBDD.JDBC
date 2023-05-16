@@ -23,3 +23,4 @@ Ressenyes extres:
 - En el paquet de "importacio" estan les classes que usem en el projecte de base de dades per a poder fer totes les importacions correctament, les hem hagut de modificar per a adaptar-les a l'esquema proporcionat pel professor.
 - A l'hora de fer dues o més execucions consecutives (com fer un UPDATE) ens trobavem amb l'inconvenient de que, al obrir-se i tancar-se la connexió desrprés no la podiem tornar a obrir. Per a solventar l'error hem decidit no tancar la connexió.
 - No hem fet servir el model MVC (Model, Vista, Controlador) ja que vam quedar en que era molt subjectiu quina part anava a model i quina al controlador
+
