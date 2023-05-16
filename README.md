@@ -19,3 +19,4 @@ Ressenyes extres:
 En el paquet de "recursos" hem afegit l'usuari i contrasenya principal del Isard, amb el qual hem fet el treball conjunt.
 En "llibreries" t'hem adjuntat totes les librerias usades/necessitades per al projecte
 En el paquet de "importacio" estan les classes que usem en el projecte de base de dades per a poder fer totes les importacions correctament, les hem hagut de modificar per a adaptar-les a l'esquema proporcionat pel professor.
+A l'hora de fer dues o més execucions consecutives (com fer un UPDATE) ens trobavem amb l'inconvenient de que, al obrir-se i tancar-se la connexió desrprés no la podiem tornar a obrir. Per a solventar l'error hem decidit no tancar la connexió.
