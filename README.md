@@ -3,6 +3,8 @@ Pràctica de la UF6 de M03 (programació): introducció a la persistència en BD
 
 Hem usat "Isard" per a poder treballar de manera conjunta. Per a poder executar el projecte hauràs d'anar al paquet "connexio" i dins de la classe DBMySQLManager hauràs de canviar la part de la ip, que veuràs que és anomenada en this.url (és tota la connexió).
 
+Hem afegit la base de dades al paquet "recursos". S'anomena "BBDDpracticaEleccions.sql"
+
 Hem fet uns canvis a nivell de DDL perquè la base de dades no tingui nulls i es puguin fer totes les execucions CRUD sense problemes:
 - Hem eliminat les columnes de data de naixement i sexe de la taula de persones.
 - Hem modificat les foreign keys de les taules i els hem afegit on delete/*on update cascade/set null (depenent de la taula) perquè ens permeti eliminar-los o modificar-los.
