@@ -1,4 +1,4 @@
-package Exercicis.objectes;
+package exercicis.objectes;
 
 public class Candidat {
     int candidat_id;

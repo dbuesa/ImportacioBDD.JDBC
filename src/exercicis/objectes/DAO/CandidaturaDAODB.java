@@ -1,7 +1,7 @@
-package Exercicis.objectes.DAO;
+package exercicis.objectes.DAO;
 
-import Exercicis.connexio.DBMySQLManager;
-import Exercicis.objectes.Candidatura;
+import exercicis.connexio.DBMySQLManager;
+import exercicis.objectes.Candidatura;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,6 +1,4 @@
-package Exercicis.objectes;
-
-import Exercicis.objectes.DAO.DAODB;
+package exercicis.objectes;
 
 public class Candidatura{
 

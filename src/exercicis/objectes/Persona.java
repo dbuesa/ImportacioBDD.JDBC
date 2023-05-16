@@ -1,4 +1,4 @@
-package Exercicis.objectes;
+package exercicis.objectes;
 
 public class Persona{
     long persona_id;

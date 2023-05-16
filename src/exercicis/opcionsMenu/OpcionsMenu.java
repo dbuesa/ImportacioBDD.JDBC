@@ -1,11 +1,11 @@
-package Exercicis.opcionsMenu;
+package exercicis.opcionsMenu;
 
-import Exercicis.objectes.Candidatura;
-import Exercicis.objectes.ComunitatAutonoma;
-import Exercicis.objectes.DAO.CandidaturaDAODB;
-import Exercicis.objectes.DAO.ComunitatAutonomaDAODB;
-import Exercicis.objectes.DAO.PersonaDAODB;
-import Exercicis.objectes.Persona;
+import exercicis.objectes.Candidatura;
+import exercicis.objectes.ComunitatAutonoma;
+import exercicis.objectes.DAO.CandidaturaDAODB;
+import exercicis.objectes.DAO.ComunitatAutonomaDAODB;
+import exercicis.objectes.DAO.PersonaDAODB;
+import exercicis.objectes.Persona;
 import java.sql.SQLException;
 import java.util.Scanner;
 

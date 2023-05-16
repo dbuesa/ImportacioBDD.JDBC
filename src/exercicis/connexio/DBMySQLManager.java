@@ -1,4 +1,4 @@
-package Exercicis.connexio;
+package exercicis.connexio;
 import java.sql.*;
 
 public class DBMySQLManager {

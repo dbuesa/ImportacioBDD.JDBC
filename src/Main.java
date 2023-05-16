@@ -1,4 +1,4 @@
-import Exercicis.vista.Vista;
+import exercicis.vista.Vista;
 
 public class Main {
     public static void main(String[] args) {
@@ -7,4 +7,3 @@ public class Main {
 }
 
 
-    

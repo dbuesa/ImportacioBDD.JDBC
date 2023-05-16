@@ -1,11 +1,10 @@
-package Exercicis.vista;
+package exercicis.vista;
 
-import Exercicis.opcionsMenu.OpcionsMenu;
+import exercicis.opcionsMenu.OpcionsMenu;
 
-import java.awt.*;
 import java.util.Scanner;
 
-import static Exercicis.opcionsMenu.OpcionsMenu.*;
+import static exercicis.opcionsMenu.OpcionsMenu.*;
 
 public class Vista {
     static Scanner scan = new Scanner(System.in);

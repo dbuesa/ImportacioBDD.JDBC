@@ -1,6 +1,4 @@
-package Exercicis.objectes.DAO;
-
-import Exercicis.objectes.Persona;
+package exercicis.objectes.DAO;
 
 import java.sql.SQLException;
 
