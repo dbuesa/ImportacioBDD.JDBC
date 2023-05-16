@@ -7,6 +7,8 @@ public class DBMySQLManager {
     static String ipMarc = "10.2.106.42";
     static String ipDirecte = "10.2.179.196";
 
+    static String ipXavi = "";
+
     // Propietats
     private static Connection conn = null;
     private String driver = "com.mysql.cj.jdbc.Driver"; //com.mysql.jdbc.Driver
