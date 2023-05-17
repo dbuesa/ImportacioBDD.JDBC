@@ -93,32 +93,30 @@ public class CandidaturaDAODB implements DAODB<Candidatura> {
 
             // Verificar y agregar los campos a actualizar
             if (candidatura.getCodi_candidatura() != null) {
-                sqlBuilder.append(" codi_candidatura = ?,");
+                sqlBuilder.append(" codi_candidatura = ?");
                 parameters.add(candidatura.getCodi_candidatura());
             }
             if (candidatura.getNom_curt() != null) {
-                sqlBuilder.append(" nom_curt = ?,");
+                sqlBuilder.append(" nom_curt = ?");
                 parameters.add(candidatura.getNom_curt());
             }
             if (candidatura.getNom_llarg() != null) {
-                sqlBuilder.append(" nom_llarg = ?,");
+                sqlBuilder.append(" nom_llarg = ?");
                 parameters.add(candidatura.getNom_llarg());
             }
             if (candidatura.getCodi_acumulacio_provincia() != null) {
-                sqlBuilder.append(" codi_acumulacio_provincia = ?,");
+                sqlBuilder.append(" codi_acumulacio_provincia = ?");
                 parameters.add(candidatura.getCodi_acumulacio_provincia());
             }
             if (candidatura.getCodi_acumulacio_ca() != null) {
-                sqlBuilder.append(" codi_acumulacio_ca = ?,");
+                sqlBuilder.append(" codi_acumulacio_ca = ?");
                 parameters.add(candidatura.getCodi_acumulacio_ca());
             }
             if (candidatura.getCodi_acumulacio_nacional() != null) {
-                sqlBuilder.append(" codi_acumulacio_nacional = ?,");
+                sqlBuilder.append(" codi_acumulacio_nacional = ?");
                 parameters.add(candidatura.getCodi_acumulacio_nacional());
             }
 
-            // Eliminar la última coma (,) y completar la cláusula WHERE
-            sqlBuilder.deleteCharAt(sqlBuilder.length() - 1);
             sqlBuilder.append(" WHERE candidatura_id = ?");
             parameters.add(candidatura.getCandidatura_id());
 

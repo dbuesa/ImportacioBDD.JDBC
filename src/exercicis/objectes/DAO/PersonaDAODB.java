@@ -80,32 +80,28 @@ public class PersonaDAODB implements DAODB<Persona> {
 
         PreparedStatement stmt = null;
         try {
-
-
             // Construir la consulta SQL base
             StringBuilder sqlBuilder = new StringBuilder("UPDATE persones SET");
             List<Object> parameters = new ArrayList<>();
 
             // Verificar y agregar los campos a actualizar
             if (persona.getNom() != null) {
-                sqlBuilder.append(" nom = ?,");
+                sqlBuilder.append(" nom = ?");
                 parameters.add(persona.getNom());
             }
             if (persona.getCog1() != null) {
-                sqlBuilder.append(" cog1 = ?,");
+                sqlBuilder.append(" cog1 = ?");
                 parameters.add(persona.getCog1());
             }
             if (persona.getCog2() != null) {
-                sqlBuilder.append(" cog2 = ?,");
+                sqlBuilder.append(" cog2 = ?");
                 parameters.add(persona.getCog2());
             }
             if (persona.getDni() != null) {
-                sqlBuilder.append(" dni = ?,");
+                sqlBuilder.append(" dni = ?");
                 parameters.add(persona.getDni());
             }
 
-            // Eliminar la última coma (,) y completar la cláusula WHERE
-            sqlBuilder.deleteCharAt(sqlBuilder.length() - 1);
             sqlBuilder.append(" WHERE persona_id = ?");
             parameters.add(persona.getPersona_id());
 

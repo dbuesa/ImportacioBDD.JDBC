@@ -72,24 +72,21 @@ public class ComunitatAutonomaDAODB implements DAODB<ComunitatAutonoma> {
 
         PreparedStatement stmt = null;
         try {
-
-
             // Construir la consulta SQL base
             StringBuilder sqlBuilder = new StringBuilder("UPDATE comunitats_autonomes SET");
             List<Object> parameters = new ArrayList<>();
 
             // Verificar y agregar los campos a actualizar
             if (ca.getNom() != null) {
-                sqlBuilder.append(" nom = ?,");
+                sqlBuilder.append(" nom = ?");
                 parameters.add(ca.getNom());
             }
             if (ca.getCodi_ine() != null) {
-                sqlBuilder.append(" codi_ine = ?,");
+                sqlBuilder.append(" codi_ine = ?");
                 parameters.add(ca.getCodi_ine());
             }
 
             // Eliminar la última coma (,) y completar la cláusula WHERE
-            sqlBuilder.deleteCharAt(sqlBuilder.length() - 1);
             sqlBuilder.append(" WHERE comunitat_aut_id = ?");
             parameters.add(ca.getComunitat_aut_id());
 
